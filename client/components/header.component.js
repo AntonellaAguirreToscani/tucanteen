@@ -1,4 +1,4 @@
-< script type = "text/javascript"
+/*< script type = "text/javascript"
 src = "./components/header.component.js" > < /script>
 class Header extends HTMLElement {
     connectedCallback() {
@@ -12,4 +12,4 @@ class Header extends HTMLElement {
       </nav>`
     }
 }
-customElements.define('my-header', Header);
+customElements.define('my-header', Header); */
