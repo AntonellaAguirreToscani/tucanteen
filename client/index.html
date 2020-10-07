@@ -1,31 +1,176 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <title>tuCanteen 1.0</title>
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/styles.css">
-    <title>Document</title>
-</head>
+  <body>
+    <div id="div-father">
+      <!-- Header -->
 
-<body>
-    <my-header></my-header>
-    <client-panel></client-panel>
+      <nav
+        class="navbar navbar-light"
+        style="background-color: #fdf15d;"
+        id="header"
+      >
+        <form class="form-inline">
+          <div id="btns">
+            <button
+              class="btn btn-outline-success my-2 my-sm-0"
+              type="button"
+              id="btn-login"
+            >
+              Login
+            </button>
+            <button
+              class="btn btn-outline-success my-2 my-sm-0"
+              type="button"
+              id="btn-register"
+            >
+              Registrarse
+            </button>
+          </div>
+        </form>
+      </nav>
+
+    <div id="div-container-body">
+
+      <!-- Panel izquierdo -->
+
+      <div id="container-client-panel" class="col-sm-2">
+        <nav class="nav flex-column">
+          <a class="nav-link active" href="#" id="main">Menú del Día</a>
+          <h5 id="chart">Carta</h5>
+          <div id="list">
+            <li>
+              <ul>
+                <a class="nav-link active" href="#" id="buffet">Al Plato</a>
+              </ul>
+              <ul>
+                <a class="nav-link active" href="#" id="sandwiches"
+                  >Sandwiches</a
+                >
+              </ul>
+              <ul>
+                <a class="nav-link active" href="#" id="drinks">Bebidas</a>
+              </ul>
+              <ul>
+                <a class="nav-link active" href="#" id="deserts">Postres</a>
+              </ul>
+            </li>
+          </div>
+        </nav>
+      </div>
+
+      <!--Body-->
+
+      <div id="div-body">
+        <h1>Este es el Body</h1>
+      </div>
+
+      <!--Panel derecho-->
+
+      <div id="container-order-panel" class="col-sm-2">
+            <h1>TU ORDEN</h1>
+            <div id="client-order">
+            <!--Ejemplo orden-->
+            <ul>
+            <li>lasagna $200 pe</li>
+            </ul>
+            </div>
+            
+
+          
+      </div>
+    </div>
+      <!--Footer-->
+
+      <div id="container-client-footer">
+        <footer class="page-footer font-small special-color-dark pt-4">
+          <!-- Footer Elements -->
+          <div class="container">
+            <!--Grid row-->
+            <div class="row">
+              <!--Grid column-->
+              <div class="col-md-6 mb-4">
+                <!-- Form -->
+                <form class="form-inline">
+                  <input
+                    class="form-control form-control-sm mr-3 w-75"
+                    type="text"
+                    placeholder="Search"
+                    aria-label="Search"
+                  />
+                  <i class="fas fa-search" aria-hidden="true"></i>
+                </form>
+                <!-- Form -->
+              </div>
+              <!--Grid column-->
+
+              <!--Grid column-->
+              <div class="col-md-6 mb-4">
+                <form class="input-group">
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    placeholder="Your email"
+                    aria-label="Your email"
+                    aria-describedby="basic-addon2"
+                  />
+                  <div class="input-group-append">
+                    <button
+                      class="btn btn-sm btn-outline-white my-0"
+                      type="button"
+                    >
+                      Sign up
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <!--Grid column-->
+            </div>
+            <!--Grid row-->
+          </div>
+          <!-- Footer Elements -->
+
+          <!-- Copyright -->
+          <div class="footer-copyright text-center py-3">
+            © 2020 Copyright:
+            <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+          </div>
+          <!-- Copyright -->
+        </footer>
+        <!-- Footer -->
+      </div>
+
+
+    </div>
+
     <!-- scripts -->
-    <script type="text/javascript" src="./components/header.component.js"></script>
-    <script type="text/javascript" src="./components/clientPanel.component.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-        crossorigin="anonymous"></script>
-</body>
-
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

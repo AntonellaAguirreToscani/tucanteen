@@ -1,4 +1,6 @@
-class Header extends HTMLElement{
+< script type = "text/javascript"
+src = "./components/header.component.js" > < /script>
+class Header extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `<nav class="navbar navbar-light" style="background-color: #fdf15d;" id="header">
         <form class="form-inline">
@@ -10,4 +12,4 @@ class Header extends HTMLElement{
       </nav>`
     }
 }
-customElements.define('my-header',Header);
+customElements.define('my-header', Header);

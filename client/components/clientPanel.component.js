@@ -1,3 +1,5 @@
+< script type = "text/javascript"
+src = "./components/clientPanel.component.js" > < /script>
 class ClientPanel extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
