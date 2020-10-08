@@ -1,30 +1,68 @@
-#btns{
+#btns {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin-left: 680%;
-    margin-top: 10%;
+    margin-left: 600%;
+    margin-top: 20%;
+    margin-bottom: 20%;
 }
+
+
 /* #logo {
     height: 20%;
     width: 30%;
 } */
+
 #btn-register {
     margin-left: 5%;
 }
-#carta{
+
+#chart {
     margin-top: 2%;
     margin-left: 1%;
+    font-weight: 600;
 }
-#list{
-    background-color: #dbd360;    
+
+#list {
+    background-color: #dbd360;
 }
-#main, #buffet, #sandwiches, #drinks, #deserts{
+
+#Nav {
     color: black;
 }
-#container-client-panel{
+
+#main,
+#buffet,
+#sandwiches,
+#drinks,
+#deserts {
+    color: black;
+}
+
+#container-client-panel {
     /* display: flex;
     flex-basis: auto; */
-    background-color:#b03858;
-    height: 100%;
+    position: absolute;
+    background-color: #b03858;
+    height: 92%;
+}
+
+
+/* #div-father {} */
+
+#div-container-body {
+    display: flex;
+}
+
+#div-body {
+    display: flex;
+    margin-top: 30%;
+    margin-bottom: 30%;
+    align-content: center;
+}
+
+#container-client-footer {
+    display: flex;
+    align-items: flex-end;
+    background-color: pink;
 }

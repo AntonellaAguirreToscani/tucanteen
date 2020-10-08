@@ -1,7 +1,9 @@
+/* < script type = "text/javascript"
+src = "./components/clientPanel.component.js" > < /script>
 class ClientPanel extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
-        <div id="container-client-panel" class="col-sm-2" style="heigth:600px;">
+         <div id="container-client-panel" class="col-sm-2" style="heigth:600px;">
             <nav class="nav flex-column">
                 <a class="nav-link active" href="#" id="main">Menú del Día</a>
                 <h5 id="carta">Carta</h5>
@@ -18,4 +20,4 @@ class ClientPanel extends HTMLElement {
         `
     }
 }
-customElements.define('client-panel', ClientPanel);
+customElements.define('client-panel', ClientPanel); */
