@@ -21,13 +21,9 @@
         <img class="logo" src="../client/css/tuCanteen100.png" alt="Logo PNG"/>
         <!-- <nav class="navbar navbar-light" style="background-color: #fdf15d;" id="header"> -->
             <form class="form-inline">
-                <div id="btns">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="btn-login">
-                        Ingresar
-                    </button>
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="btn-register">
-                        Registrarse
-                    </button>
+                <div id="butons">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="btn-login"> Ingresar</button>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="btn-register">Registrarse</button>
                 </div>
             </form>
         <!-- </nav> -->
@@ -35,19 +31,48 @@
     <!-- ***************************************************** -->
     <!-- **********************   NAV BAR  ******************* -->
     <!-- ***************************************************** -->
-    <nav class="navbar">NAV VERTICAL</nav>
+    <nav class="navbar">
+        <ul>
+          Menu del dia
+        </ul>
+        <ul>
+          Carta
+          <li>Al Plato</li>
+          <li>Bebidas</li>
+          <li>Postres</li>
+        </ul>
+    </nav>
+      
     <!-- ******************************************************* -->
     <!-- **********************   SIDE BAR   ******************* -->
     <!-- ******************************************************* -->
-    <aside class="sidebar">SIDEBAR</aside>
+    <aside class="sidebar">
+        <div class="order">
+          <h3>Tu orden</h3>
+          <ul>
+            <li>Orden 1</li>
+            <li>Orden 2</li>
+          </ul>
+        </div>
+        <div class="Total">
+          <h5>Total = $0,00</h5>
+          <button>Finalizar Compra</button>
+        </div>
+    </aside>
     <!-- ******************************************************* -->
     <!-- **********************   MAINBODY   ******************* -->
     <!-- ******************************************************* -->
-    <article class="mainbody">MAIN BODY</article>
+    <section class="mainbody">
+        <img class="responsive" src="../client/imgs/comidita.jpg" alt="Comidita">
+      </section>
+      
     <!-- ***************************************************** -->
     <!-- **********************   FOOTER   ******************* -->
     <!-- ***************************************************** -->
-    <footer class="footer">ESTE ES EL FOOTER</footer>
+    <footer class="footer">
+        <h6>Proyecto final del curso Desarrollador Full Stack del CFL, año 2020</h6>
+        <h6>Todos los derechos reservado, grupo #1</h6>
+    </footer>
 
     <!-- ***************************************************************** -->
     <!-- **********************   ACA VAN LOS SCRIPTS  ******************* -->
