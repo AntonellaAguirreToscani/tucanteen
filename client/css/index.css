@@ -16,6 +16,8 @@ body {
     min-width: 100%;
 }
 
+
+
 .grid-container > * {
     box-shadow: darkgray;
     border-radius: 1px;
@@ -25,30 +27,72 @@ body {
 .header {
     grid-area: header;
     background-color: #fdf15d;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px;
 }
 
 .logo{
-    margin-left: 30px;
+    margin-left: 3%;
+    align-items: center;
+    object-fit: contain;
 }
+
+img.responsive {    /*que las imagenes se adapten al espacio */
+    width: 80%;
+    height: 100%;
+    object-fit: contain;
+}
+
+#buttons{
+    grid-auto-flow: column;
+    display: grid;
+    grid-gap: 12px;
+}
+
+button {
+    background-color: #333;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    padding: 12px 20px;
+  }
 
 .navbar {
     grid-area: navbar;
-    background-color: #7D782E;
+    background-color: whitesmoke;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: inherit;
 }
 
 .mainbody {
     grid-area: mainbody;
-    background-color: #FDF7A9;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
 }
 
 .sidebar {
     grid-area: sidebar;
-    background-color: #C9C14B;
+    background-color: whitesmoke;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .footer {
     grid-area: footer;
-    background-color: #7D7A54;
+    background-color: green;
+    font-style: italic;
+    font-size: 2px;
+    display: inherit;
+    align-items: center;
 }
 
 .grid-container {
