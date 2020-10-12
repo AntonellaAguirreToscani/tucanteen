@@ -1,0 +1,14 @@
+footer {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+footer p {
+  margin-bottom: .25rem;
+}
+#footer{
+  background-color: #6AB04C;
+}
+#contact{
+  margin-left: 50%;
+}
