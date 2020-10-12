@@ -14,6 +14,8 @@ export namespace Components {
     }
     interface AppRoot {
     }
+    interface ClientDeserts {
+    }
     interface ClientPanel {
     }
     interface MyBody {
@@ -45,6 +47,12 @@ declare global {
     var HTMLAppRootElement: {
         prototype: HTMLAppRootElement;
         new (): HTMLAppRootElement;
+    };
+    interface HTMLClientDesertsElement extends Components.ClientDeserts, HTMLStencilElement {
+    }
+    var HTMLClientDesertsElement: {
+        prototype: HTMLClientDesertsElement;
+        new (): HTMLClientDesertsElement;
     };
     interface HTMLClientPanelElement extends Components.ClientPanel, HTMLStencilElement {
     }
@@ -86,6 +94,7 @@ declare global {
         "app-home": HTMLAppHomeElement;
         "app-profile": HTMLAppProfileElement;
         "app-root": HTMLAppRootElement;
+        "client-deserts": HTMLClientDesertsElement;
         "client-panel": HTMLClientPanelElement;
         "my-body": HTMLMyBodyElement;
         "my-footer": HTMLMyFooterElement;
@@ -101,6 +110,8 @@ declare namespace LocalJSX {
         "match"?: MatchResults;
     }
     interface AppRoot {
+    }
+    interface ClientDeserts {
     }
     interface ClientPanel {
     }
@@ -118,6 +129,7 @@ declare namespace LocalJSX {
         "app-home": AppHome;
         "app-profile": AppProfile;
         "app-root": AppRoot;
+        "client-deserts": ClientDeserts;
         "client-panel": ClientPanel;
         "my-body": MyBody;
         "my-footer": MyFooter;
@@ -133,6 +145,7 @@ declare module "@stencil/core" {
             "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
             "app-profile": LocalJSX.AppProfile & JSXBase.HTMLAttributes<HTMLAppProfileElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
+            "client-deserts": LocalJSX.ClientDeserts & JSXBase.HTMLAttributes<HTMLClientDesertsElement>;
             "client-panel": LocalJSX.ClientPanel & JSXBase.HTMLAttributes<HTMLClientPanelElement>;
             "my-body": LocalJSX.MyBody & JSXBase.HTMLAttributes<HTMLMyBodyElement>;
             "my-footer": LocalJSX.MyFooter & JSXBase.HTMLAttributes<HTMLMyFooterElement>;
