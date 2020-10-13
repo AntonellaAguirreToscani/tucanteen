@@ -28,7 +28,9 @@ export class AppRoot {
         <main>
           <stencil-router>
             <stencil-route-switch scrollTopOffset={0}>
-              <stencil-route url="/login" component="user-login" />
+              {/* <stencil-route url="/login" component="user-login" />
+            
+              <stencil-route url="/register" component="user-register" /> */}
               <stencil-route url="/profile/:name" component="app-profile" />
             </stencil-route-switch>
           </stencil-router>

@@ -25,6 +25,12 @@ export namespace Components {
     interface RigthPanel {
     }
     interface UserLogin {
+        "hidden": boolean;
+        "id": string;
+    }
+    interface UserRegister {
+        "hidden": boolean;
+        "id": string;
     }
 }
 declare global {
@@ -82,6 +88,12 @@ declare global {
         prototype: HTMLUserLoginElement;
         new (): HTMLUserLoginElement;
     };
+    interface HTMLUserRegisterElement extends Components.UserRegister, HTMLStencilElement {
+    }
+    var HTMLUserRegisterElement: {
+        prototype: HTMLUserRegisterElement;
+        new (): HTMLUserRegisterElement;
+    };
     interface HTMLElementTagNameMap {
         "app-home": HTMLAppHomeElement;
         "app-profile": HTMLAppProfileElement;
@@ -92,6 +104,7 @@ declare global {
         "my-header": HTMLMyHeaderElement;
         "rigth-panel": HTMLRigthPanelElement;
         "user-login": HTMLUserLoginElement;
+        "user-register": HTMLUserRegisterElement;
     }
 }
 declare namespace LocalJSX {
@@ -113,6 +126,12 @@ declare namespace LocalJSX {
     interface RigthPanel {
     }
     interface UserLogin {
+        "hidden"?: boolean;
+        "id"?: string;
+    }
+    interface UserRegister {
+        "hidden"?: boolean;
+        "id"?: string;
     }
     interface IntrinsicElements {
         "app-home": AppHome;
@@ -124,6 +143,7 @@ declare namespace LocalJSX {
         "my-header": MyHeader;
         "rigth-panel": RigthPanel;
         "user-login": UserLogin;
+        "user-register": UserRegister;
     }
 }
 export { LocalJSX as JSX };
@@ -139,6 +159,7 @@ declare module "@stencil/core" {
             "my-header": LocalJSX.MyHeader & JSXBase.HTMLAttributes<HTMLMyHeaderElement>;
             "rigth-panel": LocalJSX.RigthPanel & JSXBase.HTMLAttributes<HTMLRigthPanelElement>;
             "user-login": LocalJSX.UserLogin & JSXBase.HTMLAttributes<HTMLUserLoginElement>;
+            "user-register": LocalJSX.UserRegister & JSXBase.HTMLAttributes<HTMLUserRegisterElement>;
         }
     }
 }
