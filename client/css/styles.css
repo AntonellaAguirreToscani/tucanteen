@@ -1,0 +1,30 @@
+#btns{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-left: 680%;
+    margin-top: 10%;
+}
+/* #logo {
+    height: 20%;
+    width: 30%;
+} */
+#btn-register {
+    margin-left: 5%;
+}
+#carta{
+    margin-top: 2%;
+    margin-left: 1%;
+}
+#list{
+    background-color: #dbd360;    
+}
+#main, #buffet, #sandwiches, #drinks, #deserts{
+    color: black;
+}
+#container-client-panel{
+    /* display: flex;
+    flex-basis: auto; */
+    background-color:#b03858;
+    height: 100%;
+}
