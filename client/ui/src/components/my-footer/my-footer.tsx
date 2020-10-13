@@ -11,12 +11,12 @@ export class MyFooter {
     return (
       <footer class="text-muted" id="footer">
         <div class="container">
-        <stencil-route-link url="/contacto">
-              <a class="nav-link" id="contact" href="#">
-                <span data-feather="file"></span>
-                Contacto
-              </a>
-            </stencil-route-link>
+          <stencil-route-link url="/contacto">
+                <a class="nav-link" id="contact" href="#">
+                  <span data-feather="file"></span>
+                  Contáctanos
+                </a>
+              </stencil-route-link>
         </div>
       </footer>
     );
