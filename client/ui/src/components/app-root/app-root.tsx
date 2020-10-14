@@ -13,7 +13,7 @@ export class AppRoot {
           <client-panel></client-panel>  
           <my-body></my-body>
           <rigth-panel></rigth-panel>
-          </div>
+          </div> 
         <main>
           <stencil-router>
             <stencil-route-switch scrollTopOffset={0}>

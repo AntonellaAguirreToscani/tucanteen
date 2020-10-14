@@ -42,7 +42,7 @@ body {
           "footer footer footer"    10% / 
           25%     auto     25%;
   }
-}
+} 
 
 @media (min-width: 1200px) {          /*MEDIA QUERY NAVEGADOR A FULL*/
   .grid-container {

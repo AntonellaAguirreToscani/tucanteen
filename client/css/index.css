@@ -60,9 +60,6 @@ body {
     align-items: center;
 }
 
-
-
-
 .web-container {
     grid-template: 
         "header header header"    20%

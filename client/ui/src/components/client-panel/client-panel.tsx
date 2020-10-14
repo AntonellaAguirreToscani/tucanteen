@@ -17,7 +17,7 @@ export class ClientPanel {
                 <a class="nav-link" href="#">
                   <span data-feather="file"></span>
                   Menú del día
-                </a>
+                </a> 
               </stencil-route-link>
             </li>
             <h3 id="carta-label">Carta</h3>

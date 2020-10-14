@@ -21,7 +21,7 @@ export class RigthPanel {
             <h4 id="total"> Total: $ 100</h4>
             <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="btn-finish">Finalizar Compra</button>
           </div>
-        </aside>
+        </aside> 
     )
   }
 }

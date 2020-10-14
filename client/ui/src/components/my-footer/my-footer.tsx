@@ -18,7 +18,7 @@ export class MyFooter {
                 </a>
               </stencil-route-link>
         </div>
-      </footer>
+      </footer> 
     );
   }
 
