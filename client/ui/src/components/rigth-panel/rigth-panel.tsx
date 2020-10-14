@@ -9,13 +9,19 @@ export class RigthPanel {
 
   render() {
     return (
-      <div class="container">
-        <h4 id="your-order">Tu orden</h4>
-        <div id="orders"></div>
-        <div id="total"> Total: $ 100</div>
-        <button type="button" class="btn btn-secondary btn-lg" id="btn-finish">Finalizar Compra</button>
-      </div>
+        <aside class="sidebar">
+          <div class="order"  >
+            <h4>Tu orden</h4>
+              <ul id="orders">
+                <li>Desayuno 70$</li>
+                <li>Bebida   30$</li>
+              </ul>
+          </div>
+          <div class="totals-foot">
+            <h4 id="total"> Total: $ 100</h4>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="btn-finish">Finalizar Compra</button>
+          </div>
+        </aside> 
     )
   }
-
 }
