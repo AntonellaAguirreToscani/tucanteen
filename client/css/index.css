@@ -18,46 +18,11 @@ body {
 
 
 
-.grid-container > * {
+.web-container > * {
     box-shadow: darkgray;
     border-radius: 1px;
     padding: 10px;
 }
-
-.header {
-    grid-area: header;
-    background-color: #fdf15d;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 25px;
-}
-
-.logo{
-    margin-left: 3%;
-    align-items: center;
-    object-fit: contain;
-}
-
-img.responsive {    /*que las imagenes se adapten al espacio */
-    width: 80%;
-    height: 100%;
-    object-fit: contain;
-}
-
-#buttons{
-    grid-auto-flow: column;
-    display: grid;
-    grid-gap: 12px;
-}
-
-button {
-    background-color: #333;
-    color: white;
-    border-radius: 4px;
-    border: none;
-    padding: 12px 20px;
-  }
 
 .navbar {
     grid-area: navbar;
@@ -95,45 +60,10 @@ button {
     align-items: center;
 }
 
-.grid-container {
-    display: grid;
-    gap:5px;
-    grid-template:                /*TAMAÑO NAVEGADOR DEFAULT: MOVIL*/
-        "header header "   20%       /* alto */
-        "navbar mainbody"  auto
-        "sidebar sidebar"  20%
-        "footer footer"    10% / 
-        25%     auto ;              /* ancho */  
-}
-
-
-@media (min-width: 600px) {          /*MEDIA QUERY NAVEGADOR TABLET*/
-    .grid-container {
-        grid-template: 
-            "header header "   20%    /* alto */
-            "navbar mainbody"  auto
-            "sidebar sidebar"  20%
-            "footer footer"    10% / 
-            25%     auto ;            /* ancho */ 
-    }
-}
-
-@media (min-width: 900px) {          /*MEDIA QUERY NAVEGADOR GRANDE*/
-    .grid-container {
-        grid-template: 
-            "header header header"    20%
-            "navbar mainbody sidebar" auto
-            "footer footer footer"    10% / 
-            25%     auto     25%;
-    }
-}
-
-@media (min-width: 1200px) {          /*MEDIA QUERY NAVEGADOR A FULL*/
-    .grid-container {
-        grid-template: 
-            "header header header"    20%
-            "navbar mainbody sidebar" auto
-            "footer footer footer"    10% / 
-            20%     auto     20%;
-    }
+.web-container {
+    grid-template: 
+        "header header header"    20%
+        "navbar mainbody sidebar" 70%
+        "footer footer footer"    10% / 
+        20%     auto     20%;
 }
