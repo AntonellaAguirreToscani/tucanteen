@@ -9,22 +9,11 @@ export class AppRoot {
   render() {
     return (
       <div>
-        <my-header></my-header>
-
-          <div class="row">
-            <div class="col-xl-3">
-              <client-panel></client-panel>
-            </div>
-            <div class="col-xl-6">
-              <my-body></my-body>
-            </div>
-            <div class="col-xl-3">
-            <rigth-panel></rigth-panel>
-            </div>
-          </div>
-
-        <my-footer></my-footer>
-
+        <div class="grid-container">
+          <client-panel></client-panel>  
+          <my-body></my-body>
+          <rigth-panel></rigth-panel>
+          </div> 
         <main>
           <stencil-router>
             <stencil-route-switch scrollTopOffset={0}>

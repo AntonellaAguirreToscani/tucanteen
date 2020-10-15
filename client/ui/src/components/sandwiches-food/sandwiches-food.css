@@ -1,0 +1,12 @@
+.tittle{
+  text-align: center;
+}
+.first-div,.third-div, .second-div, .room-div{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.radio{
+  width: 15px;
+  height: 15px;
+}
