@@ -4,7 +4,7 @@
 .one-div,.three-div{
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 .two-div,.four-div{
   display: flex;

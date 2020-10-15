@@ -12,23 +12,23 @@ export class ClientDeserts {
       <div class="div-container">
         <h1 class="titulo">carta-postres</h1>
         <div class="one-div">
-          <img src="./assets/icon/foto1.jpg" alt="" />
-          <img src="./assets/icon/foto2.jpg" alt="" />
+          <img src="./assets/icon/food/muffin.jpg" alt="" />
+          <img src="./assets/icon/food/bochahelado.png" alt="" />
         </div>
         <div class="two-div">
-          <h5>muffin c/nueces $180</h5>
-          <h5>bocha de helado $90</h5>
+          <h5>muffin c/nueces $180 <input type="radio" class="radio"/> </h5>
+          <h5>bocha de helado $90 <input type="radio" class="radop"/> </h5>
         </div>
         <div class="three-div">
-          <img src="./assets/icon/foto3.jpg" alt="" />
-          <img src="./assets/icon/foto4.jpg" alt="" />
+          <img src="./assets/icon/food/tartafrutos.jpg" alt="" />
+          <img src="./assets/icon/food/tartachoco.jpg" alt="" />
         </div>
         <div class="four-div">
-          <h5>tarta frutos r $200</h5>
-          <h5>tarta chocolate $160</h5>
+          <h5>tarta frutos r $200 <input type="radio"class="radio"/> </h5>
+          <h5>tarta chocolate $160<input type= "radio"class="radio"></input> </h5>
 
         </div>
-
+       
       </div>
 
     )
