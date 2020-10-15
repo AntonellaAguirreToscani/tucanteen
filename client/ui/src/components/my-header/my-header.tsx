@@ -5,7 +5,8 @@ import { Component, h } from '@stencil/core';
   styleUrl: 'my-header.css',
   shadow: false,
 })
-export class MyHeader {
+
+export class MyHeader{ 
   render() {
     return (
       <header class="header">

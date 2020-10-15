@@ -25,6 +25,7 @@ export namespace Components {
     interface RigthPanel {
     }
     interface UserLogin {
+        "handleLogin": (e: any) => Promise<void>;
         "hidden": boolean;
         "id": string;
     }
