@@ -22,6 +22,8 @@ export namespace Components {
     }
     interface MyHeader {
     }
+    interface OfferCarousel {
+    }
     interface PlateFood {
     }
     interface RigthPanel {
@@ -80,6 +82,12 @@ declare global {
         prototype: HTMLMyHeaderElement;
         new (): HTMLMyHeaderElement;
     };
+    interface HTMLOfferCarouselElement extends Components.OfferCarousel, HTMLStencilElement {
+    }
+    var HTMLOfferCarouselElement: {
+        prototype: HTMLOfferCarouselElement;
+        new (): HTMLOfferCarouselElement;
+    };
     interface HTMLPlateFoodElement extends Components.PlateFood, HTMLStencilElement {
     }
     var HTMLPlateFoodElement: {
@@ -118,6 +126,7 @@ declare global {
         "my-body": HTMLMyBodyElement;
         "my-footer": HTMLMyFooterElement;
         "my-header": HTMLMyHeaderElement;
+        "offer-carousel": HTMLOfferCarouselElement;
         "plate-food": HTMLPlateFoodElement;
         "rigth-panel": HTMLRigthPanelElement;
         "sandwiches-food": HTMLSandwichesFoodElement;
@@ -141,6 +150,8 @@ declare namespace LocalJSX {
     }
     interface MyHeader {
     }
+    interface OfferCarousel {
+    }
     interface PlateFood {
     }
     interface RigthPanel {
@@ -163,6 +174,7 @@ declare namespace LocalJSX {
         "my-body": MyBody;
         "my-footer": MyFooter;
         "my-header": MyHeader;
+        "offer-carousel": OfferCarousel;
         "plate-food": PlateFood;
         "rigth-panel": RigthPanel;
         "sandwiches-food": SandwichesFood;
@@ -181,6 +193,7 @@ declare module "@stencil/core" {
             "my-body": LocalJSX.MyBody & JSXBase.HTMLAttributes<HTMLMyBodyElement>;
             "my-footer": LocalJSX.MyFooter & JSXBase.HTMLAttributes<HTMLMyFooterElement>;
             "my-header": LocalJSX.MyHeader & JSXBase.HTMLAttributes<HTMLMyHeaderElement>;
+            "offer-carousel": LocalJSX.OfferCarousel & JSXBase.HTMLAttributes<HTMLOfferCarouselElement>;
             "plate-food": LocalJSX.PlateFood & JSXBase.HTMLAttributes<HTMLPlateFoodElement>;
             "rigth-panel": LocalJSX.RigthPanel & JSXBase.HTMLAttributes<HTMLRigthPanelElement>;
             "sandwiches-food": LocalJSX.SandwichesFood & JSXBase.HTMLAttributes<HTMLSandwichesFoodElement>;
