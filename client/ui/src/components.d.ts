@@ -31,6 +31,7 @@ export namespace Components {
     interface SandwichesFood {
     }
     interface UserLogin {
+        "handleLogin": (e: any) => Promise<void>;
         "hidden": boolean;
         "id": string;
     }
