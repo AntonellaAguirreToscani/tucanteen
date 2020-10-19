@@ -11,6 +11,9 @@ export class UserService{
   getUsers(): Observable<User[]> {
     return of(USERS);
   }
+  createUser(user: User){
+    USERS.push(user);
+  }
   //Utiliza el patron Singleton. Se intancia una única vez!
   public static get Instance(): UserService {
       return this._instance || (this._instance = new this());
