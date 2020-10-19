@@ -15,5 +15,8 @@
     "@stencil/router": "^1.0.1",
     "@types/jquery": "^3.5.2"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "rxjs": "^6.6.3"
+  }
 }

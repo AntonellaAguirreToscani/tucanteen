@@ -17,8 +17,11 @@ export class AppRoot {
         <main>
           <stencil-router>
             <stencil-route-switch scrollTopOffset={0}>
+<<<<<<< HEAD
               <stencil-route url="/login" component="user-login" />
               <stencil-route url="/postres" component="client-deserts" />
+=======
+>>>>>>> origin/develop
               {/* <stencil-route url="/login" component="user-login" />
             
               <stencil-route url="/register" component="user-register" /> */}

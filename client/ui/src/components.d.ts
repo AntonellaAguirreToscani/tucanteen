@@ -24,9 +24,17 @@ export namespace Components {
     }
     interface MyHeader {
     }
+    interface PlateFood {
+    }
     interface RigthPanel {
     }
+    interface SandwichesFood {
+    }
     interface UserLogin {
+<<<<<<< HEAD
+=======
+        "handleLogin": (e: any) => Promise<void>;
+>>>>>>> origin/develop
         "hidden": boolean;
         "id": string;
     }
@@ -84,11 +92,23 @@ declare global {
         prototype: HTMLMyHeaderElement;
         new (): HTMLMyHeaderElement;
     };
+    interface HTMLPlateFoodElement extends Components.PlateFood, HTMLStencilElement {
+    }
+    var HTMLPlateFoodElement: {
+        prototype: HTMLPlateFoodElement;
+        new (): HTMLPlateFoodElement;
+    };
     interface HTMLRigthPanelElement extends Components.RigthPanel, HTMLStencilElement {
     }
     var HTMLRigthPanelElement: {
         prototype: HTMLRigthPanelElement;
         new (): HTMLRigthPanelElement;
+    };
+    interface HTMLSandwichesFoodElement extends Components.SandwichesFood, HTMLStencilElement {
+    }
+    var HTMLSandwichesFoodElement: {
+        prototype: HTMLSandwichesFoodElement;
+        new (): HTMLSandwichesFoodElement;
     };
     interface HTMLUserLoginElement extends Components.UserLogin, HTMLStencilElement {
     }
@@ -111,7 +131,9 @@ declare global {
         "my-body": HTMLMyBodyElement;
         "my-footer": HTMLMyFooterElement;
         "my-header": HTMLMyHeaderElement;
+        "plate-food": HTMLPlateFoodElement;
         "rigth-panel": HTMLRigthPanelElement;
+        "sandwiches-food": HTMLSandwichesFoodElement;
         "user-login": HTMLUserLoginElement;
         "user-register": HTMLUserRegisterElement;
     }
@@ -134,7 +156,11 @@ declare namespace LocalJSX {
     }
     interface MyHeader {
     }
+    interface PlateFood {
+    }
     interface RigthPanel {
+    }
+    interface SandwichesFood {
     }
     interface UserLogin {
         "hidden"?: boolean;
@@ -153,7 +179,9 @@ declare namespace LocalJSX {
         "my-body": MyBody;
         "my-footer": MyFooter;
         "my-header": MyHeader;
+        "plate-food": PlateFood;
         "rigth-panel": RigthPanel;
+        "sandwiches-food": SandwichesFood;
         "user-login": UserLogin;
         "user-register": UserRegister;
     }
@@ -170,7 +198,9 @@ declare module "@stencil/core" {
             "my-body": LocalJSX.MyBody & JSXBase.HTMLAttributes<HTMLMyBodyElement>;
             "my-footer": LocalJSX.MyFooter & JSXBase.HTMLAttributes<HTMLMyFooterElement>;
             "my-header": LocalJSX.MyHeader & JSXBase.HTMLAttributes<HTMLMyHeaderElement>;
+            "plate-food": LocalJSX.PlateFood & JSXBase.HTMLAttributes<HTMLPlateFoodElement>;
             "rigth-panel": LocalJSX.RigthPanel & JSXBase.HTMLAttributes<HTMLRigthPanelElement>;
+            "sandwiches-food": LocalJSX.SandwichesFood & JSXBase.HTMLAttributes<HTMLSandwichesFoodElement>;
             "user-login": LocalJSX.UserLogin & JSXBase.HTMLAttributes<HTMLUserLoginElement>;
             "user-register": LocalJSX.UserRegister & JSXBase.HTMLAttributes<HTMLUserRegisterElement>;
         }
