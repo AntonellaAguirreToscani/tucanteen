@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-import { Component, h, Prop } from '@stencil/core';
-=======
 import { Component, h, Method, Prop, State } from '@stencil/core';
 import { User } from '../../models.ts/user.model';
 import { UserService } from '../../services/user.services';
->>>>>>> origin/develop
 
 @Component({
   tag: 'user-login',
@@ -12,10 +8,6 @@ import { UserService } from '../../services/user.services';
   shadow: false,
 })
 export class UserLogin {
-<<<<<<< HEAD
-  @Prop() hidden: boolean = true;
-  @Prop() id: string;
-=======
   // Props para mostrar modal, definidas en component: header
   @Prop() hidden: boolean = true;
   @Prop() id: string;
@@ -75,7 +67,6 @@ export class UserLogin {
   handleChangePass(event) {
     this.password = event.target.value;
   }
->>>>>>> origin/develop
 
   render() {
     return (
@@ -92,38 +83,6 @@ export class UserLogin {
               </button>
             </div>
             {/* Modal Body */}
-<<<<<<< HEAD
-            <div class="modal-body">
-              <label class="sr-only">Usuario</label>
-              <input type="user" id="inputUser" class="form-control" placeholder="Usuario" required autofocus />
-              <label class="sr-only" id="btn-password">
-                Contraseña
-              </label>
-              <input type="password" id="input-pass" class="form-control" placeholder="Contraseña" required />
-              <div class="checkbox mb-3">
-                <label>
-                  <input type="checkbox" value="remember-me" /> Recordar contraseña
-                </label>
-              </div>
-              {/* Modal Footer */}
-              <div class="modal-footer">
-                <button class="btn btn-lg btn-success btn-block" type="button" id="button-login">
-                  Ingresar
-                </button>
-                <a id="forget-password" href="">
-                  ¿Has olvidado la contraseña?
-                </a>
-                {/* Ruteo de boton crear cuenta. linkea a componente: user-register */}
-                <stencil-route-link url="/registrate">
-                  <button class="btn btn-lg btn-primary btn-block" type="button" data-toggle="modal" data-target="#modal-register">
-                    Crear cuenta
-                  </button>
-                </stencil-route-link>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                  Cerrar
-                </button>
-              </div>
-=======
 
             <div class="modal-body">
               <form name="login" onSubmit={e => this.handleLogin(e)}>
@@ -158,7 +117,6 @@ export class UserLogin {
                   </button>
                 </div>
               </form>
->>>>>>> origin/develop
             </div>
           </div>
         </div>
