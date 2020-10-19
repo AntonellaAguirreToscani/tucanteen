@@ -39,15 +39,22 @@ export class UserRegister {
       console.log(error.message);
     }
   }
-  handleUser(e) {
+  userNameValidator(): boolean{
+    if (this.users.find(user => user.userName == this.user)) {
+      return true;
+    }else{
+      return false;
+    }
+  }
+  handleUser(e) : boolean{
     e.preventDefault();
     try {
-      if (this.users.find(user => user.userName == this.user)) {
-        throw Error('UserName no disponible!');
-       
+      if(this.userNameValidator()){
+        throw Error('ERROR.usuario existente');
       } else {
         this.userService.createUser( { userName: this.user, password: this.password });
-        console.log('Usuario registrado correctamente');
+        console.log('Usuario registrado correctamente'); //ACÁ VA LA REDIRECION!
+        return false;
       }
     } catch (error) {
       console.log(error.message);
@@ -91,6 +98,10 @@ export class UserRegister {
                 <label class="sr-only">Contraseña</label>
                 <input type="password" id="input-password" class="form-control" value={this.password} onInput={event => this.handleChangePass(event)} placeholder="Contraseña" />
               </div>
+              
+              {/* Alerta de Usuario existente */}
+              <alert-register id={this.userNameValidator()? "alert-ok": "alert"}></alert-register>
+
               {/* Modal Footer */}
               <div class="modal-footer" id="m-footer">
                 <button class="btn btn-lg btn-success btn-block" type="submit" id="btn-create">
