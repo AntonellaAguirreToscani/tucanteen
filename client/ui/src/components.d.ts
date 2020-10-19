@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { MatchResults } from "@stencil/router";
+import { Drink } from "./models.ts/drink.model";
 export namespace Components {
     interface AppHome {
     }
@@ -23,6 +24,10 @@ export namespace Components {
     interface MyFooter {
     }
     interface MyHeader {
+    }
+    interface OfferCarousel {
+    }
+    interface OptionsDrinks {
     }
     interface PlateFood {
     }
@@ -92,6 +97,18 @@ declare global {
         prototype: HTMLMyHeaderElement;
         new (): HTMLMyHeaderElement;
     };
+    interface HTMLOfferCarouselElement extends Components.OfferCarousel, HTMLStencilElement {
+    }
+    var HTMLOfferCarouselElement: {
+        prototype: HTMLOfferCarouselElement;
+        new (): HTMLOfferCarouselElement;
+    };
+    interface HTMLOptionsDrinksElement extends Components.OptionsDrinks, HTMLStencilElement {
+    }
+    var HTMLOptionsDrinksElement: {
+        prototype: HTMLOptionsDrinksElement;
+        new (): HTMLOptionsDrinksElement;
+    };
     interface HTMLPlateFoodElement extends Components.PlateFood, HTMLStencilElement {
     }
     var HTMLPlateFoodElement: {
@@ -131,6 +148,8 @@ declare global {
         "my-body": HTMLMyBodyElement;
         "my-footer": HTMLMyFooterElement;
         "my-header": HTMLMyHeaderElement;
+        "offer-carousel": HTMLOfferCarouselElement;
+        "options-drinks": HTMLOptionsDrinksElement;
         "plate-food": HTMLPlateFoodElement;
         "rigth-panel": HTMLRigthPanelElement;
         "sandwiches-food": HTMLSandwichesFoodElement;
@@ -156,6 +175,11 @@ declare namespace LocalJSX {
     }
     interface MyHeader {
     }
+    interface OfferCarousel {
+    }
+    interface OptionsDrinks {
+        "onDrinkSelected"?: (event: CustomEvent<Drink>) => void;
+    }
     interface PlateFood {
     }
     interface RigthPanel {
@@ -179,6 +203,8 @@ declare namespace LocalJSX {
         "my-body": MyBody;
         "my-footer": MyFooter;
         "my-header": MyHeader;
+        "offer-carousel": OfferCarousel;
+        "options-drinks": OptionsDrinks;
         "plate-food": PlateFood;
         "rigth-panel": RigthPanel;
         "sandwiches-food": SandwichesFood;
@@ -198,6 +224,8 @@ declare module "@stencil/core" {
             "my-body": LocalJSX.MyBody & JSXBase.HTMLAttributes<HTMLMyBodyElement>;
             "my-footer": LocalJSX.MyFooter & JSXBase.HTMLAttributes<HTMLMyFooterElement>;
             "my-header": LocalJSX.MyHeader & JSXBase.HTMLAttributes<HTMLMyHeaderElement>;
+            "offer-carousel": LocalJSX.OfferCarousel & JSXBase.HTMLAttributes<HTMLOfferCarouselElement>;
+            "options-drinks": LocalJSX.OptionsDrinks & JSXBase.HTMLAttributes<HTMLOptionsDrinksElement>;
             "plate-food": LocalJSX.PlateFood & JSXBase.HTMLAttributes<HTMLPlateFoodElement>;
             "rigth-panel": LocalJSX.RigthPanel & JSXBase.HTMLAttributes<HTMLRigthPanelElement>;
             "sandwiches-food": LocalJSX.SandwichesFood & JSXBase.HTMLAttributes<HTMLSandwichesFoodElement>;

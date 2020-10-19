@@ -9,27 +9,16 @@ export class AppRoot {
   render() {
     return (
       <div>
+
         <div class="grid-container">
-          <client-panel></client-panel>  
+          <client-panel></client-panel>
           <my-body></my-body>
           <rigth-panel></rigth-panel>
-          </div> 
-        <main>
-          <stencil-router>
-            <stencil-route-switch scrollTopOffset={0}>
-<<<<<<< HEAD
-              <stencil-route url="/login" component="user-login" />
-              <stencil-route url="/postres" component="client-deserts" />
-=======
->>>>>>> origin/develop
-              {/* <stencil-route url="/login" component="user-login" />
-            
-              <stencil-route url="/register" component="user-register" /> */}
-              <stencil-route url="/profile/:name" component="app-profile" />
-            </stencil-route-switch>
-          </stencil-router>
-        </main>
+        </div>
+
       </div>
+      //El ruteo se hace en el componente my-body
     );
   }
 }
+
