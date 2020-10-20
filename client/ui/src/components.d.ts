@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { MatchResults } from "@stencil/router";
+import { desserts } from "./models.ts/desserts.model";
 import { Drink } from "./models.ts/drink.model";
 export namespace Components {
     interface AppHome {
@@ -163,6 +164,7 @@ declare namespace LocalJSX {
     interface AppRoot {
     }
     interface ClientDeserts {
+        "onDessertsSelected"?: (event: CustomEvent<desserts>) => void;
     }
     interface ClientPanel {
     }
