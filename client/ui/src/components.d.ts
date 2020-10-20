@@ -8,6 +8,9 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { MatchResults } from "@stencil/router";
 import { Drink } from "./models.ts/drink.model";
 export namespace Components {
+    interface AlertRegister {
+        "id": string;
+    }
     interface AppHome {
     }
     interface AppProfile {
@@ -44,6 +47,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLAlertRegisterElement extends Components.AlertRegister, HTMLStencilElement {
+    }
+    var HTMLAlertRegisterElement: {
+        prototype: HTMLAlertRegisterElement;
+        new (): HTMLAlertRegisterElement;
+    };
     interface HTMLAppHomeElement extends Components.AppHome, HTMLStencilElement {
     }
     var HTMLAppHomeElement: {
@@ -129,6 +138,7 @@ declare global {
         new (): HTMLUserRegisterElement;
     };
     interface HTMLElementTagNameMap {
+        "alert-register": HTMLAlertRegisterElement;
         "app-home": HTMLAppHomeElement;
         "app-profile": HTMLAppProfileElement;
         "app-root": HTMLAppRootElement;
@@ -146,6 +156,9 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface AlertRegister {
+        "id"?: string;
+    }
     interface AppHome {
     }
     interface AppProfile {
@@ -181,6 +194,7 @@ declare namespace LocalJSX {
         "id"?: string;
     }
     interface IntrinsicElements {
+        "alert-register": AlertRegister;
         "app-home": AppHome;
         "app-profile": AppProfile;
         "app-root": AppRoot;
@@ -201,6 +215,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "alert-register": LocalJSX.AlertRegister & JSXBase.HTMLAttributes<HTMLAlertRegisterElement>;
             "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
             "app-profile": LocalJSX.AppProfile & JSXBase.HTMLAttributes<HTMLAppProfileElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
