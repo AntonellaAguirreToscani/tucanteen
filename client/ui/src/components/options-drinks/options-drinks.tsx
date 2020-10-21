@@ -1,5 +1,5 @@
 import { Component, h, State, Event, EventEmitter } from '@stencil/core';
-import { Drink } from '../../models.ts/drink.model';
+import { Drink } from '../../models.ts/drink.model';  
 import { DrinkServices } from '../../services/drink.services';
 
 @Component({
@@ -7,13 +7,17 @@ import { DrinkServices } from '../../services/drink.services';
   styleUrl: 'options-drinks.css',
   shadow: false,
 })
+
 export class OptionsDrinks {
   //State donde se almacena el listado de bebidas
   @State() drinks: Drink[] = [];
+  //@State() bebidaElegida;
 
   //No se está usando pero no quitar! Sirve para la funcion de la línea 43
   @Event() drinkSelected: EventEmitter<Drink>;
   selectedDrink: Drink;
+  
+
   // Instancia la clase tipo Singleton DrinkServices
   private drinkService: DrinkServices;
   constructor() {
@@ -43,6 +47,7 @@ export class OptionsDrinks {
   handleSelectedDrink(drink: Drink) {
     this.drinkSelected.emit(drink);
   }
+
   render() {
     return (
       <div class="div-drinks">
@@ -50,9 +55,9 @@ export class OptionsDrinks {
         <div class="div-container">
           {this.drinks.map((drink) =>
             <div class="card mb-3" id="div-cards">
-              <div class="row no-gutters">
+              <div class="row no-gutters" id={drink.id.toString()}>
                 <div class="col-md-4">
-                  <img src={drink.image} class="card-img" alt="..." />
+                  <img src={drink.image} class="card-img" alt="..."/>
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
