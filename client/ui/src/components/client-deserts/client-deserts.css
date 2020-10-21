@@ -1,13 +1,18 @@
 .titulo{
   text-align: center;
 }
-.one-div,.three-div{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+.car{
+  margin: 2%;
+  border: 2px solid black;
 }
-.two-div,.four-div{
+#div-cards{
+  width: 30%;
+}
+.div-container{
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-flow: nowrap;
+  justify-content: center;
+}
+.card-img{
+margin-top: 30%;
 }
