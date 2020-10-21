@@ -7,6 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { MatchResults } from "@stencil/router";
 import { Drink } from "./models.ts/drink.model";
+import { Sandwiches } from "./models.ts/sandwiches.model";
 export namespace Components {
     interface AdminView {
     }
@@ -211,6 +212,7 @@ declare namespace LocalJSX {
     interface RigthPanel {
     }
     interface SandwichesFood {
+        "onSandwichesSelected"?: (event: CustomEvent<Sandwiches>) => void;
     }
     interface UserLogin {
         "hidden"?: boolean;
