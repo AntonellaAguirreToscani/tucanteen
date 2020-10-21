@@ -45,17 +45,25 @@ export class OptionsDrinks {
   }
   render() {
     return (
-      <div>
-        <h1>Carta - Bebidas</h1>
-        {this.drinks.map((drink) =>
-          <div class="card bg-dark text-white">
-            <img src={drink.image} class="card-img" alt="..." />
-            <div class="card-img-overlay">
-              <h5 class="card-title">{drink.description}</h5>
-              <p class="card-text">{drink.price}</p>
+      <div class="div-drinks">
+        <h1 class="tittle">Carta - Bebidas</h1>
+        <div class="div-container">
+          {this.drinks.map((drink) =>
+            <div class="card mb-3" id="div-cards">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <img src={drink.image} class="card-img" alt="..." />
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">{drink.description}</h5>
+                    <p class="card-text">${drink.price}</p>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     );
   }

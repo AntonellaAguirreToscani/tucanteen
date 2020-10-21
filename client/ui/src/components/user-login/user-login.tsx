@@ -11,7 +11,7 @@ export class UserLogin {
   // Props para mostrar modal, definidas en component: header
   @Prop() hidden: boolean = true;
   @Prop() id: string;
-
+  @Prop() url: string;
   // States que permiten verificar inputs : usuario / contraseña
   @State() user: string;
   @State() password: string;
@@ -48,7 +48,7 @@ export class UserLogin {
   async handleLogin(e) {
     e.preventDefault();
     try {
-      if (this.users.find(user => user.userName == this.user && user.password == this.password)) {
+      if (this.users.find(user => user.userName == this.user && user.password == this.password && user.typeUser === 'client')) {
         console.log('Sesion Iniciada correctamente'); //acá va el redireccionamiento al componente "login-ok"
       } else {
         throw Error('Usuario NO registrado / campos incorrectos'); //acá va una alerta o mensaje al usuario!
@@ -57,7 +57,6 @@ export class UserLogin {
       console.log(error.message);
     }
   }
-
   //metodo que dá valor al state user
   handleChange(event) {
     this.user = event.target.value;
@@ -66,6 +65,14 @@ export class UserLogin {
   //metodo que dá valor al state password
   handleChangePass(event) {
     this.password = event.target.value;
+  }
+
+  loginValidator(typeUser : string): boolean{
+    if (this.users.find(user => user.userName == this.user && user.password == this.password && user.typeUser === typeUser)) {
+      return true;
+    }else{
+      return false;
+    }
   }
 
   render() {
@@ -100,9 +107,11 @@ export class UserLogin {
 
                 {/* Modal Footer */}
                 <div class="modal-footer">
-                  <button class="btn btn-lg btn-success btn-block" type="submit" value="submit" id="button-login">
+                <stencil-route-link url={this.loginValidator('client') ? '/loginClient' : this.loginValidator('admin')?'/loginAdmin': '/login'}>
+                  <button class="btn btn-lg btn-success btn-block" type="submit" data-dismiss="modal" value="submit" id="button-login">
                     Ingresar
                   </button>
+                  </stencil-route-link>
                   <a id="forget-password" href="">
                     ¿Has olvidado la contraseña?
                   </a>

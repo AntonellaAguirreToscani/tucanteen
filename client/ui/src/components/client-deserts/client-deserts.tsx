@@ -12,8 +12,8 @@ import { Dessertsservices } from '../../services/desserts.services';
 export class ClientDeserts {
   @State() desserts: desserts[] = [];
 
-  @Event() dessertsSelected: EventEmitter<desserts>;
-  selectedDesserts: desserts;
+   @Event() dessertsSelected: EventEmitter<desserts>;
+   selectedDesserts: desserts;
 
   private Desserts: Dessertsservices;
   constructor() {

@@ -9,6 +9,8 @@ import { MatchResults } from "@stencil/router";
 import { desserts } from "./models.ts/desserts.model";
 import { Drink } from "./models.ts/drink.model";
 export namespace Components {
+    interface AdminView {
+    }
     interface AlertRegister {
         "id": string;
     }
@@ -50,6 +52,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLAdminViewElement extends Components.AdminView, HTMLStencilElement {
+    }
+    var HTMLAdminViewElement: {
+        prototype: HTMLAdminViewElement;
+        new (): HTMLAdminViewElement;
+    };
     interface HTMLAlertRegisterElement extends Components.AlertRegister, HTMLStencilElement {
     }
     var HTMLAlertRegisterElement: {
@@ -147,6 +155,7 @@ declare global {
         new (): HTMLUserRegisterElement;
     };
     interface HTMLElementTagNameMap {
+        "admin-view": HTMLAdminViewElement;
         "alert-register": HTMLAlertRegisterElement;
         "app-home": HTMLAppHomeElement;
         "app-profile": HTMLAppProfileElement;
@@ -166,6 +175,8 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface AdminView {
+    }
     interface AlertRegister {
         "id"?: string;
     }
@@ -207,6 +218,7 @@ declare namespace LocalJSX {
         "id"?: string;
     }
     interface IntrinsicElements {
+        "admin-view": AdminView;
         "alert-register": AlertRegister;
         "app-home": AppHome;
         "app-profile": AppProfile;
@@ -229,6 +241,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "admin-view": LocalJSX.AdminView & JSXBase.HTMLAttributes<HTMLAdminViewElement>;
             "alert-register": LocalJSX.AlertRegister & JSXBase.HTMLAttributes<HTMLAlertRegisterElement>;
             "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
             "app-profile": LocalJSX.AppProfile & JSXBase.HTMLAttributes<HTMLAppProfileElement>;
