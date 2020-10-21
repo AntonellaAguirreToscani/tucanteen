@@ -13,7 +13,7 @@ export class MyBody {
      <main>
        <stencil-router>
        <stencil-route-switch scrollTopOffset={0}>
-         <stencil-route url="/" component="offer-carousel" exact={true}></stencil-route>
+         <stencil-route url="/home" component="offer-carousel" exact={true}></stencil-route>
          <stencil-route url="/al-plato" component="plate-food"></stencil-route>
          <stencil-route url="/sandwiches" component="sandwiches-food"></stencil-route>
          <stencil-route url="/bebidas" component="options-drinks"></stencil-route>

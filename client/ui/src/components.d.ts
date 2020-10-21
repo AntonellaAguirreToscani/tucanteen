@@ -8,6 +8,8 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { MatchResults } from "@stencil/router";
 import { Drink } from "./models.ts/drink.model";
 export namespace Components {
+    interface AdminView {
+    }
     interface AlertRegister {
         "id": string;
     }
@@ -20,11 +22,15 @@ export namespace Components {
     }
     interface ClientPanel {
     }
+    interface ClientView {
+    }
     interface MyBody {
     }
     interface MyFooter {
     }
     interface MyHeader {
+        "butonsChoice": string;
+        "profileChoice": string;
     }
     interface OfferCarousel {
     }
@@ -40,6 +46,7 @@ export namespace Components {
         "handleLogin": (e: any) => Promise<void>;
         "hidden": boolean;
         "id": string;
+        "url": string;
     }
     interface UserRegister {
         "hidden": boolean;
@@ -47,6 +54,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLAdminViewElement extends Components.AdminView, HTMLStencilElement {
+    }
+    var HTMLAdminViewElement: {
+        prototype: HTMLAdminViewElement;
+        new (): HTMLAdminViewElement;
+    };
     interface HTMLAlertRegisterElement extends Components.AlertRegister, HTMLStencilElement {
     }
     var HTMLAlertRegisterElement: {
@@ -76,6 +89,12 @@ declare global {
     var HTMLClientPanelElement: {
         prototype: HTMLClientPanelElement;
         new (): HTMLClientPanelElement;
+    };
+    interface HTMLClientViewElement extends Components.ClientView, HTMLStencilElement {
+    }
+    var HTMLClientViewElement: {
+        prototype: HTMLClientViewElement;
+        new (): HTMLClientViewElement;
     };
     interface HTMLMyBodyElement extends Components.MyBody, HTMLStencilElement {
     }
@@ -138,11 +157,13 @@ declare global {
         new (): HTMLUserRegisterElement;
     };
     interface HTMLElementTagNameMap {
+        "admin-view": HTMLAdminViewElement;
         "alert-register": HTMLAlertRegisterElement;
         "app-home": HTMLAppHomeElement;
         "app-profile": HTMLAppProfileElement;
         "app-root": HTMLAppRootElement;
         "client-panel": HTMLClientPanelElement;
+        "client-view": HTMLClientViewElement;
         "my-body": HTMLMyBodyElement;
         "my-footer": HTMLMyFooterElement;
         "my-header": HTMLMyHeaderElement;
@@ -156,6 +177,8 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface AdminView {
+    }
     interface AlertRegister {
         "id"?: string;
     }
@@ -168,11 +191,15 @@ declare namespace LocalJSX {
     }
     interface ClientPanel {
     }
+    interface ClientView {
+    }
     interface MyBody {
     }
     interface MyFooter {
     }
     interface MyHeader {
+        "butonsChoice"?: string;
+        "profileChoice"?: string;
     }
     interface OfferCarousel {
     }
@@ -188,17 +215,20 @@ declare namespace LocalJSX {
     interface UserLogin {
         "hidden"?: boolean;
         "id"?: string;
+        "url"?: string;
     }
     interface UserRegister {
         "hidden"?: boolean;
         "id"?: string;
     }
     interface IntrinsicElements {
+        "admin-view": AdminView;
         "alert-register": AlertRegister;
         "app-home": AppHome;
         "app-profile": AppProfile;
         "app-root": AppRoot;
         "client-panel": ClientPanel;
+        "client-view": ClientView;
         "my-body": MyBody;
         "my-footer": MyFooter;
         "my-header": MyHeader;
@@ -215,11 +245,13 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "admin-view": LocalJSX.AdminView & JSXBase.HTMLAttributes<HTMLAdminViewElement>;
             "alert-register": LocalJSX.AlertRegister & JSXBase.HTMLAttributes<HTMLAlertRegisterElement>;
             "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
             "app-profile": LocalJSX.AppProfile & JSXBase.HTMLAttributes<HTMLAppProfileElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
             "client-panel": LocalJSX.ClientPanel & JSXBase.HTMLAttributes<HTMLClientPanelElement>;
+            "client-view": LocalJSX.ClientView & JSXBase.HTMLAttributes<HTMLClientViewElement>;
             "my-body": LocalJSX.MyBody & JSXBase.HTMLAttributes<HTMLMyBodyElement>;
             "my-footer": LocalJSX.MyFooter & JSXBase.HTMLAttributes<HTMLMyFooterElement>;
             "my-header": LocalJSX.MyHeader & JSXBase.HTMLAttributes<HTMLMyHeaderElement>;
