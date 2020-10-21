@@ -25,11 +25,15 @@ export namespace Components {
     }
     interface ClientPanel {
     }
+    interface ClientView {
+    }
     interface MyBody {
     }
     interface MyFooter {
     }
     interface MyHeader {
+        "butonsChoice": string;
+        "profileChoice": string;
     }
     interface OfferCarousel {
     }
@@ -45,6 +49,7 @@ export namespace Components {
         "handleLogin": (e: any) => Promise<void>;
         "hidden": boolean;
         "id": string;
+        "url": string;
     }
     interface UserRegister {
         "hidden": boolean;
@@ -93,6 +98,12 @@ declare global {
     var HTMLClientPanelElement: {
         prototype: HTMLClientPanelElement;
         new (): HTMLClientPanelElement;
+    };
+    interface HTMLClientViewElement extends Components.ClientView, HTMLStencilElement {
+    }
+    var HTMLClientViewElement: {
+        prototype: HTMLClientViewElement;
+        new (): HTMLClientViewElement;
     };
     interface HTMLMyBodyElement extends Components.MyBody, HTMLStencilElement {
     }
@@ -162,6 +173,7 @@ declare global {
         "app-root": HTMLAppRootElement;
         "client-deserts": HTMLClientDesertsElement;
         "client-panel": HTMLClientPanelElement;
+        "client-view": HTMLClientViewElement;
         "my-body": HTMLMyBodyElement;
         "my-footer": HTMLMyFooterElement;
         "my-header": HTMLMyHeaderElement;
@@ -192,11 +204,15 @@ declare namespace LocalJSX {
     }
     interface ClientPanel {
     }
+    interface ClientView {
+    }
     interface MyBody {
     }
     interface MyFooter {
     }
     interface MyHeader {
+        "butonsChoice"?: string;
+        "profileChoice"?: string;
     }
     interface OfferCarousel {
     }
@@ -212,6 +228,7 @@ declare namespace LocalJSX {
     interface UserLogin {
         "hidden"?: boolean;
         "id"?: string;
+        "url"?: string;
     }
     interface UserRegister {
         "hidden"?: boolean;
@@ -225,6 +242,7 @@ declare namespace LocalJSX {
         "app-root": AppRoot;
         "client-deserts": ClientDeserts;
         "client-panel": ClientPanel;
+        "client-view": ClientView;
         "my-body": MyBody;
         "my-footer": MyFooter;
         "my-header": MyHeader;
@@ -248,6 +266,7 @@ declare module "@stencil/core" {
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
             "client-deserts": LocalJSX.ClientDeserts & JSXBase.HTMLAttributes<HTMLClientDesertsElement>;
             "client-panel": LocalJSX.ClientPanel & JSXBase.HTMLAttributes<HTMLClientPanelElement>;
+            "client-view": LocalJSX.ClientView & JSXBase.HTMLAttributes<HTMLClientViewElement>;
             "my-body": LocalJSX.MyBody & JSXBase.HTMLAttributes<HTMLMyBodyElement>;
             "my-footer": LocalJSX.MyFooter & JSXBase.HTMLAttributes<HTMLMyFooterElement>;
             "my-header": LocalJSX.MyHeader & JSXBase.HTMLAttributes<HTMLMyHeaderElement>;
