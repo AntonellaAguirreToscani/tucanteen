@@ -1,4 +1,4 @@
-import { Component, h } from '@stencil/core';
+import { Component, h} from '@stencil/core'
 
 @Component({
   tag: 'admin-view',
@@ -10,8 +10,12 @@ export class AdminView {
   render() {
     return (
       <div>
-        <my-header butons-choice ="butons-close" profile-choice ="profile"></my-header>
-        
+        <my-header butons-choice ="butons-close" profile-choice ="profile" user-name = 'UserName' ></my-header>
+        <div class="grid-container">
+          <admin-panel></admin-panel>
+          <my-body></my-body>
+          
+          </div>
       </div>
   
     );
