@@ -8,6 +8,8 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { MatchResults } from "@stencil/router";
 import { Drink } from "./models.ts/drink.model";
 export namespace Components {
+    interface AdminPanel {
+    }
     interface AdminView {
     }
     interface AlertRegister {
@@ -34,6 +36,7 @@ export namespace Components {
     interface MyHeader {
         "butonsChoice": string;
         "profileChoice": string;
+        "userName": string;
     }
     interface OfferCarousel {
     }
@@ -44,6 +47,9 @@ export namespace Components {
     interface RigthPanel {
     }
     interface SandwichesFood {
+    }
+    interface TableOrders {
+        "handleOrder": (e: any) => Promise<void>;
     }
     interface UserLogin {
         "handleLogin": (e: any) => Promise<void>;
@@ -57,6 +63,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLAdminPanelElement extends Components.AdminPanel, HTMLStencilElement {
+    }
+    var HTMLAdminPanelElement: {
+        prototype: HTMLAdminPanelElement;
+        new (): HTMLAdminPanelElement;
+    };
     interface HTMLAdminViewElement extends Components.AdminView, HTMLStencilElement {
     }
     var HTMLAdminViewElement: {
@@ -153,6 +165,12 @@ declare global {
         prototype: HTMLSandwichesFoodElement;
         new (): HTMLSandwichesFoodElement;
     };
+    interface HTMLTableOrdersElement extends Components.TableOrders, HTMLStencilElement {
+    }
+    var HTMLTableOrdersElement: {
+        prototype: HTMLTableOrdersElement;
+        new (): HTMLTableOrdersElement;
+    };
     interface HTMLUserLoginElement extends Components.UserLogin, HTMLStencilElement {
     }
     var HTMLUserLoginElement: {
@@ -166,6 +184,7 @@ declare global {
         new (): HTMLUserRegisterElement;
     };
     interface HTMLElementTagNameMap {
+        "admin-panel": HTMLAdminPanelElement;
         "admin-view": HTMLAdminViewElement;
         "alert-register": HTMLAlertRegisterElement;
         "app-home": HTMLAppHomeElement;
@@ -182,11 +201,14 @@ declare global {
         "plate-food": HTMLPlateFoodElement;
         "rigth-panel": HTMLRigthPanelElement;
         "sandwiches-food": HTMLSandwichesFoodElement;
+        "table-orders": HTMLTableOrdersElement;
         "user-login": HTMLUserLoginElement;
         "user-register": HTMLUserRegisterElement;
     }
 }
 declare namespace LocalJSX {
+    interface AdminPanel {
+    }
     interface AdminView {
     }
     interface AlertRegister {
@@ -213,6 +235,7 @@ declare namespace LocalJSX {
     interface MyHeader {
         "butonsChoice"?: string;
         "profileChoice"?: string;
+        "userName"?: string;
     }
     interface OfferCarousel {
     }
@@ -225,6 +248,8 @@ declare namespace LocalJSX {
     }
     interface SandwichesFood {
     }
+    interface TableOrders {
+    }
     interface UserLogin {
         "hidden"?: boolean;
         "id"?: string;
@@ -235,6 +260,7 @@ declare namespace LocalJSX {
         "id"?: string;
     }
     interface IntrinsicElements {
+        "admin-panel": AdminPanel;
         "admin-view": AdminView;
         "alert-register": AlertRegister;
         "app-home": AppHome;
@@ -251,6 +277,7 @@ declare namespace LocalJSX {
         "plate-food": PlateFood;
         "rigth-panel": RigthPanel;
         "sandwiches-food": SandwichesFood;
+        "table-orders": TableOrders;
         "user-login": UserLogin;
         "user-register": UserRegister;
     }
@@ -259,6 +286,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "admin-panel": LocalJSX.AdminPanel & JSXBase.HTMLAttributes<HTMLAdminPanelElement>;
             "admin-view": LocalJSX.AdminView & JSXBase.HTMLAttributes<HTMLAdminViewElement>;
             "alert-register": LocalJSX.AlertRegister & JSXBase.HTMLAttributes<HTMLAlertRegisterElement>;
             "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
@@ -275,6 +303,7 @@ declare module "@stencil/core" {
             "plate-food": LocalJSX.PlateFood & JSXBase.HTMLAttributes<HTMLPlateFoodElement>;
             "rigth-panel": LocalJSX.RigthPanel & JSXBase.HTMLAttributes<HTMLRigthPanelElement>;
             "sandwiches-food": LocalJSX.SandwichesFood & JSXBase.HTMLAttributes<HTMLSandwichesFoodElement>;
+            "table-orders": LocalJSX.TableOrders & JSXBase.HTMLAttributes<HTMLTableOrdersElement>;
             "user-login": LocalJSX.UserLogin & JSXBase.HTMLAttributes<HTMLUserLoginElement>;
             "user-register": LocalJSX.UserRegister & JSXBase.HTMLAttributes<HTMLUserRegisterElement>;
         }

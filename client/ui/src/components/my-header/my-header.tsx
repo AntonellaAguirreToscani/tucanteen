@@ -9,7 +9,7 @@ import { Component, h, Prop } from '@stencil/core';
 export class MyHeader {
   @Prop() butonsChoice : string; //butons - butons-close
   @Prop() profileChoice : string; //profile - profile-close
- 
+  @Prop() userName : string;
   render() { 
     return (
       <header class="header">
@@ -39,7 +39,7 @@ export class MyHeader {
           </div>
           <div id={this.profileChoice}>
             <img src="./assets/icon/pollo.png" alt="Avatar" class="avatar"></img>
-            <p>userName</p>
+             <p>{this.userName}</p>
           </div>
 
         </form>
