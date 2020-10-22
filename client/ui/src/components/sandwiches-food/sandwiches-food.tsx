@@ -3,7 +3,7 @@ import { Component, h } from '@stencil/core';
 @Component({
   tag: 'sandwiches-food',
   styleUrl: 'sandwiches-food.css',
-  shadow: true,
+  shadow: false,
 })
 export class SandwichesFood {
 
