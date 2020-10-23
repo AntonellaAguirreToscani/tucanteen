@@ -11,14 +11,12 @@ export class ClientView {
     return (
         <div>
           <my-header butons-choice ="butons-close" profile-choice ="profile"></my-header>
-
           <div class="grid-container">
           <client-panel></client-panel>  
           <my-body></my-body>
           <rigth-panel></rigth-panel>
           </div>
-        <main>
-     </main>
+          <my-footer></my-footer>
      </div>
 
     );

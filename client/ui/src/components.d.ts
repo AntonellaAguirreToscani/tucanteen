@@ -9,7 +9,6 @@ import { MatchResults } from "@stencil/router";
 import { desserts } from "./models.ts/desserts.model";
 import { Drink } from "./models.ts/drink.model";
 import { Sandwiches } from "./models.ts/sandwiches.model";
-import { Menu } from "./models.ts/menu.model";
 export namespace Components {
     interface AdminPanel {
     }
@@ -276,7 +275,6 @@ declare namespace LocalJSX {
     interface TableOrders {
     }
     interface TodaysMenu {
-        "onMenuSelected"?: (event: CustomEvent<Menu>) => void;
     }
     interface UserLogin {
         "hidden"?: boolean;
