@@ -9,6 +9,8 @@ import { MatchResults } from "@stencil/router";
 import { Drink } from "./models.ts/drink.model";
 import { Menu } from "./models.ts/menu.model";
 export namespace Components {
+    interface AdminPanel {
+    }
     interface AdminView {
     }
     interface AlertRegister {
@@ -25,6 +27,9 @@ export namespace Components {
     }
     interface ClientView {
     }
+    interface FinalizePurchase {
+        "id": string;
+    }
     interface MyBody {
     }
     interface MyFooter {
@@ -32,6 +37,7 @@ export namespace Components {
     interface MyHeader {
         "butonsChoice": string;
         "profileChoice": string;
+        "userName": string;
     }
     interface OfferCarousel {
     }
@@ -45,6 +51,9 @@ export namespace Components {
     }
     interface TodaysMenu {
     }
+    interface TableOrders {
+        "handleOrder": (e: any) => Promise<void>;
+    }
     interface UserLogin {
         "handleLogin": (e: any) => Promise<void>;
         "hidden": boolean;
@@ -57,6 +66,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLAdminPanelElement extends Components.AdminPanel, HTMLStencilElement {
+    }
+    var HTMLAdminPanelElement: {
+        prototype: HTMLAdminPanelElement;
+        new (): HTMLAdminPanelElement;
+    };
     interface HTMLAdminViewElement extends Components.AdminView, HTMLStencilElement {
     }
     var HTMLAdminViewElement: {
@@ -98,6 +113,12 @@ declare global {
     var HTMLClientViewElement: {
         prototype: HTMLClientViewElement;
         new (): HTMLClientViewElement;
+    };
+    interface HTMLFinalizePurchaseElement extends Components.FinalizePurchase, HTMLStencilElement {
+    }
+    var HTMLFinalizePurchaseElement: {
+        prototype: HTMLFinalizePurchaseElement;
+        new (): HTMLFinalizePurchaseElement;
     };
     interface HTMLMyBodyElement extends Components.MyBody, HTMLStencilElement {
     }
@@ -152,6 +173,12 @@ declare global {
     var HTMLTodaysMenuElement: {
         prototype: HTMLTodaysMenuElement;
         new (): HTMLTodaysMenuElement;
+    }
+    interface HTMLTableOrdersElement extends Components.TableOrders, HTMLStencilElement {
+    }
+    var HTMLTableOrdersElement: {
+        prototype: HTMLTableOrdersElement;
+        new (): HTMLTableOrdersElement;
     };
     interface HTMLUserLoginElement extends Components.UserLogin, HTMLStencilElement {
     }
@@ -166,6 +193,7 @@ declare global {
         new (): HTMLUserRegisterElement;
     };
     interface HTMLElementTagNameMap {
+        "admin-panel": HTMLAdminPanelElement;
         "admin-view": HTMLAdminViewElement;
         "alert-register": HTMLAlertRegisterElement;
         "app-home": HTMLAppHomeElement;
@@ -173,6 +201,7 @@ declare global {
         "app-root": HTMLAppRootElement;
         "client-panel": HTMLClientPanelElement;
         "client-view": HTMLClientViewElement;
+        "finalize-purchase": HTMLFinalizePurchaseElement;
         "my-body": HTMLMyBodyElement;
         "my-footer": HTMLMyFooterElement;
         "my-header": HTMLMyHeaderElement;
@@ -182,11 +211,14 @@ declare global {
         "rigth-panel": HTMLRigthPanelElement;
         "sandwiches-food": HTMLSandwichesFoodElement;
         "todays-menu": HTMLTodaysMenuElement;
+        "table-orders": HTMLTableOrdersElement;
         "user-login": HTMLUserLoginElement;
         "user-register": HTMLUserRegisterElement;
     }
 }
 declare namespace LocalJSX {
+    interface AdminPanel {
+    }
     interface AdminView {
     }
     interface AlertRegister {
@@ -203,6 +235,9 @@ declare namespace LocalJSX {
     }
     interface ClientView {
     }
+    interface FinalizePurchase {
+        "id"?: string;
+    }
     interface MyBody {
     }
     interface MyFooter {
@@ -210,6 +245,7 @@ declare namespace LocalJSX {
     interface MyHeader {
         "butonsChoice"?: string;
         "profileChoice"?: string;
+        "userName"?: string;
     }
     interface OfferCarousel {
     }
@@ -225,6 +261,8 @@ declare namespace LocalJSX {
     interface TodaysMenu {
         "onMenuSelected"?: (event: CustomEvent<Menu>) => void;
     }
+    interface TableOrders {
+    }
     interface UserLogin {
         "hidden"?: boolean;
         "id"?: string;
@@ -235,6 +273,7 @@ declare namespace LocalJSX {
         "id"?: string;
     }
     interface IntrinsicElements {
+        "admin-panel": AdminPanel;
         "admin-view": AdminView;
         "alert-register": AlertRegister;
         "app-home": AppHome;
@@ -242,6 +281,7 @@ declare namespace LocalJSX {
         "app-root": AppRoot;
         "client-panel": ClientPanel;
         "client-view": ClientView;
+        "finalize-purchase": FinalizePurchase;
         "my-body": MyBody;
         "my-footer": MyFooter;
         "my-header": MyHeader;
@@ -251,6 +291,7 @@ declare namespace LocalJSX {
         "rigth-panel": RigthPanel;
         "sandwiches-food": SandwichesFood;
         "todays-menu": TodaysMenu;
+        "table-orders": TableOrders;
         "user-login": UserLogin;
         "user-register": UserRegister;
     }
@@ -259,6 +300,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "admin-panel": LocalJSX.AdminPanel & JSXBase.HTMLAttributes<HTMLAdminPanelElement>;
             "admin-view": LocalJSX.AdminView & JSXBase.HTMLAttributes<HTMLAdminViewElement>;
             "alert-register": LocalJSX.AlertRegister & JSXBase.HTMLAttributes<HTMLAlertRegisterElement>;
             "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
@@ -266,6 +308,7 @@ declare module "@stencil/core" {
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
             "client-panel": LocalJSX.ClientPanel & JSXBase.HTMLAttributes<HTMLClientPanelElement>;
             "client-view": LocalJSX.ClientView & JSXBase.HTMLAttributes<HTMLClientViewElement>;
+            "finalize-purchase": LocalJSX.FinalizePurchase & JSXBase.HTMLAttributes<HTMLFinalizePurchaseElement>;
             "my-body": LocalJSX.MyBody & JSXBase.HTMLAttributes<HTMLMyBodyElement>;
             "my-footer": LocalJSX.MyFooter & JSXBase.HTMLAttributes<HTMLMyFooterElement>;
             "my-header": LocalJSX.MyHeader & JSXBase.HTMLAttributes<HTMLMyHeaderElement>;
@@ -275,6 +318,7 @@ declare module "@stencil/core" {
             "rigth-panel": LocalJSX.RigthPanel & JSXBase.HTMLAttributes<HTMLRigthPanelElement>;
             "sandwiches-food": LocalJSX.SandwichesFood & JSXBase.HTMLAttributes<HTMLSandwichesFoodElement>;
             "todays-menu": LocalJSX.TodaysMenu & JSXBase.HTMLAttributes<HTMLTodaysMenuElement>;
+            "table-orders": LocalJSX.TableOrders & JSXBase.HTMLAttributes<HTMLTableOrdersElement>;
             "user-login": LocalJSX.UserLogin & JSXBase.HTMLAttributes<HTMLUserLoginElement>;
             "user-register": LocalJSX.UserRegister & JSXBase.HTMLAttributes<HTMLUserRegisterElement>;
         }

@@ -18,6 +18,7 @@ export class MyBody {
          <stencil-route url="/sandwiches" component="sandwiches-food"></stencil-route>
          <stencil-route url="/bebidas" component="options-drinks"></stencil-route>
          <stencil-route url="/menu-dia" component="todays-menu"></stencil-route>
+         <stencil-route url="/loginAdmin" component="table-orders"></stencil-route>
          {/* <stencil-route url="/postres" component="sandwiches-food"></stencil-route> */}
         </stencil-route-switch>
        </stencil-router>
