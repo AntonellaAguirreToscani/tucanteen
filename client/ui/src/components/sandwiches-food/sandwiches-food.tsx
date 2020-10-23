@@ -6,7 +6,7 @@ import {SandwichesServices } from '../../services/sandwich.service';
 @Component({
   tag: 'sandwiches-food',
   styleUrl: 'sandwiches-food.css',
-  shadow: true,
+  shadow: false,
 })
 export class OptionsSandwiches {
   //State donde se almacena el listado de sandwiches
