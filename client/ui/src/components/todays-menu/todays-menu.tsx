@@ -1,4 +1,4 @@
-import { Component, h, State,Event, EventEmitter} from '@stencil/core';
+import { Component, h, State} from '@stencil/core';
 import { Menu } from '../../models.ts/menu.model';
 import { MenuServices } from '../../services/menu.services';
 
@@ -11,8 +11,8 @@ import { MenuServices } from '../../services/menu.services';
 export class TodaysMenu {
 @State() Menu: Menu[]=[];
 
-@Event() MenuSelected: EventEmitter<Menu>;
-selectedMenu: Menu;
+// @Event() MenuSelected: EventEmitter<Menu>;
+// selectedMenu: Menu;
 // Instancia la clase tipo Singleton MenuServices
 private MenuService: MenuServices;
 constructor() {
@@ -36,13 +36,13 @@ componentWillLoad() {
 }
 
  // NO SE USA TODAVIA! Se va a utilizar en el panel derecho para escuchar este evento por su ID!
- handleSelectedMenu(Menu: Menu) {
-  this.MenuSelected.emit(Menu);
-}
+//  handleSelectedMenu(Menu: Menu) {
+//   this.MenuSelected.emit(Menu);
+// }
 render() {
   return (
     <div class="div-drinks">
-      <h1 class="tittle">Carta - Bebidas</h1>
+      <h1 class="tittle">Menú del día</h1>
       <div class="div-container">
         {this.Menu.map((MENU) =>
           <div class="card mb-3" id="div-cards">

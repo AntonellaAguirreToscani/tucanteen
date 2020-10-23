@@ -39,7 +39,7 @@ export class MyHeader {
           </div>
           <div id={this.profileChoice}>
             <img src="./assets/icon/pollo.png" alt="Avatar" class="avatar"></img>
-             <p>{this.userName}</p>
+             <p>UserName</p>{/* <p>{this.userName}</p> */}
           </div>
 
         </form>

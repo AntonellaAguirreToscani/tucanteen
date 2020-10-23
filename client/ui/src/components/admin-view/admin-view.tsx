@@ -14,8 +14,8 @@ export class AdminView {
         <div class="grid-container">
           <admin-panel></admin-panel>
           <my-body></my-body>
-          
-          </div>
+        </div>
+        <my-footer></my-footer>
       </div>
   
     );

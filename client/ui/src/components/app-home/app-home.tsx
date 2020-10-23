@@ -10,12 +10,12 @@ export class AppHome {
     return (
       <div>
         <my-header butons-choice ="butons" profile-choice ="profile-close"></my-header> 
-  
         <div class="grid-container">
           <client-panel></client-panel>  
           <my-body></my-body>
           <rigth-panel></rigth-panel>
         </div> 
+        <my-footer></my-footer>
       </div>
 
     );
