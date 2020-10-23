@@ -52,10 +52,10 @@ export namespace Components {
     }
     interface SandwichesFood {
     }
-    interface TodaysMenu {
-    }
     interface TableOrders {
         "handleOrder": (e: any) => Promise<void>;
+    }
+    interface TodaysMenu {
     }
     interface UserLogin {
         "handleLogin": (e: any) => Promise<void>;
@@ -177,17 +177,17 @@ declare global {
         prototype: HTMLSandwichesFoodElement;
         new (): HTMLSandwichesFoodElement;
     };
-    interface HTMLTodaysMenuElement extends Components.TodaysMenu, HTMLStencilElement {
-    }
-    var HTMLTodaysMenuElement: {
-        prototype: HTMLTodaysMenuElement;
-        new (): HTMLTodaysMenuElement;
-    }
     interface HTMLTableOrdersElement extends Components.TableOrders, HTMLStencilElement {
     }
     var HTMLTableOrdersElement: {
         prototype: HTMLTableOrdersElement;
         new (): HTMLTableOrdersElement;
+    };
+    interface HTMLTodaysMenuElement extends Components.TodaysMenu, HTMLStencilElement {
+    }
+    var HTMLTodaysMenuElement: {
+        prototype: HTMLTodaysMenuElement;
+        new (): HTMLTodaysMenuElement;
     };
     interface HTMLUserLoginElement extends Components.UserLogin, HTMLStencilElement {
     }
@@ -220,8 +220,8 @@ declare global {
         "plate-food": HTMLPlateFoodElement;
         "rigth-panel": HTMLRigthPanelElement;
         "sandwiches-food": HTMLSandwichesFoodElement;
-        "todays-menu": HTMLTodaysMenuElement;
         "table-orders": HTMLTableOrdersElement;
+        "todays-menu": HTMLTodaysMenuElement;
         "user-login": HTMLUserLoginElement;
         "user-register": HTMLUserRegisterElement;
     }
@@ -271,10 +271,10 @@ declare namespace LocalJSX {
     }
     interface SandwichesFood {
     }
+    interface TableOrders {
+    }
     interface TodaysMenu {
         "onMenuSelected"?: (event: CustomEvent<Menu>) => void;
-    }
-    interface TableOrders {
     }
     interface UserLogin {
         "hidden"?: boolean;
@@ -304,8 +304,8 @@ declare namespace LocalJSX {
         "plate-food": PlateFood;
         "rigth-panel": RigthPanel;
         "sandwiches-food": SandwichesFood;
-        "todays-menu": TodaysMenu;
         "table-orders": TableOrders;
+        "todays-menu": TodaysMenu;
         "user-login": UserLogin;
         "user-register": UserRegister;
     }
@@ -332,8 +332,8 @@ declare module "@stencil/core" {
             "plate-food": LocalJSX.PlateFood & JSXBase.HTMLAttributes<HTMLPlateFoodElement>;
             "rigth-panel": LocalJSX.RigthPanel & JSXBase.HTMLAttributes<HTMLRigthPanelElement>;
             "sandwiches-food": LocalJSX.SandwichesFood & JSXBase.HTMLAttributes<HTMLSandwichesFoodElement>;
-            "todays-menu": LocalJSX.TodaysMenu & JSXBase.HTMLAttributes<HTMLTodaysMenuElement>;
             "table-orders": LocalJSX.TableOrders & JSXBase.HTMLAttributes<HTMLTableOrdersElement>;
+            "todays-menu": LocalJSX.TodaysMenu & JSXBase.HTMLAttributes<HTMLTodaysMenuElement>;
             "user-login": LocalJSX.UserLogin & JSXBase.HTMLAttributes<HTMLUserLoginElement>;
             "user-register": LocalJSX.UserRegister & JSXBase.HTMLAttributes<HTMLUserRegisterElement>;
         }
