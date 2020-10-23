@@ -7,6 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { MatchResults } from "@stencil/router";
 import { Drink } from "./models.ts/drink.model";
+import { Menu } from "./models.ts/menu.model";
 export namespace Components {
     interface AdminView {
     }
@@ -41,6 +42,8 @@ export namespace Components {
     interface RigthPanel {
     }
     interface SandwichesFood {
+    }
+    interface TodaysMenu {
     }
     interface UserLogin {
         "handleLogin": (e: any) => Promise<void>;
@@ -144,6 +147,12 @@ declare global {
         prototype: HTMLSandwichesFoodElement;
         new (): HTMLSandwichesFoodElement;
     };
+    interface HTMLTodaysMenuElement extends Components.TodaysMenu, HTMLStencilElement {
+    }
+    var HTMLTodaysMenuElement: {
+        prototype: HTMLTodaysMenuElement;
+        new (): HTMLTodaysMenuElement;
+    };
     interface HTMLUserLoginElement extends Components.UserLogin, HTMLStencilElement {
     }
     var HTMLUserLoginElement: {
@@ -172,6 +181,7 @@ declare global {
         "plate-food": HTMLPlateFoodElement;
         "rigth-panel": HTMLRigthPanelElement;
         "sandwiches-food": HTMLSandwichesFoodElement;
+        "todays-menu": HTMLTodaysMenuElement;
         "user-login": HTMLUserLoginElement;
         "user-register": HTMLUserRegisterElement;
     }
@@ -212,6 +222,9 @@ declare namespace LocalJSX {
     }
     interface SandwichesFood {
     }
+    interface TodaysMenu {
+        "onMenuSelected"?: (event: CustomEvent<Menu>) => void;
+    }
     interface UserLogin {
         "hidden"?: boolean;
         "id"?: string;
@@ -237,6 +250,7 @@ declare namespace LocalJSX {
         "plate-food": PlateFood;
         "rigth-panel": RigthPanel;
         "sandwiches-food": SandwichesFood;
+        "todays-menu": TodaysMenu;
         "user-login": UserLogin;
         "user-register": UserRegister;
     }
@@ -260,6 +274,7 @@ declare module "@stencil/core" {
             "plate-food": LocalJSX.PlateFood & JSXBase.HTMLAttributes<HTMLPlateFoodElement>;
             "rigth-panel": LocalJSX.RigthPanel & JSXBase.HTMLAttributes<HTMLRigthPanelElement>;
             "sandwiches-food": LocalJSX.SandwichesFood & JSXBase.HTMLAttributes<HTMLSandwichesFoodElement>;
+            "todays-menu": LocalJSX.TodaysMenu & JSXBase.HTMLAttributes<HTMLTodaysMenuElement>;
             "user-login": LocalJSX.UserLogin & JSXBase.HTMLAttributes<HTMLUserLoginElement>;
             "user-register": LocalJSX.UserRegister & JSXBase.HTMLAttributes<HTMLUserRegisterElement>;
         }
