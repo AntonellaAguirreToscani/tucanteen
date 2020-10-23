@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { MatchResults } from "@stencil/router";
+import { desserts } from "./models.ts/desserts.model";
 import { Drink } from "./models.ts/drink.model";
 import { Menu } from "./models.ts/menu.model";
 export namespace Components {
@@ -22,6 +23,8 @@ export namespace Components {
         "match": MatchResults;
     }
     interface AppRoot {
+    }
+    interface ClientDeserts {
     }
     interface ClientPanel {
     }
@@ -101,6 +104,12 @@ declare global {
     var HTMLAppRootElement: {
         prototype: HTMLAppRootElement;
         new (): HTMLAppRootElement;
+    };
+    interface HTMLClientDesertsElement extends Components.ClientDeserts, HTMLStencilElement {
+    }
+    var HTMLClientDesertsElement: {
+        prototype: HTMLClientDesertsElement;
+        new (): HTMLClientDesertsElement;
     };
     interface HTMLClientPanelElement extends Components.ClientPanel, HTMLStencilElement {
     }
@@ -199,6 +208,7 @@ declare global {
         "app-home": HTMLAppHomeElement;
         "app-profile": HTMLAppProfileElement;
         "app-root": HTMLAppRootElement;
+        "client-deserts": HTMLClientDesertsElement;
         "client-panel": HTMLClientPanelElement;
         "client-view": HTMLClientViewElement;
         "finalize-purchase": HTMLFinalizePurchaseElement;
@@ -230,6 +240,9 @@ declare namespace LocalJSX {
         "match"?: MatchResults;
     }
     interface AppRoot {
+    }
+    interface ClientDeserts {
+        "onDessertsSelected"?: (event: CustomEvent<desserts>) => void;
     }
     interface ClientPanel {
     }
@@ -279,6 +292,7 @@ declare namespace LocalJSX {
         "app-home": AppHome;
         "app-profile": AppProfile;
         "app-root": AppRoot;
+        "client-deserts": ClientDeserts;
         "client-panel": ClientPanel;
         "client-view": ClientView;
         "finalize-purchase": FinalizePurchase;
@@ -306,6 +320,7 @@ declare module "@stencil/core" {
             "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
             "app-profile": LocalJSX.AppProfile & JSXBase.HTMLAttributes<HTMLAppProfileElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
+            "client-deserts": LocalJSX.ClientDeserts & JSXBase.HTMLAttributes<HTMLClientDesertsElement>;
             "client-panel": LocalJSX.ClientPanel & JSXBase.HTMLAttributes<HTMLClientPanelElement>;
             "client-view": LocalJSX.ClientView & JSXBase.HTMLAttributes<HTMLClientViewElement>;
             "finalize-purchase": LocalJSX.FinalizePurchase & JSXBase.HTMLAttributes<HTMLFinalizePurchaseElement>;
