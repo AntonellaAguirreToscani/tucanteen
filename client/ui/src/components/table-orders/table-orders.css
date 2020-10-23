@@ -1,0 +1,11 @@
+.container{
+  display: flex;
+  justify-content: flex-end;
+}
+#title{
+  text-align: center;
+}
+#table{
+  margin-top: 2%;
+  margin-left: 5%;
+}
