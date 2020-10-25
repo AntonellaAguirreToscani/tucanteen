@@ -1,11 +1,9 @@
 .tittle{
   text-align: center;
 }
-.card{
-  margin: 2%;
-  border: 2px solid black;
-}
 #div-cards{
+  margin: 2%;
+  border: 1px solid black;
   width: 30%;
 }
 .div-container{
