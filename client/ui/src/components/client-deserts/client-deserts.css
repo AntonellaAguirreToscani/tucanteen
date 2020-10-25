@@ -1,18 +1,17 @@
-.titulo{
+.tittle{
   text-align: center;
 }
-.car{
+#div-cards{
   margin: 2%;
   border: 2px solid black;
-}
-#div-cards{
   width: 30%;
 }
 .div-container{
   display: flex;
-  flex-flow: nowrap;
+  flex-flow:row wrap ;
   justify-content: center;
 }
 .card-img{
 margin-top: 30%;
+margin-left: 20%;
 }
