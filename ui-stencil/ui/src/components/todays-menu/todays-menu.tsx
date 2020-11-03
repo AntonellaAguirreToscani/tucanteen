@@ -1,5 +1,5 @@
 import { Component, h, State} from '@stencil/core';
-import { Menu } from '../../models.ts/menu.model';
+import { Product } from '../../models.ts/product.model';
 import { MenuServices } from '../../services/menu.services';
 
 @Component({
@@ -9,7 +9,7 @@ import { MenuServices } from '../../services/menu.services';
 })
 
 export class TodaysMenu {
-@State() Menu: Menu[]=[];
+@State() Menu: Product[]=[];
 
 // @Event() MenuSelected: EventEmitter<Menu>;
 // selectedMenu: Menu;

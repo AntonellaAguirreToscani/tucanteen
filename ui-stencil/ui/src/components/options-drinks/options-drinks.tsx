@@ -1,5 +1,5 @@
 import { Component, h, State, Event, EventEmitter } from '@stencil/core';
-import { Drink } from '../../models.ts/drink.model';
+import { Product } from '../../models.ts/product.model';
 import { DrinkServices } from '../../services/drink.services';
 
 @Component({
@@ -9,11 +9,10 @@ import { DrinkServices } from '../../services/drink.services';
 })
 export class OptionsDrinks {
   //State donde se almacena el listado de bebidas
-  @State() drinks: Drink[] = [];
+  @State() drinks: Product[] = [];
 
-  //No se está usando pero no quitar! Sirve para la funcion de la línea 43
-  @Event() drinkSelected: EventEmitter<Drink>;
-  selectedDrink: Drink;
+  @Event() selectedDrink: EventEmitter<Product>;
+
   // Instancia la clase tipo Singleton DrinkServices
   private drinkService: DrinkServices;
   constructor() {
@@ -40,8 +39,8 @@ export class OptionsDrinks {
     this.getDrinks();
   }
   // NO SE USA TODAVIA! Se va a utilizar en el panel derecho para escuchar este evento por su ID!
-  handleSelectedDrink(drink: Drink) {
-    this.drinkSelected.emit(drink);
+  handleSelectedDrink(drink: Product) {
+    this.selectedDrink.emit(drink);
   }
   render() {
     return (
@@ -60,6 +59,7 @@ export class OptionsDrinks {
                     <p class="card-text">${drink.price}</p>
                   </div>
                 </div>
+                <button type="button" class="btn btn-primary" onClick={()=>this.handleSelectedDrink(drink)}>Agregar</button>
               </div>
             </div>
           )}

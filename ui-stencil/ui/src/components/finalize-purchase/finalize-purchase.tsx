@@ -1,4 +1,5 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h, Listen, Prop, State } from '@stencil/core';
+import { Order } from '../../models.ts/order.model';
 
 @Component({
   tag: 'finalize-purchase',
@@ -8,6 +9,12 @@ import { Component, h, Prop } from '@stencil/core';
 export class FinalizePurchase {
   
   @Prop() id:string;
+  @State() order : Order = Order.void();
+  
+  @Listen('selectedSale', { target: 'document' })
+  selectedSale(event: CustomEvent<Order>) {
+    this.order = event.detail;
+  }
 
   render() {
     return (
@@ -21,8 +28,11 @@ export class FinalizePurchase {
               </button>
             </div>
             <div class="modal-body">
-              <p>Su total es de $100</p>
-              <p>Horario de retiro: 12:00hs</p>
+               {this.order.products.map(product=>
+                <li>{product.description} -  ${product.price}</li>
+                )}
+                <h5>Total a abonar: $ {this.order.total}</h5>
+              <p>Horario de retiro:  {this.order.hour}</p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
