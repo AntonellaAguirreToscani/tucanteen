@@ -56,9 +56,10 @@ export class RigthPanel {
     this.onUpdateOrders(event);
   }
 
-  //FUNCION QUE EMITE EL EVENTO ORDEN una vez clickeado el boton finalizar compra
+  //FUNCION QUE EMITE EL EVENTO ORDEN una vez clickeado el boton finalizar compra y la reinicia!
   handleNewSale() {
     this.selectedSale.emit(this.order);
+    this.order = Order.void();
   }
   render() {
     return (
