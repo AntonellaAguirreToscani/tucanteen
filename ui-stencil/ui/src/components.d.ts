@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { MatchResults } from "@stencil/router";
 import { Product } from "./models.ts/product.model";
 import { Order } from "./models.ts/order.model";
+import { User } from "./models.ts/user.model";
 export namespace Components {
     interface AdminPanel {
     }
@@ -39,7 +40,6 @@ export namespace Components {
     interface MyHeader {
         "butonsChoice": string;
         "profileChoice": string;
-        "userName": string;
     }
     interface OfferCarousel {
     }
@@ -57,7 +57,6 @@ export namespace Components {
     interface TodaysMenu {
     }
     interface UserLogin {
-        "handleLogin": (e: any) => Promise<void>;
         "hidden": boolean;
         "id": string;
         "url": string;
@@ -257,7 +256,6 @@ declare namespace LocalJSX {
     interface MyHeader {
         "butonsChoice"?: string;
         "profileChoice"?: string;
-        "userName"?: string;
     }
     interface OfferCarousel {
     }
@@ -281,6 +279,7 @@ declare namespace LocalJSX {
     interface UserLogin {
         "hidden"?: boolean;
         "id"?: string;
+        "onUserOk"?: (event: CustomEvent<User>) => void;
         "url"?: string;
     }
     interface UserRegister {

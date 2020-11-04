@@ -1,4 +1,4 @@
-import { Component, h, Method, Prop, State } from '@stencil/core';
+import { Component, h, Prop, State, Event, EventEmitter } from '@stencil/core';
 import { User } from '../../models.ts/user.model';
 import { UserService } from '../../services/user.services';
 
@@ -18,6 +18,8 @@ export class UserLogin {
   // State que guarda los usuarios por ahora Mockeados
   @State() users: User[];
 
+  @Event() userOk : EventEmitter<User>;
+  USER : User;
   /*Constructor para instanciar  la clase UserService like a Singleton
   (esta clase nos permite acceder al listado de Users)*/
   private userService: UserService;
@@ -43,19 +45,9 @@ export class UserLogin {
   componentWillLoad() {
     this.getUsers();
   }
-  //Metodo que se llama en el form (linea: 88) verifica que los inputs correspondan a un usuario existente
-  @Method()
-  async handleLogin(e) {
+  
+  handleLogin(e) {
     e.preventDefault();
-    try {
-      if (this.users.find(user => user.userName == this.user && user.password == this.password && user.typeUser === 'client')) {
-        console.log('Sesion Iniciada correctamente'); //acá va el redireccionamiento al componente "login-ok"
-      } else {
-        throw Error('Usuario NO registrado / campos incorrectos'); //acá va una alerta o mensaje al usuario!
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
   }
   //metodo que dá valor al state user
   handleChange(event) {
@@ -68,13 +60,21 @@ export class UserLogin {
   }
 
   loginValidator(typeUser : string): boolean{
-    if (this.users.find(user => user.userName == this.user && user.password == this.password && user.typeUser === typeUser)) {
+    if (this.USER = this.users.find(user => user.userName == this.user && user.password == this.password && user.typeUser === typeUser)) {
+      console.log(this.USER,'usuario validado');
       return true;
     }else{
       return false;
     }
   }
-
+  handleLoginOk() {
+    try {
+      this.userOk.emit(this.USER);
+      console.log('evento emitido');
+    } catch (error) {
+      console.log(error.message);
+    }  
+  }
   render() {
     return (
       <div class="modal fade" id={this.id} tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden={this.hidden}>
@@ -108,7 +108,7 @@ export class UserLogin {
                 {/* Modal Footer */}
                 <div class="modal-footer">
                 <stencil-route-link url={this.loginValidator('client') ? '/loginClient' : this.loginValidator('admin')?'/loginAdmin': '/login'}>
-                  <button class="btn btn-lg btn-success btn-block" type="submit" data-dismiss="modal" value="submit" id="button-login">
+                  <button class="btn btn-lg btn-success btn-block" type="submit" data-dismiss="modal" value="submit" id="button-login" onClick={()=>this.handleLoginOk()}>
                     Ingresar
                   </button>
                   </stencil-route-link>

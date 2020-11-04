@@ -60,6 +60,7 @@ export class RigthPanel {
   handleNewSale() {
     this.selectedSale.emit(this.order);
     this.order = Order.void();
+    this.total = 0;
   }
   render() {
     return (
