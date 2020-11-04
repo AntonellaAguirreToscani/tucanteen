@@ -6,9 +6,8 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { MatchResults } from "@stencil/router";
-import { desserts } from "./models.ts/desserts.model";
-import { Drink } from "./models.ts/drink.model";
-import { Sandwiches } from "./models.ts/sandwiches.model";
+import { Product } from "./models.ts/product.model";
+import { Order } from "./models.ts/order.model";
 export namespace Components {
     interface AdminPanel {
     }
@@ -242,7 +241,7 @@ declare namespace LocalJSX {
     interface AppRoot {
     }
     interface ClientDeserts {
-        "onDessertsSelected"?: (event: CustomEvent<desserts>) => void;
+        "onDessertsSelected"?: (event: CustomEvent<Product>) => void;
     }
     interface ClientPanel {
     }
@@ -263,14 +262,15 @@ declare namespace LocalJSX {
     interface OfferCarousel {
     }
     interface OptionsDrinks {
-        "onDrinkSelected"?: (event: CustomEvent<Drink>) => void;
+        "onSelectedDrink"?: (event: CustomEvent<Product>) => void;
     }
     interface PlateFood {
     }
     interface RigthPanel {
+        "onSelectedSale"?: (event: CustomEvent<Order>) => void;
     }
     interface SandwichesFood {
-        "onSandwichesSelected"?: (event: CustomEvent<Sandwiches>) => void;
+        "onSelectedSandwich"?: (event: CustomEvent<Product>) => void;
     }
     interface TableOrders {
     }

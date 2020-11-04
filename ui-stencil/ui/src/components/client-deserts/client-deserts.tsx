@@ -1,8 +1,6 @@
 import { Component, h, State, Event } from '@stencil/core';
 import { EventEmitter } from '@stencil/router/dist/types/stencil.core';
-
-// import { DESSERTS } from '../../mocks/client-deserts';
-import { desserts } from '../../models.ts/desserts.model'
+import { Product } from '../../models.ts/product.model';
 import { Dessertsservices } from '../../services/desserts.services';
 
 @Component({
@@ -11,10 +9,10 @@ import { Dessertsservices } from '../../services/desserts.services';
   shadow: false,
 })
 export class ClientDeserts {
-  @State() desserts: desserts[] = [];
+  @State() desserts: Product[] = [];
 
-   @Event() dessertsSelected: EventEmitter<desserts>;
-   selectedDesserts: desserts;
+   @Event() dessertsSelected: EventEmitter<Product>;
+   selectedDesserts: Product;
 
   private Desserts: Dessertsservices;
   constructor() {
@@ -36,7 +34,7 @@ export class ClientDeserts {
   componentWillLoad() {
     this.getDesserts();
   }
-  handleSelectedDrink(desserts: desserts) {
+  handleSelectedDrink(desserts: Product) {
     this.dessertsSelected.emit(desserts);
   
   }

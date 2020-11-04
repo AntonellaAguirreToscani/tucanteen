@@ -1,5 +1,5 @@
 import { Component, h, State, } from '@stencil/core';
-import {Plate } from '../../models.ts/plate-food.models';
+import { Product } from '../../models.ts/product.model';
  import { PlateFoodServices} from '../../services/plate-food.services.ts';
 
 @Component({
@@ -9,8 +9,7 @@ import {Plate } from '../../models.ts/plate-food.models';
 })
 export class PlateFood {
   //State donde se almacena el listado de comidas
-  @State() PlateFood: Plate[];
-
+  @State() PlateFood: Product[];
   
   // Instancia la clase tipo Singleton platefoodServices
   private PlateFoodService: PlateFoodServices;

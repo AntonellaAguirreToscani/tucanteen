@@ -1,12 +1,12 @@
 import { Observable, of } from "rxjs";
 import { DRINKS } from "../mocks/drinks-mock";
-import { Drink } from "../models.ts/drink.model";
+import { Product } from "../models.ts/product.model";
 
 export class DrinkServices{
 
     private static _instance: DrinkServices;
   
-    getDrinks(): Observable <Drink[]> {
+    getDrinks(): Observable <Product[]> {
       return of(DRINKS);
     }
     //Utiliza el patron Singleton. Se intancia una única vez!
