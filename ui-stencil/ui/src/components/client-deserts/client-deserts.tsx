@@ -11,13 +11,13 @@ import { Dessertsservices } from '../../services/desserts.services';
 export class ClientDeserts {
   @State() desserts: Product[] = [];
 
-   @Event() dessertsSelected: EventEmitter<Product>;
-   selectedDesserts: Product;
+   @Event() selectedDessert: EventEmitter<Product>;
 
   private Desserts: Dessertsservices;
   constructor() {
     this.Desserts = Dessertsservices.Instance;
   }
+
   getDesserts() {
     try {
       this.Desserts
@@ -34,10 +34,11 @@ export class ClientDeserts {
   componentWillLoad() {
     this.getDesserts();
   }
-  handleSelectedDrink(desserts: Product) {
-    this.dessertsSelected.emit(desserts);
-  
+
+  handleSelectedDessert(dessert: Product) {
+    this.selectedDessert.emit(dessert)
   }
+
   render() {
     return (
       <div class="div-desserts">
@@ -55,6 +56,7 @@ export class ClientDeserts {
                   <p class="card-text">${DESSERTS.price}</p>
                 </div>
               </div>
+              <button type="button" class="btn btn-primary" onClick={()=>this.handleSelectedDessert(DESSERTS)}>Agregar</button>
             </div>
           </div>
         )}

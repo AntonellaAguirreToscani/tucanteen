@@ -241,7 +241,7 @@ declare namespace LocalJSX {
     interface AppRoot {
     }
     interface ClientDeserts {
-        "onDessertsSelected"?: (event: CustomEvent<Product>) => void;
+        "onSelectedDessert"?: (event: CustomEvent<Product>) => void;
     }
     interface ClientPanel {
     }
@@ -265,6 +265,7 @@ declare namespace LocalJSX {
         "onSelectedDrink"?: (event: CustomEvent<Product>) => void;
     }
     interface PlateFood {
+        "onSelectedPlateFood"?: (event: CustomEvent<Product>) => void;
     }
     interface RigthPanel {
         "onSelectedSale"?: (event: CustomEvent<Order>) => void;
@@ -275,6 +276,7 @@ declare namespace LocalJSX {
     interface TableOrders {
     }
     interface TodaysMenu {
+        "onSelectedMenu"?: (event: CustomEvent<Product>) => void;
     }
     interface UserLogin {
         "hidden"?: boolean;
