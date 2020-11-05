@@ -20,7 +20,7 @@ export class ClientPanel {
                 </a> 
               </stencil-route-link>
             </li>
-            <h3 id="carta-label">Carta</h3>
+            <h4 id="carta-label">Carta</h4>
             <li class="nav-item">
               <stencil-route-link url="/al-plato">
                 <a class="nav-link" href="#">

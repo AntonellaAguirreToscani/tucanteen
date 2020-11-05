@@ -4,14 +4,18 @@
   display: flex;
   flex-direction: column;
   justify-content: inherit;
+  font-size: inherit;
+  min-height: 60vmax;
+  width: 80%;
 }
 
 #carta-label{
-  margin-top: 20px;
+  margin-top: 30px;
 } 
 
 .sidebar-stickypt-3{
   margin-top: 15px;
   margin-bottom: 100%;
   align-items: inherit;
+  align-self: start;
 }

@@ -6,5 +6,9 @@ export const DRINKS : Drink[] = [
     {id: 3,image: './assets/icon/sprite.png', description: 'SPRITE', price:80},
     {id: 4,image: './assets/icon/pasoToros.jpg', description: 'PASO DE LOS TOROS', price:120},
     {id: 5,image: './assets/icon/coca-cola-light.png', description: 'COCA-COLA ligth', price:100},
+    {id: 6,image: './assets/icon/coca-cola-light.png', description: 'COCA-COLA ligth', price:100},
+    {id: 4,image: './assets/icon/pasoToros.jpg', description: 'PASO DE LOS TOROS', price:120},
+    {id: 5,image: './assets/icon/coca-cola-light.png', description: 'COCA-COLA ligth', price:100},
+    
     {id: 6,image: './assets/icon/coca-cola-light.png', description: 'COCA-COLA ligth', price:100}
 ]
