@@ -1,9 +1,5 @@
 import { Component, h, State, Event, EventEmitter } from '@stencil/core';
-<<<<<<< HEAD:client/ui/src/components/options-drinks/options-drinks.tsx
-import { Drink } from '../../models.ts/drink.model';  
-=======
 import { Product } from '../../models.ts/product.model';
->>>>>>> origin/develop:ui-stencil/ui/src/components/options-drinks/options-drinks.tsx
 import { DrinkServices } from '../../services/drink.services';
 
 @Component({
@@ -14,21 +10,10 @@ import { DrinkServices } from '../../services/drink.services';
 
 export class OptionsDrinks {
   //State donde se almacena el listado de bebidas
-<<<<<<< HEAD:client/ui/src/components/options-drinks/options-drinks.tsx
-  @State() drinks: Drink[] = [];
-  //@State() bebidaElegida;
-
-  //No se está usando pero no quitar! Sirve para la funcion de la línea 43
-  @Event() drinkSelected: EventEmitter<Drink>;
-  selectedDrink: Drink;
-  
-
-=======
   @State() drinks: Product[] = [];
 
   @Event() selectedDrink: EventEmitter<Product>;
 
->>>>>>> origin/develop:ui-stencil/ui/src/components/options-drinks/options-drinks.tsx
   // Instancia la clase tipo Singleton DrinkServices
   private drinkService: DrinkServices;
   constructor() {
