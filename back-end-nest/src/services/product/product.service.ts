@@ -23,27 +23,8 @@ export class ProductService {
         return this.products;
     }
 
-    // public getProductsByCategory(category:string): Product[]{
-    //     return this.getProducts().filter(product=> product.category === category);
-    // }
+    public getProductsByCategory(category: string): Product[]{
+        return this.getProducts().filter(product=> product.category === category);
+    }
 
-    // public GetDesserts(): Product[]{
-    //    return this.getProductsByCategory('postres');
-    // }
-
-    // public getMenu(): Product[]{
-    //     return this.getProductsByCategory('menu');
-    // }
-
-    // public getDrinks(): Product[]{
-    //     return this.getProductsByCategory('bebidas');
-    // }
-
-    // public getPlatesFood(): Product[]{
-    //     return this.getProductsByCategory('plato');
-    // }
-
-    // public getSandwiches(): Product[]{
-    //     return this.getProductsByCategory('sandwiches');
-    // }
 }
