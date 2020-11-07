@@ -2,11 +2,9 @@
 .tittle{
   text-align: center;
 }
-.card{
+#div-cards{
   margin: 2%;
   border: 2px solid black;
-}
-#div-cards{
   width: 33%;
 }
 .div-container{
