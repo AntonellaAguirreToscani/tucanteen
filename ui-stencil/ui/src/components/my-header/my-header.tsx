@@ -1,5 +1,5 @@
-import { Component, h, Prop } from '@stencil/core';
-
+import { Component, forceUpdate, h, Listen, Prop, State} from '@stencil/core';
+import { User } from '../../models.ts/user.model';
 
 @Component({
   tag: 'my-header',
@@ -7,14 +7,48 @@ import { Component, h, Prop } from '@stencil/core';
   shadow: false,
 })
 export class MyHeader {
+
   @Prop() butonsChoice : string; //butons - butons-close
   @Prop() profileChoice : string; //profile - profile-close
-  @Prop() userName : string;
+
+  @State() user : User = User.void();
+
+  
+  
+  componentWillLoad() {
+    this.user;
+  }
+ 
+  
+
+  @Listen('userOk', { target: 'document' })
+  userOk(event: CustomEvent<User>) {
+    try {
+
+      this.user={...this.user,userName:event.detail.userName}
+      forceUpdate(this.user);
+      
+      this.componentWillUpdate();
+      
+     
+    } catch (error) {
+      console.log(error.message);
+    }
+  
+    // this.watchHandler(this.userLogin,event.detail);
+    // console.log(this.userLogin, 'usuario guardado en LOGINOK');
+
+  }
+  componentWillUpdate() {
+    this.user;
+  }
+
   render() { 
     return (
       <header class="header">
         <img class="logo" src="./assets/icon/tuCanteen100.png" alt="Logo PNG" />
-        <form class="form-inline">
+        <div class="form-inline">
+
           <div id={this.butonsChoice}>
             <stencil-route-link url="/login">
               <button class="btn btn-outline-success my-2 my-sm-0" type="button" data-toggle="modal" data-target="#modal-login">
@@ -37,12 +71,15 @@ export class MyHeader {
               <user-register id="modal-register"></user-register>
             </div>
           </div>
+      
           <div id={this.profileChoice}>
-            <img src="./assets/icon/pollo.png" alt="Avatar" class="avatar"></img>
-             <p>UserName</p>{/* <p>{this.userName}</p> */}
+            {/* <p>Bienvenida/o!!</p> */}
+            <p>{this.user.userName}</p>
+            <span>{this.user.userName}</span>
+            <img src={this.user.photo} alt="photo user" class="avatar"></img>
           </div>
-
-        </form>
+          
+        </div>
       </header>
     );
   }

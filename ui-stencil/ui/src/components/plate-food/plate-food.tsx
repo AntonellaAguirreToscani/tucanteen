@@ -1,6 +1,7 @@
-import { Component, h, State, } from '@stencil/core';
+import { Component, h, State, Event } from '@stencil/core';
+import { EventEmitter } from '@stencil/router/dist/types/stencil.core';
 import { Product } from '../../models.ts/product.model';
- import { PlateFoodServices} from '../../services/plate-food.services.ts';
+import { PlateFoodServices} from '../../services/plate-food.services.ts';
 
 @Component({
   tag: 'plate-food',
@@ -11,6 +12,7 @@ export class PlateFood {
   //State donde se almacena el listado de comidas
   @State() PlateFood: Product[];
   
+  @Event() selectedPlateFood : EventEmitter<Product>;
   // Instancia la clase tipo Singleton platefoodServices
   private PlateFoodService: PlateFoodServices;
   constructor() {
@@ -36,6 +38,9 @@ export class PlateFood {
     this.getPlateFood();
   }
   
+  handleSelectedPlateFood(plateFood: Product) {
+    this.selectedPlateFood.emit(plateFood);
+  }
   
   render() {
     return (
@@ -54,6 +59,7 @@ export class PlateFood {
                     <p class="card-text">${PlateFood.price}</p>
                   </div>
                 </div>
+                <button type="button" class="btn btn-primary" onClick={()=>this.handleSelectedPlateFood(PlateFood)}>Agregar</button>
               </div>
             </div>
           )}
@@ -61,5 +67,4 @@ export class PlateFood {
       </div>
     );
   }
-
 }
