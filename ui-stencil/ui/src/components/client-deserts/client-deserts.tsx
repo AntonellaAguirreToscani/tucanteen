@@ -18,16 +18,16 @@ export class ClientDeserts {
     this.Desserts = Dessertsservices.Instance;
   }
 
-  getDesserts() {
+  async getDesserts() {
     try {
-      this.Desserts
-        .getDesserts()
-        .subscribe(data => {
+     await this.Desserts.getDesserts()
+        .then(response => response.json())
+        .then(data=>{
           this.desserts = data;
           console.log(this.desserts);
         });
     } catch (error) {
-      console.log(error.message);
+      console.log(error.message,'respuesta');
     }
   }
 
