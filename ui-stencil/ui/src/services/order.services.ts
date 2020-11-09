@@ -1,6 +1,7 @@
 
 import { FetchAdapter } from "../adapters/fetch.adapter";
 import { CONSTANTS, ENDPOINTS } from "../constants/url.endpoints";
+import { Order } from "../models.ts/order.model";
 
 export class OrderService{
 
@@ -14,11 +15,15 @@ export class OrderService{
     }
   
     async getOrders() {
-      return await this.fetch.get(ENDPOINTS.orders);
+      return await this.fetch.httpRequest(ENDPOINTS.orders,'GET');
+    }
+    async postOrder(order: Order){
+      this.fetch.httpRequest(ENDPOINTS.orders,'POST',order);
     }
     // getOrders(): Observable <Order[]> {
     //   return of(ORDERS);
     // }
+
     //Utiliza el patron Singleton. Se intancia una única vez!
     public static get Instance(): OrderService {
         return this._instance || (this._instance = new this());

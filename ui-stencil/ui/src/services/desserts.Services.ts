@@ -15,7 +15,7 @@ export class Dessertsservices{
     }
   
     async getDesserts() {
-      return await this.fetch.get('/postres');
+      return await this.fetch.httpRequest('/postres','GET');
     }
 
     //   getDesserts():Observable <Product[]>{

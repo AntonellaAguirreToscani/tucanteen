@@ -14,4 +14,18 @@ export class FetchAdapter {
         headers: this.headers,
     });
     }
+    public httpRequest(path: string, httpVerb : string, body? : object){
+      if(httpVerb == 'POST' || httpVerb == 'UPDATE'){
+        return fetch(this.BASE_URL + path, {
+          method: httpVerb,
+          headers: this.headers,
+          body: JSON.stringify(body)
+        });
+      }else{
+        return fetch(this.BASE_URL + path, {
+          method: httpVerb,
+          headers: this.headers,
+        });
+      }
+    }
   }
