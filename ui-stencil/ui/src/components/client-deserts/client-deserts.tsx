@@ -1,4 +1,4 @@
-import { Component, h, State, Event } from '@stencil/core';
+import { Component, h, State, Event, Method } from '@stencil/core';
 import { EventEmitter } from '@stencil/router/dist/types/stencil.core';
 import { Product } from '../../models.ts/product.model';
 import { Dessertsservices } from '../../services/desserts.services';
@@ -17,7 +17,8 @@ export class ClientDeserts {
   constructor() {
     this.Desserts = Dessertsservices.Instance;
   }
-
+  
+  @Method()
   async getDesserts() {
     try {
      await this.Desserts.getDesserts()

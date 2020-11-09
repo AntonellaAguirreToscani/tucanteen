@@ -25,6 +25,7 @@ export namespace Components {
     interface AppRoot {
     }
     interface ClientDeserts {
+        "getDesserts": () => Promise<void>;
     }
     interface ClientPanel {
     }
