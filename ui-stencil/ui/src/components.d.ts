@@ -53,6 +53,7 @@ export namespace Components {
     interface SandwichesFood {
     }
     interface TableOrders {
+        "getOrders": () => Promise<void>;
         "handleOrder": (e: any) => Promise<void>;
     }
     interface TodaysMenu {

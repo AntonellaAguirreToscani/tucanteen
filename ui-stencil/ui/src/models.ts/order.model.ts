@@ -8,7 +8,7 @@ export class Order{
     total : number;
     products : Product[];
 
-    constructor(_order:number,_hour: string, _total:number, _products: Product[],_user?:string, _descrition?:string) {
+    constructor(_order:number,_hour: string, _total:number, _products?: Product[],_user?:string, _descrition?:string) {
         this.orderNumber =_order;
         this.userName =_user;
         this.userName = _descrition;

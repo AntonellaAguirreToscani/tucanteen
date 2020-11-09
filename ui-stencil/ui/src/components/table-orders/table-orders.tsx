@@ -17,15 +17,16 @@ export class TableOrders {
   constructor() {
     this.orderService = OrderService.Instance;
   }
-
-  getOrders() {
+  @Method()
+  async getOrders() {
     try {
-      this.orderService.getOrders().subscribe(data => {
-        this.orders = data;
-        console.log(this.orders);
-      });
+     await this.orderService.getOrders()
+     .then(response => response.json())
+     .then(data=>{
+       this.orders = data;
+     });
     } catch (error) {
-      console.log(error.message);
+      console.log(error.message,'respuesta');
     }
   }
 
