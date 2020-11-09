@@ -1,7 +1,7 @@
 import { Component, h, State, Event } from '@stencil/core';
 import { EventEmitter } from '@stencil/router/dist/types/stencil.core';
 import { Product } from '../../models.ts/product.model';
-import { PlateFoodServices} from '../../services/plate-food.services.ts';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   tag: 'plate-food',
@@ -10,23 +10,22 @@ import { PlateFoodServices} from '../../services/plate-food.services.ts';
 })
 export class PlateFood {
   //State donde se almacena el listado de comidas
-  @State() PlateFood: Product[];
+  @State() platesFood: Product[] = [];
   
   @Event() selectedPlateFood : EventEmitter<Product>;
   // Instancia la clase tipo Singleton platefoodServices
-  private PlateFoodService: PlateFoodServices;
+  private productService: ProductService;
   constructor() {
-    this.PlateFoodService = PlateFoodServices.Instance;
+    this.productService = ProductService.Instance;
   }
   //funcion que llena el listado de comidas con el mock (similar a una funcion ajax)
   getPlateFood() {
     try {
-      this.PlateFoodService
-        .getPlateFood() //Hace referencia a la clase platefoodServices
-        .subscribe(data => {
-        
-          this.PlateFood = data;
-          console.log(this.PlateFood);
+      this.productService
+        .getProducts('/platos') //Hace referencia a la clase platefoodServices
+        .then(response => response.json())
+        .then(data=>{
+          this.platesFood = data;
         });
     } catch (error) {
       console.log(error.message);
@@ -47,19 +46,19 @@ export class PlateFood {
       <div class="div-drinks">
         <h1 class="tittle">Carta - al plato</h1>
         <div class="div-container">
-          {this.PlateFood.map((PlateFood) =>
+          {this.platesFood.map((plateFood) =>
             <div class="card mb-3" id="div-cards">
               <div class="row no-gutters">
                 <div class="col-md-4">
-                  <img src={PlateFood.image} class="card-img" alt="..." />
+                  <img src={plateFood.image} class="card-img" alt="..." />
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
-                    <h5 class="card-title">{PlateFood.description}</h5>
-                    <p class="card-text">${PlateFood.price}</p>
+                    <h5 class="card-title">{plateFood.description}</h5>
+                    <p class="card-text">${plateFood.price}</p>
                   </div>
                 </div>
-                <button type="button" class="btn btn-primary" onClick={()=>this.handleSelectedPlateFood(PlateFood)}>Agregar</button>
+                <button type="button" class="btn btn-primary" onClick={()=>this.handleSelectedPlateFood(plateFood)}>Agregar</button>
               </div>
             </div>
           )}

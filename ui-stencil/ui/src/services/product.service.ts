@@ -4,8 +4,8 @@ import { CONSTANTS, ENDPOINTS } from "../constants/url.endpoints";
 // import{DESSERTS} from "../mocks/client-deserts";
 // import { Product } from "../models.ts/product.model";
 
-export class Dessertsservices{
-    private static _Instance:Dessertsservices;
+export class ProductService{
+    private static _Instance:ProductService;
     private baseUrl: string;
     private fetch: FetchAdapter;
     
@@ -14,14 +14,17 @@ export class Dessertsservices{
       this.fetch = new FetchAdapter(`${this.baseUrl}${ENDPOINTS.products}`);
     }
   
-    async getDesserts() {
-      return await this.fetch.httpRequest('/postres','GET');
+    // async getDesserts() {
+    //   return await this.fetch.httpRequest('/postres','GET');
+    // }
+    async getProducts(fetch: string){
+      return await this.fetch.httpRequest(fetch,'GET');
     }
 
     //   getDesserts():Observable <Product[]>{
     //       return of(DESSERTS);
     //   }
-  public static get Instance():Dessertsservices{
+  public static get Instance():ProductService{
       return this._Instance ||(this._Instance= new this());
   }
 }
