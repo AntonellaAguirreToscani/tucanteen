@@ -1,6 +1,7 @@
 import { Component, h, State, Event, EventEmitter } from '@stencil/core';
 import { Product } from '../../models.ts/product.model';
-import { DrinkServices } from '../../services/drink.services';
+import { ProductService } from '../../services/product.service';
+
 
 @Component({
   tag: 'options-drinks',
@@ -14,19 +15,18 @@ export class OptionsDrinks {
   @Event() selectedDrink: EventEmitter<Product>;
 
   // Instancia la clase tipo Singleton DrinkServices
-  private drinkService: DrinkServices;
+  private drinkService: ProductService;
   constructor() {
-    this.drinkService = DrinkServices.Instance;
+    this.drinkService = ProductService.Instance;
   }
   //funcion que llena el listado de bebidas con el mock (similar a una funcion ajax)
   getDrinks() {
     try {
       this.drinkService
-        .getDrinks() //Hace referencia a la clase DrinkServices
-        .subscribe(data => {
-          //.subscribe() es como un .then()
+        .getProducts('/bebidas') //Hace referencia a la clase DrinkServices
+        .then(response => response.json())
+        .then(data=>{
           this.drinks = data;
-          console.log(this.drinks);
         });
     } catch (error) {
       console.log(error.message);

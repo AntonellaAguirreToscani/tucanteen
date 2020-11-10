@@ -3,5 +3,6 @@ export const CONSTANTS = {
 };
 
 export const ENDPOINTS ={
-    products : 'products'
+    products : 'products',
+    orders : 'orders'
 };

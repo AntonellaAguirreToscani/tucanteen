@@ -9,7 +9,7 @@ import { Order } from '../../models.ts/order.model';
 })
 export class RigthPanel {
   /* State que guarda la ORDEN 
-  se instancia vacía (void) y luego se va llenando en la funcion de la linea 25
+  se instancia vacía (void) y luego se va llenando en la funcion de la linea 42
   a partir de todos los productos seleccionados por el usuario!*/
 
   @State() order: Order = Order.void();
@@ -22,15 +22,25 @@ export class RigthPanel {
     this.order;
   }
 
-  onUpdateOrders(event){
-    this.order.products = [...this.order.products, event.detail]; // rest.
-
-    // reduce que se utiliza para poder actualizar el total a medida que se van ingresando ordenes
-    this.total = this.order.products.reduce((total,order)=>{
-       return total += order.price;
+  updateOrder(){
+    let description='';
+  
+    this.order.products.forEach(product=>{
+      description += `${product.description}+`;
+    });
+    
+    this.total = this.order.products.reduce((total,product)=>{
+       return total += product.price;
     },0);
+
     this.order.total = this.total;
-    this.order.hour = '13:30'; //acá se está definiendo el horario, la idea sería crear un algoritmo q determine el horario.
+    this.order.description = description;
+    this.order.hour = '13:30'; //harcodeado!
+  }
+
+  onUpdateOrders(event){
+    this.order.products = [...this.order.products, event.detail]; // rest
+    this.updateOrder();
   }
 
   // Eventos que escucha este componente!
