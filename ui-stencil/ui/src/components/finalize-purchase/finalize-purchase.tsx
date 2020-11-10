@@ -1,5 +1,6 @@
 import { Component, h, Listen, Prop, State } from '@stencil/core';
 import { Order } from '../../models.ts/order.model';
+import { OrderService } from '../../services/order.services';
 
 @Component({
   tag: 'finalize-purchase',
@@ -11,9 +12,18 @@ export class FinalizePurchase {
   @Prop() id:string;
   @State() order : Order = Order.void();
   
+  private orderService : OrderService;
+  constructor(){
+    this.orderService = OrderService.Instance;
+  }
+
   @Listen('selectedSale', { target: 'document' })
   selectedSale(event: CustomEvent<Order>) {
     this.order = event.detail;
+  }
+
+  async postOrder(){
+    this.orderService.postOrder(this.order);
   }
 
   render() {
@@ -35,8 +45,8 @@ export class FinalizePurchase {
               <p>Horario de retiro:  {this.order.hour}</p>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal">Finalizar</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" onClick={()=>this.postOrder()}>Confirmar Pedido</button>
             </div>
           </div>
         </div>

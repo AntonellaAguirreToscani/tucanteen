@@ -1,6 +1,7 @@
 import { Component, h, State, Event, EventEmitter} from '@stencil/core';
 import { Product } from '../../models.ts/product.model';
-import { MenuServices } from '../../services/menu.services';
+import { ProductService } from '../../services/product.service';
+
 
 @Component({
   tag: 'todays-menu',
@@ -9,24 +10,23 @@ import { MenuServices } from '../../services/menu.services';
 })
 
 export class TodaysMenu {
-@State() Menu: Product[]=[];
+@State() menus: Product[]=[];
 
 @Event() selectedMenu: EventEmitter<Product>;
 
 // Instancia la clase tipo Singleton MenuServices
-private MenuService: MenuServices;
+private productService: ProductService;
 constructor() {
-  this.MenuService = MenuServices.Instance;
+  this.productService = ProductService.Instance;
 }
 getMenu() {
   try {
-    this.MenuService
-      .getMenu() //Hace referencia a la clase MenuServices
-      .subscribe(data => {
-        //.subscribe() es como un .then()
-        this.Menu = data;
-        console.log(this.Menu);
-      });
+    this.productService
+      .getProducts('/menu') //Hace referencia a la clase MenuServices
+      .then(response => response.json())
+        .then(data=>{
+          this.menus = data;
+        });
   } catch (error) {
     console.log(error.message);
   }
@@ -43,19 +43,19 @@ render() {
     <div class="div-drinks">
       <h1 class="tittle">Menú del día</h1>
       <div class="div-container">
-        {this.Menu.map((MENU) =>
+        {this.menus.map((menu) =>
           <div class="card mb-3" id="div-cards">
             <div class="row no-gutters">
               <div class="col-md-4">
-                <img src={MENU.image} class="card-img" alt="..." />
+                <img src={menu.image} class="card-img" alt="..." />
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">{MENU.description}</h5>
-                  <p class="card-text">${MENU.price}</p>
+                  <h5 class="card-title">{menu.description}</h5>
+                  <p class="card-text">${menu.price}</p>
                 </div>
               </div>
-              <button type="button" class="btn btn-primary" onClick={()=>this.handleSelectedMenu(MENU)}>Agregar</button>
+              <button type="button" class="btn btn-primary" onClick={()=>this.handleSelectedMenu(menu)}>Agregar</button>
             </div>
           </div>
         )}

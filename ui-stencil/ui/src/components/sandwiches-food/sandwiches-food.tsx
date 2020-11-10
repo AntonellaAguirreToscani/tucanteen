@@ -1,6 +1,6 @@
 import { Component, h, State, Event, EventEmitter } from '@stencil/core';
 import { Product } from '../../models.ts/product.model';
-import { SandwichesServices } from '../../services/sandwich.service';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   tag: 'sandwiches-food',
@@ -9,24 +9,23 @@ import { SandwichesServices } from '../../services/sandwich.service';
 })
 export class OptionsSandwiches {
   //State donde se almacena el listado de sandwiches
-  @State() Sandwiches: Product[] = [];
+  @State() sandwiches: Product[] = [];
 
   @Event() selectedSandwich: EventEmitter<Product>;
 
-  // Instancia la clase tipo Singleton DrinkServices
-  private drinkService: SandwichesServices;
+  // Instancia la clase tipo Singleton
+  private productService: ProductService;
   constructor() {
-    this.drinkService = SandwichesServices.Instance;
+    this.productService = ProductService.Instance;
   }
-  //funcion que llena el listado de bebidas con el mock (similar a una funcion ajax)
+ 
   getSandwiches() {
     try {
-      this.drinkService
-        .getSandwiches() //Hace referencia a la clase DrinkServices
-        .subscribe(data => {
-          //.subscribe() es como un .then()
-          this.Sandwiches = data;
-          console.log(this.Sandwiches);
+      this.productService //sandwiches
+        .getProducts('/sandwiches') 
+        .then(response => response.json())
+        .then(data=>{
+          this.sandwiches = data;
         });
     } catch (error) {
       console.log(error.message);
@@ -50,8 +49,8 @@ export class OptionsSandwiches {
       <div class="div-sandwiches">
         <h1 class="tittle">Carta - sandwiches</h1>
         <div class="div-container">
-          {this.Sandwiches.map(SANDWICHES => (
-            <div class="card mb-3 col-sm-5" id="div-cards">
+          {this.sandwiches.map(SANDWICHES => (
+            <div class="card mb-3" id="div-cards">
               <div class="row no-gutters">
                 <div class="col-md-6">
                   <img src={SANDWICHES.image} class="card-img" alt="..." />

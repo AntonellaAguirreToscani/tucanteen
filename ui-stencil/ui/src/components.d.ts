@@ -28,6 +28,7 @@ export namespace Components {
     interface AppRoot {
     }
     interface ClientDeserts {
+        "getDesserts": () => Promise<void>;
     }
     interface ClientPanel {
     }
@@ -55,6 +56,7 @@ export namespace Components {
     interface SandwichesFood {
     }
     interface TableOrders {
+        "getOrders": () => Promise<void>;
         "handleOrder": (e: any) => Promise<void>;
     }
     interface TodaysMenu {

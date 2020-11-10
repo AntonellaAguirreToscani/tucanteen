@@ -1,7 +1,7 @@
-import { Component, h, State, Event } from '@stencil/core';
+import { Component, h, State, Event, Method } from '@stencil/core';
 import { EventEmitter } from '@stencil/router/dist/types/stencil.core';
 import { Product } from '../../models.ts/product.model';
-import { Dessertsservices } from '../../services/desserts.services';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   tag: 'client-deserts',
@@ -13,14 +13,15 @@ export class ClientDeserts {
 
    @Event() selectedDessert: EventEmitter<Product>;
 
-  private Desserts: Dessertsservices;
+  private Desserts: ProductService;
   constructor() {
-    this.Desserts = Dessertsservices.Instance;
+    this.Desserts = ProductService.Instance;
   }
-
+  
+  @Method()
   async getDesserts() {
     try {
-     await this.Desserts.getDesserts()
+     await this.Desserts.getProducts('/postres')
         .then(response => response.json())
         .then(data=>{
           this.desserts = data;
