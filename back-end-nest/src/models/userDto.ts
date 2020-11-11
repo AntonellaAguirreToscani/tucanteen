@@ -1,26 +1,26 @@
 export class User{
-    private _userName: string;
-    private _password: string;
-    private _typeUser: string;
-    private _photo: string;
+    private userName: string;
+    private password: string;
+    private typeUser: string;
+    private photo: string;
 
-    constructor(userName: string, password:string, type:string,photo?:string){
-        this._userName = userName;
-        this._password = password;
-        this._typeUser = type;
-        this._photo = (photo == null ||photo == undefined)? "./assets/icon/photo-avatar.png" : photo;
+    constructor(_userName: string, _password:string, _type:string,_photo?:string){
+        this.userName = _userName;
+        this.password = _password;
+        this.typeUser = _type;
+        this.photo = (_photo == null ||_photo == undefined)? "./assets/icon/photo-avatar.png" : _photo;
     }
     
-    public get userName():string{
-        return this._userName;
+    public get _userName():string{
+        return this.userName;
     }
-    public get password():string{
-        return this._password;
+    public get _password():string{
+        return this.password;
     }
-    public get typeUser():string{
-        return this._typeUser;
+    public get _typeUser():string{
+        return this.typeUser;
     }
-    public get photo():string{
-        return this._photo;
+    public get _photo():string{
+        return this.photo;
     }
 }

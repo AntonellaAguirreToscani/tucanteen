@@ -29,7 +29,8 @@ export class LoginService {
     public validateUser(userInfo: any) : boolean {
         let userLogged = new User(userInfo.userName,userInfo.password,userInfo.typeUser);
         try {
-            if(this.getUsers().find(user=> user.userName == userLogged.userName && user.password == userLogged.password)){
+            if(this.getUsers().find(user=> user._userName == userLogged._userName && user._password == userLogged._password)){
+                console.log('USUARIO VERIFICADO-API');
                 return true;
             }else{
                 throw Error('Usuario Inexistente'); 
