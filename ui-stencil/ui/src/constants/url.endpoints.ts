@@ -4,5 +4,6 @@ export const CONSTANTS = {
 
 export const ENDPOINTS ={
     products : 'products',
-    orders : 'orders'
+    orders : 'orders',
+    login : 'login'
 };
