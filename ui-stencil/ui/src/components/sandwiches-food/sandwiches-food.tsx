@@ -52,10 +52,10 @@ export class OptionsSandwiches {
           {this.sandwiches.map(SANDWICHES => (
             <div class="card mb-3" id="div-cards">
               <div class="row no-gutters">
-                <div class="col-md-4">
+                <div class="col-md-6">
                   <img src={SANDWICHES.image} class="card-img" alt="..." />
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-6">
                   <div class="card-body">
                     <h5 class="card-title">{SANDWICHES.description}</h5>
                     <p class="card-text">${SANDWICHES.price}</p>

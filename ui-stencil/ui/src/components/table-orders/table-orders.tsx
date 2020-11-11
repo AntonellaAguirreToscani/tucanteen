@@ -1,4 +1,5 @@
-import { Component, h, Method, State } from '@stencil/core';
+import { Component, EventEmitter, h, Event, Method, State} from '@stencil/core';
+// import { event } from 'jquery';
 import { Order } from '../../models.ts/order.model';
 import { OrderService } from '../../services/order.services';
 
@@ -9,9 +10,9 @@ import { OrderService } from '../../services/order.services';
 })
 export class TableOrders {
   @State() orders: Order[] = [];
-  @State() orderNumber: number;
-  @State() foundOrder : Order;
-  @State() selected: number;
+  @State() selected: Order;
+
+  @Event() selectedPurchase: EventEmitter<Order>
 
   private orderService: OrderService;
   constructor() {
@@ -37,90 +38,91 @@ export class TableOrders {
   @Method()
   async handleOrder(e) {
     e.preventDefault();
-    try {
-       if(this.foundOrder = this.orders.find(order => order.orderNumber == this.orderNumber)){
-        this.orders = [this.foundOrder];
-       }else{
-         this.getOrders();      
-        }
-    } catch (error) {
-      console.log(error.message);
-    }
   }
 
-  handleChange(event) {
-    this.orderNumber = event.target.value;
+  // handleChange(event) {
+  //   this.orderNumber = event.target.value;
+  // }
+  handleCheckout(){
+    this.selectedPurchase.emit(this.selected);
   }
-  handleClick(myRadio) {
-    console.log(myRadio);
-    alert('orden seleccionada: ' +  myRadio.value);
-    this.selected = myRadio.value;
+  buttonSelected(order: Order) {
+    this.selected = order;
+    console.log(this.selected);
+  }
+
+  removeOrder(){
+    this.orders.forEach((order, index) => {
+      if(this.selected.orderNumber == order.orderNumber)
+        this.orders.splice(index,1);
+    });
+    console.log(this.orders);
   }
 
   render() {
     return (
       <div>
-      <h1 id="title">Pedidos del día</h1>
-      <div  class="container" >
-        
-        <form class="form-inline d-flex justify-content-center md-form form-sm mt-0" onSubmit={e => this.handleOrder(e)}>
-          <i class="fas fa-search" aria-hidden="true"></i>
-          <div class="col-sm-6">
-            <input
-              class="form-control form-control-sm ml-3 w-75"
-              type="number"
-              value={this.orderNumber}
-              onInput={event => this.handleChange(event)}
-              placeholder="Search"
-              aria-label="Search"
-            ></input>
-          </div>
-          <div class="col-sm-2">
-            <button type="submit" class="btn btn-light">
-              Buscar
-            </button>
-          </div>
-          <div class="col-sm-2">
-            <button type="button" class="btn btn-light">
-              Cobrar
-            </button>
-          </div>
-          <div class="col-sm-2">
-            <button type="button" class="btn btn-warning">
-              Quitar
-            </button>
-          </div>
+        <h1 id="title">Pedidos del día</h1>
+        <div class="container" >
 
-          <table id="table" class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">No.</th>
-                <th scope="col">Usuario</th>
-                <th scope="col">Descripción</th>
-                <th scope="col">Horario</th>
-                <th scope="col">Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.orders.map((order)=> (
+          <form class="form-inline d-flex justify-content-center md-form form-sm mt-0" onSubmit={e => this.handleOrder(e)}>
+            <i class="fas fa-search" aria-hidden="true"></i>
+            <div class="col-sm-6">
+              <input
+                class="form-control form-control-sm ml-3 w-75"
+                type="number"
+                // onInput={event => this.handleChange(event)}
+                placeholder="Search"
+                aria-label="Search"
+              ></input>
+            </div>
+            <div class="col-sm-2">
+              <button type="submit" class="btn btn-light">
+                Buscar
+            </button>
+            </div>
+            <div class="col-sm-2">
+              <stencil-route-link url="/ordenACobrar">
+              <button type="button" class="btn btn-light" onClick={()=> this.handleCheckout()} data-toggle="modal" data-target="#my-modal">
+                Cobrar
+            </button>
+            </stencil-route-link>
+            <admin-order id="my-modal"></admin-order>
+            </div>
+            <div class="col-sm-2">
+              <button type="button" class="btn btn-warning" onClick={()=> this.removeOrder()}>
+                Quitar
+            </button>
+            </div>
+
+            <table id="table" class="table table-hover">
+              <thead>
                 <tr>
-                  <th scope="row">
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id={'order'+order.orderNumber.toString()}
-                      onClick={e=> this.handleClick(e)} value={order.orderNumber}/>
-                    <label class="form-check-label">{order.orderNumber}</label>
-                  </div>
-                  </th>
-                  <td>{order.userName}</td>
-                  <td>{order.description}</td>
-                  <td>{order.hour}</td>
-                  <td>${order.total}</td>
+                  <th scope="col">No.</th>
+                  <th scope="col">Usuario</th>
+                  <th scope="col">Descripción</th>
+                  <th scope="col">Horario</th>
+                  <th scope="col">Total</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </form>
-      </div>
+              </thead>
+              <tbody>
+                {this.orders.map((order) => (
+                  <tr>
+                    <th scope="row">
+                      <div class="form-check form-check-inline">
+                        <label class="form-check-label">{order.orderNumber}</label>
+                      </div>
+                    </th>
+                    <td>{order.userName}</td>
+                    <td>{order.description}</td>
+                    <td>{order.hour}</td>
+                    <td>${order.total} <button type="button" class="btn btn-primary btn-sm" onClick={() => this.buttonSelected(order)}>Seleccionar</button></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </form>
+        </div>
       </div>
     );
   }
