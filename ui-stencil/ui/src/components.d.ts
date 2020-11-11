@@ -10,6 +10,9 @@ import { Product } from "./models.ts/product.model";
 import { Order } from "./models.ts/order.model";
 import { User } from "./models.ts/user.model";
 export namespace Components {
+    interface AdminOrder {
+        "id": string;
+    }
     interface AdminPanel {
     }
     interface AdminView {
@@ -69,6 +72,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLAdminOrderElement extends Components.AdminOrder, HTMLStencilElement {
+    }
+    var HTMLAdminOrderElement: {
+        prototype: HTMLAdminOrderElement;
+        new (): HTMLAdminOrderElement;
+    };
     interface HTMLAdminPanelElement extends Components.AdminPanel, HTMLStencilElement {
     }
     var HTMLAdminPanelElement: {
@@ -202,6 +211,7 @@ declare global {
         new (): HTMLUserRegisterElement;
     };
     interface HTMLElementTagNameMap {
+        "admin-order": HTMLAdminOrderElement;
         "admin-panel": HTMLAdminPanelElement;
         "admin-view": HTMLAdminViewElement;
         "alert-register": HTMLAlertRegisterElement;
@@ -227,6 +237,9 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface AdminOrder {
+        "id"?: string;
+    }
     interface AdminPanel {
     }
     interface AdminView {
@@ -274,6 +287,7 @@ declare namespace LocalJSX {
         "onSelectedSandwich"?: (event: CustomEvent<Product>) => void;
     }
     interface TableOrders {
+        "onSelectedPurchase"?: (event: CustomEvent<Order>) => void;
     }
     interface TodaysMenu {
         "onSelectedMenu"?: (event: CustomEvent<Product>) => void;
@@ -289,6 +303,7 @@ declare namespace LocalJSX {
         "id"?: string;
     }
     interface IntrinsicElements {
+        "admin-order": AdminOrder;
         "admin-panel": AdminPanel;
         "admin-view": AdminView;
         "alert-register": AlertRegister;
@@ -317,6 +332,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "admin-order": LocalJSX.AdminOrder & JSXBase.HTMLAttributes<HTMLAdminOrderElement>;
             "admin-panel": LocalJSX.AdminPanel & JSXBase.HTMLAttributes<HTMLAdminPanelElement>;
             "admin-view": LocalJSX.AdminView & JSXBase.HTMLAttributes<HTMLAdminViewElement>;
             "alert-register": LocalJSX.AlertRegister & JSXBase.HTMLAttributes<HTMLAlertRegisterElement>;

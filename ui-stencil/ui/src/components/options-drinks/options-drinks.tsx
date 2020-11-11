@@ -46,20 +46,22 @@ export class OptionsDrinks {
     return (
       <div class="div-drinks">
         <h1 class="tittle">Carta - Bebidas</h1>
-        <div class="div-container">
+        <div class="container">
           {this.drinks.map((drink) =>
-            <div class="card mb-3" id="div-cards">
-              <div class="row no-gutters">
-                <div class="col-md-4">
+            <div class="card mb-6 col-sm-5 text-center" id="div-cards">
+              <div id="div-row" class="row no-gutters">
+                <div class="col-md-6">
                   <img src={drink.image} class="card-img" alt="..." />
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-6">
                   <div class="card-body">
-                    <h5 class="card-title">{drink.description}</h5>
+                    <h5 class="card-text text-md-6">{drink.description}</h5>
                     <p class="card-text">${drink.price}</p>
                   </div>
                 </div>
-                <button type="button" class="btn btn-primary" onClick={()=>this.handleSelectedDrink(drink)}>Agregar</button>
+                <div class="text-center">
+                  <button type="button" id="button" class="btn btn-primary" onClick={() => this.handleSelectedDrink(drink)}>Agregar</button>
+                </div>
               </div>
             </div>
           )}
