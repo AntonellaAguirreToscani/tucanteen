@@ -14,7 +14,7 @@ export class SaleService{
     }
   
     async getSales() {
-      return await this.fetch.httpRequest(ENDPOINTS.sales,'GET');
+      return await this.fetch.httpRequest("/sales",'GET');
     }
     async postOrder(sale: Sale){
       this.fetch.httpRequest('/nueva-venta','POST',sale);

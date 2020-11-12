@@ -48,20 +48,22 @@ export class OptionsSandwiches {
     return (
       <div class="div-sandwiches">
         <h1 class="tittle">Carta - sandwiches</h1>
-        <div class="div-container">
+        <div class="container">
           {this.sandwiches.map(SANDWICHES => (
-            <div class="card mb-3" id="div-cards">
-              <div class="row no-gutters">
+            <div class="card mb-6 col-sm-5 text-center" id="div-cards">
+              <div id="div-row" class="row no-gutters">
                 <div class="col-md-6">
                   <img src={SANDWICHES.image} class="card-img" alt="..." />
                 </div>
                 <div class="col-md-6">
                   <div class="card-body">
-                    <h5 class="card-title">{SANDWICHES.description}</h5>
+                    <h5 id="text-description" class="card-title text-md-6">{SANDWICHES.description}</h5>
                     <p class="card-text">${SANDWICHES.price}</p>
                   </div>
                 </div>
+                <div class="text-center">
                 <button type="button" class="btn btn-primary" onClick={()=>this.handleSelectedSandwich(SANDWICHES)}>Agregar</button>
+                </div>
               </div>
             </div>
           ))}

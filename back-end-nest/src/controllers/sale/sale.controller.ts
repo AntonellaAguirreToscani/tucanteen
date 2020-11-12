@@ -2,11 +2,11 @@ import { Body, Controller, Get, Post } from '@nestjs/common';
 import { Sale } from 'src/models/saleDto';
 import { SaleService } from 'src/services/sale/sale.service';
 
-@Controller('sales')
+@Controller('sale')
 export class SaleController {
     constructor(private saleService: SaleService){}
 
-    @Get()
+    @Get('sales')
     getSales(): Sale[]{
         return this.saleService.getSales();
     }
