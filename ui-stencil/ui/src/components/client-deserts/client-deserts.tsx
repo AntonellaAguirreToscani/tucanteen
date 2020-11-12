@@ -44,20 +44,22 @@ export class ClientDeserts {
     return (
       <div class="div-desserts">
       <h1 class="tittle">Carta - postres</h1>
-      <div class="div-container">
+      <div class="container">
         {this.desserts.map((DESSERTS) =>
-          <div class="card mb-3" id="div-cards">
-            <div class="row no-gutters">
-              <div class="col-md-4">
+          <div class="card mb-6 col-sm-5 text-center" id="div-cards">
+            <div id="div-row" class="row no-gutters">
+              <div class="col-md-6">
                 <img src={DESSERTS.image} class="card-img" alt="..." />
               </div>
-              <div class="col-md-8">
+              <div class="col-md-6">
                 <div class="card-body">
-                  <h5 class="card-title">{DESSERTS.description}</h5>
+                  <h5 class="card-title text-md-6">{DESSERTS.description}</h5>
                   <p class="card-text">${DESSERTS.price}</p>
                 </div>
               </div>
+              <div class="text-center">
               <button type="button" class="btn btn-primary" onClick={()=>this.handleSelectedDessert(DESSERTS)}>Agregar</button>
+              </div>
             </div>
           </div>
         )}
