@@ -24,8 +24,8 @@ export class OrderService {
        return this.orders;
     }
     public addOrder (order : Order){
-            fs.appendFileSync('config/orders.csv',
-             `${'\n'}${order.orderNumber},${order.userName},${order.description},${order.hour},${order.total}`
-            );                              
+        fs.appendFileSync('config/orders.csv',
+            `${'\n'}${order.orderNumber},${order.userName},${order.description},${order.hour},${order.total}`
+        );                              
     }
 }

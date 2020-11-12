@@ -53,6 +53,8 @@ export namespace Components {
     }
     interface RigthPanel {
     }
+    interface SalesTable {
+    }
     interface SandwichesFood {
     }
     interface TableOrders {
@@ -180,6 +182,12 @@ declare global {
         prototype: HTMLRigthPanelElement;
         new (): HTMLRigthPanelElement;
     };
+    interface HTMLSalesTableElement extends Components.SalesTable, HTMLStencilElement {
+    }
+    var HTMLSalesTableElement: {
+        prototype: HTMLSalesTableElement;
+        new (): HTMLSalesTableElement;
+    };
     interface HTMLSandwichesFoodElement extends Components.SandwichesFood, HTMLStencilElement {
     }
     var HTMLSandwichesFoodElement: {
@@ -229,6 +237,7 @@ declare global {
         "options-drinks": HTMLOptionsDrinksElement;
         "plate-food": HTMLPlateFoodElement;
         "rigth-panel": HTMLRigthPanelElement;
+        "sales-table": HTMLSalesTableElement;
         "sandwiches-food": HTMLSandwichesFoodElement;
         "table-orders": HTMLTableOrdersElement;
         "todays-menu": HTMLTodaysMenuElement;
@@ -283,6 +292,8 @@ declare namespace LocalJSX {
     interface RigthPanel {
         "onSelectedSale"?: (event: CustomEvent<Order>) => void;
     }
+    interface SalesTable {
+    }
     interface SandwichesFood {
         "onSelectedSandwich"?: (event: CustomEvent<Product>) => void;
     }
@@ -321,6 +332,7 @@ declare namespace LocalJSX {
         "options-drinks": OptionsDrinks;
         "plate-food": PlateFood;
         "rigth-panel": RigthPanel;
+        "sales-table": SalesTable;
         "sandwiches-food": SandwichesFood;
         "table-orders": TableOrders;
         "todays-menu": TodaysMenu;
@@ -350,6 +362,7 @@ declare module "@stencil/core" {
             "options-drinks": LocalJSX.OptionsDrinks & JSXBase.HTMLAttributes<HTMLOptionsDrinksElement>;
             "plate-food": LocalJSX.PlateFood & JSXBase.HTMLAttributes<HTMLPlateFoodElement>;
             "rigth-panel": LocalJSX.RigthPanel & JSXBase.HTMLAttributes<HTMLRigthPanelElement>;
+            "sales-table": LocalJSX.SalesTable & JSXBase.HTMLAttributes<HTMLSalesTableElement>;
             "sandwiches-food": LocalJSX.SandwichesFood & JSXBase.HTMLAttributes<HTMLSandwichesFoodElement>;
             "table-orders": LocalJSX.TableOrders & JSXBase.HTMLAttributes<HTMLTableOrdersElement>;
             "todays-menu": LocalJSX.TodaysMenu & JSXBase.HTMLAttributes<HTMLTodaysMenuElement>;
