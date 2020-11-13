@@ -10,6 +10,8 @@ import { OrderService } from '../../services/order.services';
 })
 export class TableOrders {
   @State() orders: Order[] = [];
+  @State() orderNumber: number; //valor input search.
+  @State() foundOrder : Order;  //Se guarda la orden seleccionada por el input, para poder filtrar!
   @State() selected: Order;
 
   @Event() selectedPurchase: EventEmitter<Order>
@@ -38,25 +40,32 @@ export class TableOrders {
   @Method()
   async handleOrder(e) {
     e.preventDefault();
+    try {
+       if(this.foundOrder = this.orders.find(order => order.orderNumber == this.orderNumber)){
+        this.orders = [this.foundOrder];
+       }else{
+         this.getOrders();      
+        }
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 
-  // handleChange(event) {
-  //   this.orderNumber = event.target.value;
-  // }
+  handleChange(event) {
+    this.orderNumber = event.target.value;
+  }
   handleCheckout(){
     this.selectedPurchase.emit(this.selected);
+    this.removeOrder();
   }
   buttonSelected(order: Order) {
     this.selected = order;
     console.log(this.selected);
   }
-
+  //Borra la orden en el back-end y se vuelve a cargar el listado de ordenes para q se actualicen los cambios.
   removeOrder(){
-    this.orders.forEach((order, index) => {
-      if(this.selected.orderNumber == order.orderNumber)
-        this.orders.splice(index,1);
-    });
-    console.log(this.orders);
+    this.orderService.deleteOrder(this.selected.orderNumber);
+    this.componentWillLoad();
   }
 
   render() {
@@ -71,7 +80,7 @@ export class TableOrders {
               <input
                 class="form-control form-control-sm ml-3 w-75"
                 type="number"
-                // onInput={event => this.handleChange(event)}
+                onInput={event => this.handleChange(event)}
                 placeholder="Search"
                 aria-label="Search"
               ></input>

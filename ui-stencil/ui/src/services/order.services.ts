@@ -20,9 +20,10 @@ export class OrderService{
     async postOrder(order: Order){
       this.fetch.httpRequest(ENDPOINTS.orders,'POST',order);
     }
-    // getOrders(): Observable <Order[]> {
-    //   return of(ORDERS);
-    // }
+    
+    async deleteOrder(id:number){
+      this.fetch.httpRequest(`${ENDPOINTS.orders}/${id}`,'DELETE');
+    }
 
     //Utiliza el patron Singleton. Se intancia una única vez!
     public static get Instance(): OrderService {

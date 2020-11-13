@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { Order } from 'src/models/orderDto';
 import { OrderService } from 'src/services/order/order.service';
 
@@ -14,6 +14,10 @@ export class OrderController {
     @Post()
     addOrder(@Body() order : Order){
         this.OrderService.addOrder(order);
+    }
+    @Delete(':id')
+    public deleteOrder(@Param('id') id: number): void{
+        this.OrderService.deleteOrder(id);
     }
 
 }

@@ -1,6 +1,7 @@
 import { Component, h, Listen, Prop, State} from '@stencil/core';
 import { Order } from '../../models.ts/order.model';
 import { Sale } from '../../models.ts/sale.model';
+import { OrderService } from '../../services/order.services';
 import { SaleService } from '../../services/sale.service';
 
 @Component({
@@ -13,10 +14,11 @@ export class AdminOrder {
   @State() order: Order = Order.void();
   @State() sale : Sale = Sale.void();
 
-  // @Event() newSale: EventEmitter<Sale>
   private saleService : SaleService;
+  private orderService: OrderService;
   constructor(){
     this.saleService = SaleService.Instance;
+    this.orderService = OrderService.Instance;
   }
   
   @Listen('selectedPurchase', { target: 'document' })
@@ -32,20 +34,17 @@ export class AdminOrder {
     //   }
     //   this.sale.
     // }
-    this.sale.date = new Date('2020-02-02');
+    this.sale.date =new Date();
     this.sale.id = this.order.orderNumber;
     this.sale.total = this.order.total;
     this.sale.descripcion = this.order.description;
   }
 
-  // async postOrder(){
-  //   this.orderService.postOrder(this.order);
-  // }
-
   handleCheckoutSale(){
     this.prepareSale();
     console.log(this.sale, 'sale');
     this.saleService.postOrder(this.sale);
+    this.orderService.deleteOrder(this.sale.id);
   }
 
   render() {
@@ -66,7 +65,7 @@ export class AdminOrder {
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 
-              <button type="button" class="btn btn-primary" onClick={()=> this.handleCheckoutSale()}>Confirmar Compra</button>
+              <button type="button" class="btn btn-primary" onClick={()=> this.handleCheckoutSale()} data-dismiss="modal">Confirmar Compra</button>
             </div>
           </div>
         </div>
