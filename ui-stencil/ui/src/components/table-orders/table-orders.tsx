@@ -56,18 +56,16 @@ export class TableOrders {
   }
   handleCheckout(){
     this.selectedPurchase.emit(this.selected);
+    this.removeOrder();
   }
   buttonSelected(order: Order) {
     this.selected = order;
     console.log(this.selected);
   }
-
+  //Borra la orden en el back-end y se vuelve a cargar el listado de ordenes para q se actualicen los cambios.
   removeOrder(){
-    this.orders.forEach((order, index) => {
-      if(this.selected.orderNumber == order.orderNumber)
-        this.orders.splice(index,1);
-    });
-    console.log(this.orders);
+    this.orderService.deleteOrder(this.selected.orderNumber);
+    this.componentWillLoad();
   }
 
   render() {
