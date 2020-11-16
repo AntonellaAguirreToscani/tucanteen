@@ -1,4 +1,4 @@
-import { Component, EventEmitter, h, Event, Method, State} from '@stencil/core';
+import { Component, EventEmitter, h, Event, Method, State } from '@stencil/core';
 // import { event } from 'jquery';
 import { Order } from '../../models.ts/order.model';
 import { OrderService } from '../../services/order.services';
@@ -11,7 +11,7 @@ import { OrderService } from '../../services/order.services';
 export class TableOrders {
   @State() orders: Order[] = [];
   @State() orderNumber: number; //valor input search.
-  @State() foundOrder : Order;  //Se guarda la orden seleccionada por el input, para poder filtrar!
+  @State() foundOrder: Order;  //Se guarda la orden seleccionada por el input, para poder filtrar!
   @State() selected: Order;
 
   @Event() selectedPurchase: EventEmitter<Order>
@@ -23,13 +23,13 @@ export class TableOrders {
   @Method()
   async getOrders() {
     try {
-     await this.orderService.getOrders()
-     .then(response => response.json())
-     .then(data=>{
-       this.orders = data;
-     });
+      await this.orderService.getOrders()
+        .then(response => response.json())
+        .then(data => {
+          this.orders = data;
+        });
     } catch (error) {
-      console.log(error.message,'respuesta');
+      console.log(error.message, 'respuesta');
     }
   }
 
@@ -41,11 +41,11 @@ export class TableOrders {
   async handleOrder(e) {
     e.preventDefault();
     try {
-       if(this.foundOrder = this.orders.find(order => order.orderNumber == this.orderNumber)){
+      if (this.foundOrder = this.orders.find(order => order.orderNumber == this.orderNumber)) {
         this.orders = [this.foundOrder];
-       }else{
-         this.getOrders();      
-        }
+      } else {
+        this.getOrders();
+      }
     } catch (error) {
       console.log(error.message);
     }
@@ -54,7 +54,7 @@ export class TableOrders {
   handleChange(event) {
     this.orderNumber = event.target.value;
   }
-  handleCheckout(){
+  handleCheckout() {
     this.selectedPurchase.emit(this.selected);
     this.removeOrder();
   }
@@ -63,7 +63,7 @@ export class TableOrders {
     console.log(this.selected);
   }
   //Borra la orden en el back-end y se vuelve a cargar el listado de ordenes para q se actualicen los cambios.
-  removeOrder(){
+  removeOrder() {
     this.orderService.deleteOrder(this.selected.orderNumber);
     this.componentWillLoad();
   }
@@ -92,14 +92,14 @@ export class TableOrders {
             </div>
             <div class="col-sm-2">
               <stencil-route-link url="/ordenACobrar">
-              <button type="button" class="btn btn-light" onClick={()=> this.handleCheckout()} data-toggle="modal" data-target="#my-modal">
-                Cobrar
+                <button type="button" class="btn btn-light" onClick={() => this.handleCheckout()} data-toggle="modal" data-target="#my-modal">
+                  Cobrar
             </button>
-            </stencil-route-link>
-            <admin-order id="my-modal"></admin-order>
+              </stencil-route-link>
+              <admin-order id="my-modal"></admin-order>
             </div>
             <div class="col-sm-2">
-              <button type="button" class="btn btn-warning" onClick={()=> this.removeOrder()}>
+              <button type="button" class="btn btn-warning" onClick={() => this.removeOrder()}>
                 Quitar
             </button>
             </div>
@@ -112,6 +112,7 @@ export class TableOrders {
                   <th scope="col">Descripción</th>
                   <th scope="col">Horario</th>
                   <th scope="col">Total</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -125,7 +126,8 @@ export class TableOrders {
                     <td>{order.userName}</td>
                     <td>{order.description}</td>
                     <td>{order.hour}</td>
-                    <td>${order.total} <button type="button" class="btn btn-primary btn-sm" onClick={() => this.buttonSelected(order)}>Seleccionar</button></td>
+                    <td>${order.total} </td>
+                    <td><button type="button" class="btn btn-primary btn-sm" onClick={() => this.buttonSelected(order)}>Seleccionar</button></td>
                   </tr>
                 ))}
               </tbody>

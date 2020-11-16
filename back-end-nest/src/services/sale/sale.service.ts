@@ -15,7 +15,7 @@ export class SaleService {
         //Para que se mantenga actualizado el listado de productos, se inicializa acá!!
         this.sales = [];
         for (let i = 0; i < elements.length; i++) {
-            let sale : Sale = new Sale(parseInt(elements[i][0]),new Date(elements[i][1]),elements[i][2],parseInt(elements[i][2]));
+            let sale : Sale = new Sale(parseInt(elements[i][0]),new Date(elements[i][1]),elements[i][2],parseInt(elements[i][3]));
             this.sales.push(sale);
         }
     }
