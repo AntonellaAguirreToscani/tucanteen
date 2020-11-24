@@ -1,4 +1,5 @@
-import { Component, h, Prop, State, Event, EventEmitter } from '@stencil/core';
+import { Component, EventEmitter, h, Method, Prop, State, Event } from '@stencil/core';
+import { RouterHistory } from '@stencil/router';
 import { User } from '../../models.ts/user.model';
 import { UserService } from '../../services/user.services';
 
@@ -8,18 +9,16 @@ import { UserService } from '../../services/user.services';
   shadow: false,
 })
 export class UserLogin {
-  // Props para mostrar modal, definidas en component: header
-  @Prop() hidden: boolean = true;
-  @Prop() id: string;
-  @Prop() url: string;
-  // States que permiten verificar inputs : usuario / contraseña
+  @State() authenticated: boolean;
   @State() user: string;
   @State() password: string;
-  // State que guarda los usuarios por ahora Mockeados
-  @State() users: User[];
+  userLogged: User;
 
-  @Event() userOk : EventEmitter<User>;
-  USER : User;
+  //Navigation
+  @Prop() history: RouterHistory;
+
+  @Event() authenticaUser: EventEmitter<boolean>;
+
   /*Constructor para instanciar  la clase UserService like a Singleton
   (esta clase nos permite acceder al listado de Users)*/
   private userService: UserService;
@@ -27,28 +26,64 @@ export class UserLogin {
     this.userService = UserService.Instance;
   }
 
-  getUsers() {
+  @Method()
+  async validateUser() {
+    let user = {
+      userName: this.user,
+      password: this.password,
+    };
+
     try {
-      this.userService
-        .getUsers() //Hace referencia a la clase UserService
-        .subscribe(data => {
-          //.subscribe() es como un .then()
-          this.users = data;
-        });
+      await this.userService
+      .loginValidate(user) //Conexion a la API
+      .then(response => response.json())
+      .then(data => {
+        this.userLogged = data;
+      });
+
     } catch (error) {
-      console.log(error.message);
+      console.log('error conexion api');
+    }
+   
+  }
+
+  private redirectByUserType() {
+    switch (this.userLogged._typeUser) {
+      case 'client':
+        this.history.push('/menu-dia', {});
+        break;
+      case 'admin':
+        this.history.push('/pedidos-dia', {});
+        break;
     }
   }
 
-  //EL SIGUIENTE METODO PERTENECE AL CICLO DE VIDA DEL COMPONENTE
-  //carga los usuarios ANTES de que el componente sea llamado, ACA VA A IR LA API!
-  componentWillLoad() {
-    this.getUsers();
-  }
-  
-  handleLogin(e) {
+  @Method()
+  async handleLogin(e) {
     e.preventDefault();
+    try {
+     await this.validateUser();
+      this.userSession();
+      this.redirectByUserType();
+      this.authenticaUser.emit(true);
+      // this.history.push('/menu-dia', {});
+    } catch (error) {
+      console.log(error.message,'error');
+      alert('Usuario o contraseña Invalida. Intenta nuevamente!');
+    }
   }
+
+  private userSession() {
+    localStorage.setItem('username', `${this.userLogged._userName}`);
+    localStorage.setItem('isAutenticated', 'true');
+    localStorage.setItem('userType', `${this.userLogged._typeUser}`);
+    localStorage.setItem('photo', `${this.userLogged._photo}`);
+  }
+
+  closeLogin() {
+    this.history.push('/', {});
+  }
+
   //metodo que dá valor al state user
   handleChange(event) {
     this.user = event.target.value;
@@ -59,74 +94,35 @@ export class UserLogin {
     this.password = event.target.value;
   }
 
-  loginValidator(typeUser : string): boolean{
-    if (this.USER = this.users.find(user => user.userName == this.user && user.password == this.password && user.typeUser === typeUser)) {
-      console.log(this.USER,'usuario validado');
-      return true;
-    }else{
-      return false;
-    }
-  }
-  handleLoginOk() {
-    try {
-      this.userOk.emit(this.USER);
-      console.log('evento emitido');
-    } catch (error) {
-      console.log(error.message);
-    }  
-  }
   render() {
     return (
-      <div class="modal fade" id={this.id} tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden={this.hidden}>
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            {/* Modal Header */}
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
-                Login
-              </h5>
-              <button class="close" data-dismiss="modal" aria-label="cerrar">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            {/* Modal Body */}
+      <div class="wrapper fadeInDown">
+        <div id="formContent">
+          <div class="fadeIn first">
+            <img src="./assets/icon/icon.png" id="icon" alt="User Icon" />
+            <button class="close" data-dismiss="modal" aria-label="cerrar" onClick={() => this.closeLogin()}>
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
 
-            <div class="modal-body">
-              <form name="login" onSubmit={e => this.handleLogin(e)}>
-                <label class="sr-only">Usuario</label>
-                <input type="user" id="inputUser" value={this.user} onInput={event => this.handleChange(event)} class="form-control" placeholder="Usuario" />
-                <label class="sr-only" id="btn-password">
-                  Contraseña
-                </label>
-                <input type="password" id="input-pass" value={this.password} onInput={event => this.handleChangePass(event)} class="form-control" placeholder="Contraseña" />
-                <div class="checkbox mb-3">
-                  <label>
-                    <input type="checkbox" value="remember-me" /> Recordar contraseña
-                  </label>
-                </div>
-
-                {/* Modal Footer */}
-                <div class="modal-footer">
-                <stencil-route-link url={this.loginValidator('client') ? '/loginClient' : this.loginValidator('admin')?'/loginAdmin': '/login'}>
-                  <button class="btn btn-lg btn-success btn-block" type="submit" data-dismiss="modal" value="submit" id="button-login" onClick={()=>this.handleLoginOk()}>
-                    Ingresar
-                  </button>
-                  </stencil-route-link>
-                  <a id="forget-password" href="">
-                    ¿Has olvidado la contraseña?
-                  </a>
-                  {/* Ruteo de boton crear cuenta. linkea a componente: user-register */}
-                  <stencil-route-link url="/registrate">
-                    <button class="btn btn-lg btn-primary btn-block" type="button" data-toggle="modal" data-target="#modal-register">
-                      Crear cuenta
-                    </button>
-                  </stencil-route-link>
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                    Cerrar
-                  </button>
-                </div>
-              </form>
-            </div>
+          <form onSubmit={e => this.handleLogin(e)}>
+            <input type="text" id="login" class="fadeIn second" name="login" placeholder="usuario" value={this.user} onInput={event => this.handleChange(event)} required />
+            <input
+              type="password"
+              id="password"
+              class="fadeIn third"
+              name="login"
+              placeholder="contraseña"
+              value={this.password}
+              onInput={event => this.handleChangePass(event)}
+              required
+            />
+            <input type="submit" class="fadeIn fourth" value="Login" />
+          </form>
+          <div id="formFooter">
+            <a class="underlineHover" href="#">
+              Olvidaste tu contraseña?
+            </a>
           </div>
         </div>
       </div>

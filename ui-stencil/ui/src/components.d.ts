@@ -5,10 +5,9 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { MatchResults } from "@stencil/router";
+import { MatchResults, RouterHistory } from "@stencil/router";
 import { Product } from "./models.ts/product.model";
 import { Order } from "./models.ts/order.model";
-import { User } from "./models.ts/user.model";
 export namespace Components {
     interface AdminOrder {
         "id": string;
@@ -42,8 +41,6 @@ export namespace Components {
     interface MyFooter {
     }
     interface MyHeader {
-        "butonsChoice": string;
-        "profileChoice": string;
     }
     interface OfferCarousel {
     }
@@ -63,10 +60,14 @@ export namespace Components {
     }
     interface TodaysMenu {
     }
+    interface UserInfo {
+        "butonsChoice": string;
+        "profileChoice": string;
+    }
     interface UserLogin {
-        "hidden": boolean;
-        "id": string;
-        "url": string;
+        "handleLogin": (e: any) => Promise<void>;
+        "history": RouterHistory;
+        "validateUser": () => Promise<void>;
     }
     interface UserRegister {
         "hidden": boolean;
@@ -206,6 +207,12 @@ declare global {
         prototype: HTMLTodaysMenuElement;
         new (): HTMLTodaysMenuElement;
     };
+    interface HTMLUserInfoElement extends Components.UserInfo, HTMLStencilElement {
+    }
+    var HTMLUserInfoElement: {
+        prototype: HTMLUserInfoElement;
+        new (): HTMLUserInfoElement;
+    };
     interface HTMLUserLoginElement extends Components.UserLogin, HTMLStencilElement {
     }
     var HTMLUserLoginElement: {
@@ -241,6 +248,7 @@ declare global {
         "sandwiches-food": HTMLSandwichesFoodElement;
         "table-orders": HTMLTableOrdersElement;
         "todays-menu": HTMLTodaysMenuElement;
+        "user-info": HTMLUserInfoElement;
         "user-login": HTMLUserLoginElement;
         "user-register": HTMLUserRegisterElement;
     }
@@ -278,8 +286,6 @@ declare namespace LocalJSX {
     interface MyFooter {
     }
     interface MyHeader {
-        "butonsChoice"?: string;
-        "profileChoice"?: string;
     }
     interface OfferCarousel {
     }
@@ -303,11 +309,13 @@ declare namespace LocalJSX {
     interface TodaysMenu {
         "onSelectedMenu"?: (event: CustomEvent<Product>) => void;
     }
+    interface UserInfo {
+        "butonsChoice"?: string;
+        "profileChoice"?: string;
+    }
     interface UserLogin {
-        "hidden"?: boolean;
-        "id"?: string;
-        "onUserOk"?: (event: CustomEvent<User>) => void;
-        "url"?: string;
+        "history"?: RouterHistory;
+        "onAuthenticaUser"?: (event: CustomEvent<boolean>) => void;
     }
     interface UserRegister {
         "hidden"?: boolean;
@@ -336,6 +344,7 @@ declare namespace LocalJSX {
         "sandwiches-food": SandwichesFood;
         "table-orders": TableOrders;
         "todays-menu": TodaysMenu;
+        "user-info": UserInfo;
         "user-login": UserLogin;
         "user-register": UserRegister;
     }
@@ -366,6 +375,7 @@ declare module "@stencil/core" {
             "sandwiches-food": LocalJSX.SandwichesFood & JSXBase.HTMLAttributes<HTMLSandwichesFoodElement>;
             "table-orders": LocalJSX.TableOrders & JSXBase.HTMLAttributes<HTMLTableOrdersElement>;
             "todays-menu": LocalJSX.TodaysMenu & JSXBase.HTMLAttributes<HTMLTodaysMenuElement>;
+            "user-info": LocalJSX.UserInfo & JSXBase.HTMLAttributes<HTMLUserInfoElement>;
             "user-login": LocalJSX.UserLogin & JSXBase.HTMLAttributes<HTMLUserLoginElement>;
             "user-register": LocalJSX.UserRegister & JSXBase.HTMLAttributes<HTMLUserRegisterElement>;
         }

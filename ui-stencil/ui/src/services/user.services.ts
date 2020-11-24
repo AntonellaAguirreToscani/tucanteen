@@ -1,8 +1,7 @@
-import { Observable, of } from 'rxjs';
+
 import { FetchAdapter } from '../adapters/fetch.adapter';
 import { CONSTANTS, ENDPOINTS } from '../constants/url.endpoints';
-import { USERS } from '../mocks/users-mock';
-import { User } from '../models.ts/user.model';
+
 
 
 export class UserService{
@@ -19,12 +18,12 @@ export class UserService{
   async getUsersApi(path: string){
     return await this.fetch.httpRequest(path,'GET');
   }
-  createUser(user: User){
-    USERS.push(user);
-  }
-  getUsers(): Observable<User[]> {
-    return of(USERS);
-  }
+  // createUser(user: User){
+  //   USERS.push(user);
+  // }
+  // getUsers(): Observable<User[]> {
+  //   return of(USERS);
+  // }
   async loginValidate(body:object){
    return await this.fetch.httpRequest('/validate','POST',body);
   }

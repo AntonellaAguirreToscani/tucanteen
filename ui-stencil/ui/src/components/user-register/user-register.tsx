@@ -23,24 +23,24 @@ export class UserRegister {
   }
   //EL SIGUIENTE METODO PERTENECE AL CICLO DE VIDA DEL COMPONENTE
   //ACA VA A IR LA API!
-  componentWillLoad() {
-    this.getUsers();
-  }
+  // componentWillLoad() {
+  //   this.getUsers();
+  // }
   getUsers() {
     try {
       this.userService
-        .getUsers() //Hace referencia a la clase UserService
-        .subscribe(data => {
-          //.subscribe() es como un .then()
-          this.users = data;
-          console.log(this.users)
-        });
+        // .getUsers() //Hace referencia a la clase UserService
+        // .subscribe(data => {
+        //   //.subscribe() es como un .then()
+        //   this.users = data;
+        //   console.log(this.users)
+        // });
     } catch (error) {
       console.log(error.message);
     }
   }
   userNameValidator(): boolean{
-    if (this.users.find(user => user.userName == this.user)) {
+    if (this.users.find(user => user._userName == this.user)) {
       return true;
     }else{
       return false;
@@ -49,13 +49,13 @@ export class UserRegister {
   handleUser(e) : boolean{
     e.preventDefault();
     try {
-      if(this.userNameValidator()){
-        throw Error('ERROR.usuario existente');
-      } else {
-        this.userService.createUser( { userName: this.user, password: this.password, typeUser:'client', photo: null});
-        console.log('Usuario registrado correctamente'); //ACÁ VA LA REDIRECION!
+      // if(this.userNameValidator()){
+      //   throw Error('ERROR.usuario existente');
+      // } else {
+      //   this.userService.createUser( { userName: this.user, password: this.password, typeUser:'client', photo: null});
+      //   console.log('Usuario registrado correctamente'); //ACÁ VA LA REDIRECION!
         return false;
-      }
+      // }
     } catch (error) {
       console.log(error.message);
     }
