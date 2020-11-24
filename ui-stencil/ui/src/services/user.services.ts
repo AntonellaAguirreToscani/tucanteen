@@ -1,18 +1,35 @@
-import { Observable } from 'rxjs';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { FetchAdapter } from '../adapters/fetch.adapter';
+import { CONSTANTS, ENDPOINTS } from '../constants/url.endpoints';
+import { USERS } from '../mocks/users-mock';
 import { User } from '../models.ts/user.model';
-import {USERS} from '../mocks/users-mock'
 
 
 export class UserService{
 
   private static _instance: UserService;
+  private baseUrl: string;
+  private fetch: FetchAdapter;
+  
+  constructor() {
+    this.baseUrl = CONSTANTS.apiUrl;
+    this.fetch = new FetchAdapter(`${this.baseUrl}${ENDPOINTS.login}`);
+  }
 
-  getUsers(): Observable<User[]> {
-    return of(USERS);
+  async getUsersApi(path: string){
+    return await this.fetch.httpRequest(path,'GET');
   }
   createUser(user: User){
     USERS.push(user);
+  }
+  getUsers(): Observable<User[]> {
+    return of(USERS);
+  }
+  async loginValidate(body:object){
+   return await this.fetch.httpRequest('/validate','POST',body);
+  }
+  async addNewUser(path: string, body: object){
+    await this.fetch.httpRequest(path,'POST',body);
   }
   //Utiliza el patron Singleton. Se intancia una única vez!
   public static get Instance(): UserService {

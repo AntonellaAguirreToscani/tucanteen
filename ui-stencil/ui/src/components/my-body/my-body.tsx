@@ -21,7 +21,8 @@ export class MyBody {
          <stencil-route url="/menu-dia" component="todays-menu"></stencil-route>
          <stencil-route url="/loginClient" component="todays-menu"></stencil-route>
          <stencil-route url="/loginAdmin" component="table-orders"></stencil-route>
-         {/* <stencil-route url="/postres" component="sandwiches-food"></stencil-route> */}
+         <stencil-route url="/ventas" component="sales-table"></stencil-route>
+         <stencil-route url="/pedidos" component="table-orders"></stencil-route>
         </stencil-route-switch>
        </stencil-router>
      </main>

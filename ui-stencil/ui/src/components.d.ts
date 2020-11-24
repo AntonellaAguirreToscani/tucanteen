@@ -8,7 +8,11 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { MatchResults } from "@stencil/router";
 import { Product } from "./models.ts/product.model";
 import { Order } from "./models.ts/order.model";
+import { User } from "./models.ts/user.model";
 export namespace Components {
+    interface AdminOrder {
+        "id": string;
+    }
     interface AdminPanel {
     }
     interface AdminView {
@@ -24,6 +28,7 @@ export namespace Components {
     interface AppRoot {
     }
     interface ClientDeserts {
+        "getDesserts": () => Promise<void>;
     }
     interface ClientPanel {
     }
@@ -39,7 +44,6 @@ export namespace Components {
     interface MyHeader {
         "butonsChoice": string;
         "profileChoice": string;
-        "userName": string;
     }
     interface OfferCarousel {
     }
@@ -49,15 +53,17 @@ export namespace Components {
     }
     interface RigthPanel {
     }
+    interface SalesTable {
+    }
     interface SandwichesFood {
     }
     interface TableOrders {
+        "getOrders": () => Promise<void>;
         "handleOrder": (e: any) => Promise<void>;
     }
     interface TodaysMenu {
     }
     interface UserLogin {
-        "handleLogin": (e: any) => Promise<void>;
         "hidden": boolean;
         "id": string;
         "url": string;
@@ -68,6 +74,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLAdminOrderElement extends Components.AdminOrder, HTMLStencilElement {
+    }
+    var HTMLAdminOrderElement: {
+        prototype: HTMLAdminOrderElement;
+        new (): HTMLAdminOrderElement;
+    };
     interface HTMLAdminPanelElement extends Components.AdminPanel, HTMLStencilElement {
     }
     var HTMLAdminPanelElement: {
@@ -170,6 +182,12 @@ declare global {
         prototype: HTMLRigthPanelElement;
         new (): HTMLRigthPanelElement;
     };
+    interface HTMLSalesTableElement extends Components.SalesTable, HTMLStencilElement {
+    }
+    var HTMLSalesTableElement: {
+        prototype: HTMLSalesTableElement;
+        new (): HTMLSalesTableElement;
+    };
     interface HTMLSandwichesFoodElement extends Components.SandwichesFood, HTMLStencilElement {
     }
     var HTMLSandwichesFoodElement: {
@@ -201,6 +219,7 @@ declare global {
         new (): HTMLUserRegisterElement;
     };
     interface HTMLElementTagNameMap {
+        "admin-order": HTMLAdminOrderElement;
         "admin-panel": HTMLAdminPanelElement;
         "admin-view": HTMLAdminViewElement;
         "alert-register": HTMLAlertRegisterElement;
@@ -218,6 +237,7 @@ declare global {
         "options-drinks": HTMLOptionsDrinksElement;
         "plate-food": HTMLPlateFoodElement;
         "rigth-panel": HTMLRigthPanelElement;
+        "sales-table": HTMLSalesTableElement;
         "sandwiches-food": HTMLSandwichesFoodElement;
         "table-orders": HTMLTableOrdersElement;
         "todays-menu": HTMLTodaysMenuElement;
@@ -226,6 +246,9 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface AdminOrder {
+        "id"?: string;
+    }
     interface AdminPanel {
     }
     interface AdminView {
@@ -241,7 +264,7 @@ declare namespace LocalJSX {
     interface AppRoot {
     }
     interface ClientDeserts {
-        "onDessertsSelected"?: (event: CustomEvent<Product>) => void;
+        "onSelectedDessert"?: (event: CustomEvent<Product>) => void;
     }
     interface ClientPanel {
     }
@@ -257,7 +280,6 @@ declare namespace LocalJSX {
     interface MyHeader {
         "butonsChoice"?: string;
         "profileChoice"?: string;
-        "userName"?: string;
     }
     interface OfferCarousel {
     }
@@ -265,20 +287,26 @@ declare namespace LocalJSX {
         "onSelectedDrink"?: (event: CustomEvent<Product>) => void;
     }
     interface PlateFood {
+        "onSelectedPlateFood"?: (event: CustomEvent<Product>) => void;
     }
     interface RigthPanel {
         "onSelectedSale"?: (event: CustomEvent<Order>) => void;
+    }
+    interface SalesTable {
     }
     interface SandwichesFood {
         "onSelectedSandwich"?: (event: CustomEvent<Product>) => void;
     }
     interface TableOrders {
+        "onSelectedPurchase"?: (event: CustomEvent<Order>) => void;
     }
     interface TodaysMenu {
+        "onSelectedMenu"?: (event: CustomEvent<Product>) => void;
     }
     interface UserLogin {
         "hidden"?: boolean;
         "id"?: string;
+        "onUserOk"?: (event: CustomEvent<User>) => void;
         "url"?: string;
     }
     interface UserRegister {
@@ -286,6 +314,7 @@ declare namespace LocalJSX {
         "id"?: string;
     }
     interface IntrinsicElements {
+        "admin-order": AdminOrder;
         "admin-panel": AdminPanel;
         "admin-view": AdminView;
         "alert-register": AlertRegister;
@@ -303,6 +332,7 @@ declare namespace LocalJSX {
         "options-drinks": OptionsDrinks;
         "plate-food": PlateFood;
         "rigth-panel": RigthPanel;
+        "sales-table": SalesTable;
         "sandwiches-food": SandwichesFood;
         "table-orders": TableOrders;
         "todays-menu": TodaysMenu;
@@ -314,6 +344,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "admin-order": LocalJSX.AdminOrder & JSXBase.HTMLAttributes<HTMLAdminOrderElement>;
             "admin-panel": LocalJSX.AdminPanel & JSXBase.HTMLAttributes<HTMLAdminPanelElement>;
             "admin-view": LocalJSX.AdminView & JSXBase.HTMLAttributes<HTMLAdminViewElement>;
             "alert-register": LocalJSX.AlertRegister & JSXBase.HTMLAttributes<HTMLAlertRegisterElement>;
@@ -331,6 +362,7 @@ declare module "@stencil/core" {
             "options-drinks": LocalJSX.OptionsDrinks & JSXBase.HTMLAttributes<HTMLOptionsDrinksElement>;
             "plate-food": LocalJSX.PlateFood & JSXBase.HTMLAttributes<HTMLPlateFoodElement>;
             "rigth-panel": LocalJSX.RigthPanel & JSXBase.HTMLAttributes<HTMLRigthPanelElement>;
+            "sales-table": LocalJSX.SalesTable & JSXBase.HTMLAttributes<HTMLSalesTableElement>;
             "sandwiches-food": LocalJSX.SandwichesFood & JSXBase.HTMLAttributes<HTMLSandwichesFoodElement>;
             "table-orders": LocalJSX.TableOrders & JSXBase.HTMLAttributes<HTMLTableOrdersElement>;
             "todays-menu": LocalJSX.TodaysMenu & JSXBase.HTMLAttributes<HTMLTodaysMenuElement>;

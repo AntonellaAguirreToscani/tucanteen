@@ -52,7 +52,7 @@ export class UserRegister {
       if(this.userNameValidator()){
         throw Error('ERROR.usuario existente');
       } else {
-        this.userService.createUser( { userName: this.user, password: this.password, typeUser:'client'});
+        this.userService.createUser( { userName: this.user, password: this.password, typeUser:'client', photo: null});
         console.log('Usuario registrado correctamente'); //ACÁ VA LA REDIRECION!
         return false;
       }

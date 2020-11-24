@@ -8,24 +8,42 @@ import { Order } from '../../models.ts/order.model';
   shadow: false,
 })
 export class RigthPanel {
-  @State() order: Order = Order.void();
-  @State() total : number = 0;
+  /* State que guarda la ORDEN 
+  se instancia vacía (void) y luego se va llenando en la funcion de la linea 42
+  a partir de todos los productos seleccionados por el usuario!*/
 
+  @State() order: Order = Order.void();
+  @State() total : number = 0; 
+
+  //Evento que emite la orden para el componente finalize-purchase
   @Event() selectedSale: EventEmitter<Order>;
   
   componentWillLoad() {
     this.order;
   }
 
-  onUpdateOrders(event){
-    this.order.products = [...this.order.products, event.detail]; // rest.
-    // reduce que se utiliza para poder actualizar el total a medida que se van ingresando ordenes
-    this.total = this.order.products.reduce((total,order)=>{
-       return total += order.price;
+  updateOrder(){
+    let description='';
+  
+    this.order.products.forEach(product=>{
+      description += `${product.description}+`;
+    });
+    
+    this.total = this.order.products.reduce((total,product)=>{
+       return total += product.price;
     },0);
+
     this.order.total = this.total;
-    this.order.hour = '13:30'; //acá se está definiendo el horario, la idea sería crear un algoritmo q determine el horario.
+    this.order.description = description;
+    this.order.hour = '13:30'; //harcodeado!
   }
+
+  onUpdateOrders(event){
+    this.order.products = [...this.order.products, event.detail]; // rest
+    this.updateOrder();
+  }
+
+  // Eventos que escucha este componente!
 
   @Listen('selectedDrink', { target: 'document' })
   selectedDrink(event: CustomEvent<Product>) {
@@ -35,9 +53,24 @@ export class RigthPanel {
   selectedSandwich(event: CustomEvent<Product>) {
     this.onUpdateOrders(event);
   }
+  @Listen('selectedPlateFood', { target: 'document' })
+  selectedPlateFood(event: CustomEvent<Product>) {
+    this.onUpdateOrders(event);
+  }
+  @Listen('selectedMenu', { target: 'document' })
+  selectedMenu(event: CustomEvent<Product>) {
+    this.onUpdateOrders(event);
+  }
+  @Listen('selectedDessert', { target: 'document' })
+  selectedDessert(event: CustomEvent<Product>) {
+    this.onUpdateOrders(event);
+  }
 
+  //FUNCION QUE EMITE EL EVENTO ORDEN una vez clickeado el boton finalizar compra y la reinicia!
   handleNewSale() {
     this.selectedSale.emit(this.order);
+    this.order = Order.void();
+    this.total = 0;
   }
   render() {
     return (

@@ -1,19 +1,32 @@
-
 .tittle{
   text-align: center;
 }
-.card{
-  margin: 2%;
-  border: 2px solid black;
-}
 #div-cards{
-  width: 33%;
+  margin: 2%;
+  border: 1px solid black;
+  width: 30%;
+  height: 100%;
+  padding-bottom:1% ;
 }
-.div-container{
+.container{
   display: flex;
   flex-flow:row wrap ;
-  justify-content: center;
 }
 .card-img{
-  margin-top: 10%;
+  margin-top: 30%;
+  margin-bottom: 3%;
 }
+#div-row{
+  display: flex;
+  height: 100%;
+}
+#button{
+  align-self: flex-end;
+}
+.text-center{
+  height: 100%;
+  width: 100%;
+}
+/* #text-description{
+  font-size: large;
+} */

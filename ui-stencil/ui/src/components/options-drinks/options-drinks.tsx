@@ -1,6 +1,7 @@
 import { Component, h, State, Event, EventEmitter } from '@stencil/core';
 import { Product } from '../../models.ts/product.model';
-import { DrinkServices } from '../../services/drink.services';
+import { ProductService } from '../../services/product.service';
+
 
 @Component({
   tag: 'options-drinks',
@@ -15,19 +16,18 @@ export class OptionsDrinks {
   @Event() selectedDrink: EventEmitter<Product>;
 
   // Instancia la clase tipo Singleton DrinkServices
-  private drinkService: DrinkServices;
+  private drinkService: ProductService;
   constructor() {
-    this.drinkService = DrinkServices.Instance;
+    this.drinkService = ProductService.Instance;
   }
   //funcion que llena el listado de bebidas con el mock (similar a una funcion ajax)
   getDrinks() {
     try {
       this.drinkService
-        .getDrinks() //Hace referencia a la clase DrinkServices
-        .subscribe(data => {
-          //.subscribe() es como un .then()
+        .getProducts('/bebidas') //Hace referencia a la clase DrinkServices
+        .then(response => response.json())
+        .then(data=>{
           this.drinks = data;
-          console.log(this.drinks);
         });
     } catch (error) {
       console.log(error.message);
@@ -48,20 +48,22 @@ export class OptionsDrinks {
     return (
       <div class="div-drinks">
         <h1 class="tittle">Carta - Bebidas</h1>
-        <div class="div-container">
+        <div class="container">
           {this.drinks.map((drink) =>
-            <div class="card mb-3" id="div-cards">
-              <div class="row no-gutters" id={drink.id.toString()}>
-                <div class="col-md-4">
-                  <img src={drink.image} class="card-img" alt="..."/>
+            <div class="card mb-6 col-sm-5 text-center" id="div-cards">
+              <div id="div-row" class="row no-gutters">
+                <div class="col-md-6">
+                  <img src={drink.image} class="card-img" alt="..." />
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-6">
                   <div class="card-body">
-                    <h5 class="card-title">{drink.description}</h5>
+                    <h5 class="card-text text-md-6">{drink.description}</h5>
                     <p class="card-text">${drink.price}</p>
                   </div>
                 </div>
-                <button type="button" class="btn btn-primary" onClick={()=>this.handleSelectedDrink(drink)}>Agregar</button>
+                <div class="text-center">
+                  <button type="button" id="button" class="btn btn-primary" onClick={() => this.handleSelectedDrink(drink)}>Agregar</button>
+                </div>
               </div>
             </div>
           )}
