@@ -1,0 +1,1 @@
+{"version":3,"file":"stencil.config.js","sourceRoot":"","sources":["../../../client/ui/stencil.config.ts"],"names":[],"mappings":";;;AAIa,QAAA,MAAM,GAAW;IAC5B,WAAW,EAAE,oBAAoB;IACjC,YAAY,EAAE,mBAAmB;IACjC,SAAS,EAAE,OAAO;IAClB,aAAa,EAAE;QACb;YACE,IAAI,EAAE,KAAK;YAEX,aAAa,EAAE,IAAI;YACnB,OAAO,EAAE,sBAAsB;SAChC;KACF;CACF,CAAC"}

@@ -11,9 +11,13 @@ export class AppHome {
       <div>
         <my-header butons-choice ="butons" profile-choice ="profile-close"></my-header> 
         <div class="grid-container">
-          <client-panel></client-panel>  
+          <div class="client-panel">
+            <client-panel></client-panel>  
+          </div>
           <my-body></my-body>
-          <rigth-panel></rigth-panel>
+          <div class="rigth-panel">
+            <rigth-panel></rigth-panel>
+          </div>
         </div> 
         <my-footer></my-footer>
       </div>
