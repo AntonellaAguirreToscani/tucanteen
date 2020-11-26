@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 html {
@@ -34,23 +34,13 @@ body {
       25%     auto ;              /* ancho */  
 }
 
-@media (min-width: 300px) {          /*MEDIA QUERY NAVEGADOR GRANDE*/
-.client-panel {
-  display: grid;
-  gap:5px;
-  grid-template:                /*TAMAÑO NAVEGADOR DEFAULT: MOVIL*/
-      "navbar navbar"  50%
-      100%     auto ;              /* ancho */  
-}
-}
-
 @media (min-width: 900px) {          /*MEDIA QUERY NAVEGADOR GRANDE*/
   .grid-container {
       grid-template: 
           "header header header"    20%
           "navbar mainbody sidebar" auto
           "footer footer footer"    10% / 
-          25%     auto     20%;
+          25%     auto     25%;
   }
 } 
 
@@ -60,6 +50,6 @@ body {
           "header header header"    20%
           "navbar mainbody sidebar" auto
           "footer footer footer"    10% / 
-          15%     auto     20%;
+          20%     auto     20%;
   }
 }

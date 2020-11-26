@@ -8,7 +8,6 @@ import { ProductService } from '../../services/product.service';
   styleUrl: 'options-drinks.css',
   shadow: false,
 })
-
 export class OptionsDrinks {
   //State donde se almacena el listado de bebidas
   @State() drinks: Product[] = [];
@@ -43,7 +42,6 @@ export class OptionsDrinks {
   handleSelectedDrink(drink: Product) {
     this.selectedDrink.emit(drink);
   }
-
   render() {
     return (
       <div class="div-drinks">
