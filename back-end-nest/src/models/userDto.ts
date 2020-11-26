@@ -4,7 +4,7 @@ export class User{
     private typeUser: string;
     private photo: string;
 
-    constructor(_userName: string, _password:string, _type:string,_photo?:string){
+    constructor(_userName: string, _password:string, _type?:string,_photo?:string){
         this.userName = _userName;
         this.password = _password;
         this.typeUser = _type;

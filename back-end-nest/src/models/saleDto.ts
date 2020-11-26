@@ -1,7 +1,7 @@
 export class Sale{
     id: number;
     date : Date;
-    descripcion: string;
+    descripcion: string; // refactorizar a Order[]
     total: number;
 
     constructor(_id:number,_date:Date,_descripcion:string,_total:number){

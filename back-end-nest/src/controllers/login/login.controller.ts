@@ -12,7 +12,7 @@ export class LoginController {
         return this.loginService.getUsers();
     }
     @Post('validate')
-    public login(@Body() userInfo:any):boolean{
-        return this.loginService.validateUser(userInfo);
+    public login(@Body() user: any):any{
+        return this.loginService.validateUser(user);
     }
 }
