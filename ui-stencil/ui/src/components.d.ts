@@ -62,6 +62,7 @@ export namespace Components {
     }
     interface UserInfo {
         "butonsChoice": string;
+        "history": RouterHistory;
         "profileChoice": string;
     }
     interface UserLogin {
@@ -311,6 +312,7 @@ declare namespace LocalJSX {
     }
     interface UserInfo {
         "butonsChoice"?: string;
+        "history"?: RouterHistory;
         "profileChoice"?: string;
     }
     interface UserLogin {

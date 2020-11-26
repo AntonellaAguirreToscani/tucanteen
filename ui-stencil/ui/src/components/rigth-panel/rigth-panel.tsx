@@ -1,5 +1,5 @@
 import { Component, EventEmitter, h, Listen, State, Event } from '@stencil/core';
-import {Product } from '../../models.ts/product.model';
+import { Product } from '../../models.ts/product.model';
 import { Order } from '../../models.ts/order.model';
 // import { FinalizePurchase } from '../finalize-purchase/finalize-purchase';
 @Component({
@@ -13,32 +13,37 @@ export class RigthPanel {
   a partir de todos los productos seleccionados por el usuario!*/
 
   @State() order: Order = Order.void();
-  @State() total : number = 0; 
+  @State() total: number = 0;
+  @State() typeUser: string;
 
   //Evento que emite la orden para el componente finalize-purchase
   @Event() selectedSale: EventEmitter<Order>;
-  
+
   componentWillLoad() {
     this.order;
+    this.typeUser = localStorage.getItem('userType');
+  }
+  componentDidUpdate() {
+    this.typeUser = localStorage.getItem('userType');
   }
 
-  updateOrder(){
-    let description='';
-  
-    this.order.products.forEach(product=>{
+  updateOrder() {
+    let description = '';
+
+    this.order.products.forEach(product => {
       description += `${product.description}+`;
     });
-    
-    this.total = this.order.products.reduce((total,product)=>{
-       return total += product.price;
-    },0);
+
+    this.total = this.order.products.reduce((total, product) => {
+      return (total += product.price);
+    }, 0);
 
     this.order.total = this.total;
     this.order.description = description;
     this.order.hour = '13:30'; //harcodeado!
   }
 
-  onUpdateOrders(event){
+  onUpdateOrders(event) {
     this.order.products = [...this.order.products, event.detail]; // rest
     this.updateOrder();
   }
@@ -73,25 +78,37 @@ export class RigthPanel {
     this.total = 0;
   }
   render() {
-    return (
-      <aside class="sidebar">
-        <div class="order">
-          <h4>Tu orden</h4>
-          {this.order.products.map(product=>
-            <p>{product.description} ${product.price}</p>
-          )}
-        </div>
-        <div class="totals-foot">
-          <h4 id="total">Total: ${this.total}</h4>
-          
-          <stencil-route-link url="/compraFinalizada">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="button" data-toggle="modal" data-target="#my-modal" id="btn-finish" onClick={()=>this.handleNewSale()}>
-              Finalizar Compra
-            </button>
-          </stencil-route-link>
-          <finalize-purchase id="my-modal"></finalize-purchase>
-        </div>
-      </aside>
-    );
+    if (this.typeUser != 'admin') {
+      return (
+        <aside class="sidebar">
+          <div class="order">
+            <h4>Tu orden</h4>
+            {this.order.products.map(product => (
+              <p>
+                {product.description} ${product.price}
+                <a href="#link" class="btn btn-outline-info" role="button">
+                  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-archive-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      fill-rule="evenodd"
+                      d="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15h9.286zM5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8H.8z"
+                    />
+                  </svg>
+                </a>
+              </p>
+            ))}
+          </div>
+          <div class="totals-foot">
+            <h4 id="total">Total: ${this.total}</h4>
+
+            <stencil-route-link url="/compraFinalizada">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="button" data-toggle="modal" data-target="#my-modal" id="btn-finish" onClick={() => this.handleNewSale()}>
+                Finalizar Compra
+              </button>
+            </stencil-route-link>
+            <finalize-purchase id="my-modal"></finalize-purchase>
+          </div>
+        </aside>
+      );
+    }
   }
 }

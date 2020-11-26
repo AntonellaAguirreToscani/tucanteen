@@ -19,7 +19,8 @@ export class MyBody {
             <stencil-route url="/menu-dia" component="todays-menu"></stencil-route>
             <stencil-route url="/login" component="user-login"></stencil-route>
             {/* <stencil-route url="/register" component="user-register"></stencil-route> */}
-            <stencil-route url="/loginAdmin" component="table-orders"></stencil-route>
+            <stencil-route url="/ventas" component="sales-table"></stencil-route>
+            <stencil-route url="/pedidos-dia" component="table-orders"></stencil-route>
             {/* <privateRoute url="/loginClient" component="check-out" />
             <privateRoute url="/loginAdmin" component="admin-panel" /> */}
           </stencil-route-switch>

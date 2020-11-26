@@ -1,4 +1,5 @@
 import { Component, h, State, Prop, Listen } from '@stencil/core';
+import { RouterHistory } from '@stencil/router';
 
 
 @Component({
@@ -13,6 +14,9 @@ export class UserInfo {
 
   @Prop() butonsChoice: string; //butons - butons-close
   @Prop() profileChoice: string; //profile - profile-close
+  
+  //Navigation
+  @Prop() history: RouterHistory;
 
   componentWillLoad() {
     this.isAutenticated = localStorage.getItem('isAutenticated');
@@ -31,6 +35,7 @@ export class UserInfo {
     this.isAutenticated;
     this.userName;
     this.photo;
+    this.history;
   }
 
   signOff() {
@@ -40,6 +45,7 @@ export class UserInfo {
     this.isAutenticated = false;
     this.userName = null;
     this.photo = null;
+    this.history.push('/', {});
   }
 
   render() {
