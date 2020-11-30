@@ -15,6 +15,7 @@ export class RigthPanel {
   @State() order: Order = Order.void();
   @State() total: number = 0;
   @State() typeUser: string;
+  @State() isAutenticated : any;
 
   //Evento que emite la orden para el componente finalize-purchase
   @Event() selectedSale: EventEmitter<Order>;
@@ -69,6 +70,12 @@ export class RigthPanel {
   @Listen('selectedDessert', { target: 'document' })
   selectedDessert(event: CustomEvent<Product>) {
     this.onUpdateOrders(event);
+  }
+  // Listen que escucha al evento que emite el componete USER-LOGIN
+  @Listen('authenticaUser', { target: 'document' })
+  authenticaUser(event: CustomEvent<boolean>) {
+    this.isAutenticated = event.detail;
+    this.typeUser = localStorage.getItem('userType');
   }
 
   //FUNCION QUE EMITE EL EVENTO ORDEN una vez clickeado el boton finalizar compra y la reinicia!
