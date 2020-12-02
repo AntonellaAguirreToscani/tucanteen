@@ -31,17 +31,17 @@ export class MyFooter {
         <div class="container-footer-all">
           <div class="container-body">
             <div class="colum1">
-              <h2>Podes Encontrarnos..</h2>
+              <h2>Podes Encontrarnos...</h2>
             </div>
             <div class="colum2">
               <h2>Nuestras redes:</h2>
               <div class="row">
                 <img src="./assets/icon/facebook.png" />
-                <label>Siguenos en facebook</label>
+                <label>tuCanteen</label>
               </div>
               <div class="row">
                 <img src="./assets/icon/insta-logo.png" alt="" />
-                <label>Sigenos en instagram</label>
+                <label>tuCanteenOk</label>
               </div>
             </div>
             <div class="colum3">
