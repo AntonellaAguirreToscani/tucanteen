@@ -18,6 +18,14 @@ export class ClientPanel {
     this.isAuthenticated= event.detail; 
     this.typeUser = localStorage.getItem('userType');
   }
+  
+  @Listen('logOut', { target: 'document' })
+  logOut(event: CustomEvent<boolean>) {
+    this.isAuthenticated= event.detail; 
+  }
+  componenteShouldUpdate () {
+    this.isAuthenticated= localStorage.getItem('isAutenticated');
+  }
 
   render() {
    

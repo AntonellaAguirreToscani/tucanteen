@@ -9,7 +9,7 @@ export class AppHome {
   render() {
     return (
       <div>
-        <my-header butons-choice ="butons" profile-choice ="profile-close"></my-header> 
+        <my-header></my-header> 
         <div class="grid-container">
           <client-panel></client-panel>  
           <my-body></my-body>

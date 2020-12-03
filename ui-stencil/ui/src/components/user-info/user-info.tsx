@@ -1,4 +1,4 @@
-import { Component, h, State, Prop, Listen } from '@stencil/core';
+import { Component, h, State, Prop, Listen, EventEmitter, Event } from '@stencil/core';
 import { RouterHistory } from '@stencil/router';
 
 
@@ -17,6 +17,8 @@ export class UserInfo {
   
   //Navigation
   @Prop() history: RouterHistory;
+
+  @Event() logOut :  EventEmitter<boolean>
 
   componentWillLoad() {
     this.isAutenticated = localStorage.getItem('isAutenticated');
@@ -40,12 +42,13 @@ export class UserInfo {
 
   signOff() {
     localStorage.removeItem('username');
-    localStorage.removeItem('isAutenticated');
+    localStorage.setItem('isAutenticated', 'false');
     localStorage.removeItem('userType');
+    localStorage.removeItem('photo')
     this.isAutenticated = false;
     this.userName = null;
-    this.photo = null;
-    this.history.push('/', {});
+    this.photo = null;  
+    this.logOut.emit(this.isAutenticated);
   }
 
   render() {
@@ -65,9 +68,11 @@ export class UserInfo {
                   Modificar Perfil
                 </a>
                 <div class="dropdown-divider"></div>
+                <stencil-route-link url='/'>
                 <a href="#" class="dropdown-item" onClick={() => this.signOff()}>
                   Logout
                 </a>
+                </stencil-route-link>
               </div>
             </li>
           </div>
