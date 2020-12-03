@@ -63,7 +63,7 @@ export class ClientPanel {
             <li class="nav-item">
               <stencil-route-link url="/menu-dia">
                 <a class="nav-link" href="#">
-                  <span data-feather="file"></span>
+                  <span  data-feather="file" ></span>
                   Menú del día
                 </a> 
               </stencil-route-link>

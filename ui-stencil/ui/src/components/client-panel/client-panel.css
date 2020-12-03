@@ -8,10 +8,17 @@
 
 #carta-label{
   margin-top: 20px;
+  color:black;
 } 
 
 .sidebar-stickypt-3{
   margin-top: 15px;
   margin-bottom: 100%;
   align-items: inherit;
+}
+.file{
+  color:black;
+}
+.nav-link{
+  color: black;
 }
