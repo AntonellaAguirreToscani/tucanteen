@@ -313,6 +313,7 @@ declare namespace LocalJSX {
     interface UserInfo {
         "butonsChoice"?: string;
         "history"?: RouterHistory;
+        "onLogOut"?: (event: CustomEvent<boolean>) => void;
         "profileChoice"?: string;
     }
     interface UserLogin {
