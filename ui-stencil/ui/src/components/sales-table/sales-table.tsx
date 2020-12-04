@@ -37,8 +37,8 @@ export class SalesTable {
     return (
       <div>
         <h1 id="title">Ventas</h1>
-        {/* <input type="date" class="datePicker"/>
-        <input type="date"/> */}
+        <input type="date" class="datePicker"/>
+        <input type="date"/>
         {/* <div class="container">
           <div class="row">
             <div class='col-sm-6'>
