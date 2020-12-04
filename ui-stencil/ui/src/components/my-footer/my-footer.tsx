@@ -35,11 +35,11 @@ export class MyFooter {
             </div>
             <div class="colum2">
               <h2>Nuestras redes:</h2>
-              <div class="row">
+              <div class="networks">
                 <img src="./assets/icon/facebook.png" />
                 <label>tuCanteen</label>
               </div>
-              <div class="row">
+              <div class="networks">
                 <img src="./assets/icon/insta-logo.png" alt="" />
                 <label>tuCanteenOk</label>
               </div>
