@@ -24,13 +24,26 @@ export class RigthPanel {
     this.order;
     this.typeUser = localStorage.getItem('userType');
   }
-  componentDidUpdate() {
-    this.typeUser = localStorage.getItem('userType');
-    this.order.products;
-  }
+  // componentDidUpdate() {
+  //   this.typeUser = localStorage.getItem('userType');
+  //   this.order.products;
+  // }
   componentShouldUpdate(){ 
     this.order.products;
   }
+  // componentDidUpdate() {
+  //   this.typeUser = localStorage.getItem('userType');
+  // }
+  @Listen('logOut', { target: 'document' })
+  logOut(event: CustomEvent<boolean>) {
+    this.isAutenticated= event.detail;
+    console.log(this.isAutenticated); 
+  }
+  componenteShouldUpdate () {
+    this.isAutenticated= localStorage.getItem('isAutenticated');
+  }
+
+
   updateOrder() {
     let description = '';
 
@@ -99,9 +112,7 @@ export class RigthPanel {
      this.updateOrder();
   }
   render() {
-   
-
-    if (this.typeUser != 'admin') {
+    if (this.typeUser != 'admin' || this.isAutenticated== false) {
       return (
         <aside class="sidebar">
           <div class="order">
