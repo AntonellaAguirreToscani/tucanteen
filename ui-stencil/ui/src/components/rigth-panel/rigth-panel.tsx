@@ -26,8 +26,11 @@ export class RigthPanel {
   }
   componentDidUpdate() {
     this.typeUser = localStorage.getItem('userType');
+    this.order.products;
   }
-
+  componentShouldUpdate(){ 
+    this.order.products;
+  }
   updateOrder() {
     let description = '';
 
@@ -42,6 +45,7 @@ export class RigthPanel {
     this.order.total = this.total;
     this.order.description = description;
     this.order.hour = '13:30'; //harcodeado!
+    this.order.products;
   }
 
   onUpdateOrders(event) {
@@ -84,7 +88,19 @@ export class RigthPanel {
     this.order = Order.void();
     this.total = 0;
   }
+  deleteProduct(id:number){
+    this.order.products.forEach((product,index)=>{
+      if(product.id==id){
+        console.log(product.id,index)
+        this.order.products.splice(index,1);
+
+       }
+     })
+     this.updateOrder();
+  }
   render() {
+   
+
     if (this.typeUser != 'admin') {
       return (
         <aside class="sidebar">
@@ -93,7 +109,7 @@ export class RigthPanel {
             {this.order.products.map(product => (
               <p>
                 {product.description} ${product.price}
-                <a href="#link" class="btn btn-outline-info" role="button">
+                <a href="#link" class="btn btn-outline-info" role="button"onClick={()=>this.deleteProduct(product.id)}>
                   <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-archive-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path
                       fill-rule="evenodd"
