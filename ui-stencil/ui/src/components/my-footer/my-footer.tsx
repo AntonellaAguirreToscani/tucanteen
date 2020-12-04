@@ -31,10 +31,10 @@ export class MyFooter {
         <div class="container-footer-all">
           <div class="container-body">
             <div class="colum1">
-              <h2>Podes Encontrarnos...</h2>
+              <h2 class="h2">Podes Encontrarnos...</h2>
             </div>
             <div class="colum2">
-              <h2>Nuestras redes:</h2>
+              <h2 class="h2">Nuestras redes:</h2>
               <div class="networks">
                 <img src="./assets/icon/facebook.png" />
                 <label>tuCanteen</label>
@@ -45,7 +45,7 @@ export class MyFooter {
               </div>
             </div>
             <div class="colum3">
-              <h2>Informacion Contactos:</h2>
+              <h2 class="h2">Informacion Contactos:</h2>
               <div class="row3">
                 <img src="./assets/icon/icono-lugar.jpg" />
                 <label >Tandil,
