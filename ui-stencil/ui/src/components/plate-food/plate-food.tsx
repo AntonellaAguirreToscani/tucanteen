@@ -22,7 +22,7 @@ export class PlateFood {
   getPlateFood() {
     try {
       this.productService
-        .getProducts('/platos') //Hace referencia a la clase platefoodServices
+        .getProducts('/2') //tipo de producto 2 = platos en BD!
         .then(response => response.json())
         .then(data=>{
           this.platesFood = data;
@@ -54,7 +54,7 @@ export class PlateFood {
                 </div>
                 <div class="col-md-6">
                   <div class="card-body">
-                    <h5 class="card-title text-md-6">{plateFood.description}</h5>
+                    <p class="card-title text-md-6">{plateFood.name} {plateFood.description}</p>
                     <p class="card-text">${plateFood.price}</p>
                   </div>
                 </div>

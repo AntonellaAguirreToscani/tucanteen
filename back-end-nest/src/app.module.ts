@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AutomapperModule } from 'nestjsx-automapper';
 import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -15,12 +16,13 @@ import { OrderService } from './services/order/order.service';
 import { ProductService } from './services/product/product.service';
 import { SaleService } from './services/sale/sale.service';
 
-
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
     OrderModule,
     ProductModule,
+    AutomapperModule.withMapper()
+  
     // ServeStaticModule.forRoot({
     //   rootPath: join(__dirname, '..'),
       

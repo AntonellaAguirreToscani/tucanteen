@@ -32,7 +32,7 @@ export class OrderService {
           order.products.push(new Product(
                 product.id,
                 product.name,
-                product.descripcion,
+                product.description,
                 product.price,
               ));
         });

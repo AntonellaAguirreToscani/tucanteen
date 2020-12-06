@@ -23,11 +23,12 @@ export class OptionsDrinks {
   getDrinks() {
     try {
       this.drinkService
-        .getProducts('/bebidas') //Hace referencia a la clase DrinkServices
+        .getProducts('/1') //tipo de producto 1 = bebidas! 
         .then(response => response.json())
         .then(data=>{
           this.drinks = data;
         });
+        console.log(this.drinks);
     } catch (error) {
       console.log(error.message);
     }
@@ -55,7 +56,7 @@ export class OptionsDrinks {
                 </div>
                 <div class="col-md-6">
                   <div class="card-body">
-                    <h5 class="card-text text-md-6">{drink.description}</h5>
+          <h5 class="card-text text-md-6">{drink.name},  {drink.description}</h5>
                     <p class="card-text">${drink.price}</p>
                   </div>
                 </div>

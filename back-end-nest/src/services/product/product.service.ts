@@ -1,6 +1,9 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { AutoMapper, InjectMapper } from 'nestjsx-automapper';
 import { Product } from 'src/entities/product.entity';
+import { ProductProfile } from 'src/mapping/product.profile';
+import { ProductDTO } from 'src/models/productDto';
 import { Equal, Repository } from 'typeorm';
 
 @Injectable()
@@ -9,15 +12,17 @@ export class ProductService {
     public constructor(
         @InjectRepository(Product)
         private readonly productRepository: Repository<Product>,
+        @InjectMapper() 
+        private readonly mapper: AutoMapper
     ){}
 
-    public async getByCategory(category: number): Promise<Product[]> {
+    public async getByCategory(category: number): Promise<ProductDTO[]> {
         try {
-           const result: Product[] = await this.productRepository.find({
+           const products: Product[] = await this.productRepository.find({
                 where: [{ type_product_id: Equal(category)}],
             });
-            return result;
-
+            
+            return this.mapper.mapArray(products,ProductDTO);
         } catch (error) {
             throw new HttpException(
                 {
