@@ -1,6 +1,7 @@
 import { Component, h, State } from '@stencil/core';
 import { Sale } from '../../models.ts/sale.model';
 import { SaleService } from '../../services/sale.service';
+// import $ from 'jquery';
 
 @Component({
   tag: 'sales-table',
@@ -36,8 +37,21 @@ export class SalesTable {
     return (
       <div>
         <h1 id="title">Ventas</h1>
+        <input type="date" class="datePicker"/>
+        <input type="date"/>
+        {/* <div class="container">
+          <div class="row">
+            <div class='col-sm-6'>
+              <input type='text' class="form-control" id='datetimepicker4' />
+            </div>
+            <script type="text/javascript">
+              {$(function () {
+                $('#datetimepicker4').datetimepicker();
+              })};
+            </script>
+          </div> */}
+        {/* </div> */}
         <div class="container" >
-
           <form class="form-inline d-flex justify-content-center md-form form-sm mt-0">
             <i class="fas fa-search" aria-hidden="true"></i>
             <div class="col-sm-6">
@@ -72,6 +86,7 @@ export class SalesTable {
                     <td>${sale.total}</td>
                   </tr>
                 ))}
+
               </tbody>
             </table>
           </form>
@@ -84,5 +99,4 @@ export class SalesTable {
       </div>
     );
   }
-
 }

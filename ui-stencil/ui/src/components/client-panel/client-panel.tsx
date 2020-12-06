@@ -18,6 +18,14 @@ export class ClientPanel {
     this.isAuthenticated= event.detail; 
     this.typeUser = localStorage.getItem('userType');
   }
+  
+  @Listen('logOut', { target: 'document' })
+  logOut(event: CustomEvent<boolean>) {
+    this.isAuthenticated= event.detail; 
+  }
+  componenteShouldUpdate () {
+    this.isAuthenticated= localStorage.getItem('isAutenticated');
+  }
 
   render() {
    
@@ -55,7 +63,7 @@ export class ClientPanel {
             <li class="nav-item">
               <stencil-route-link url="/menu-dia">
                 <a class="nav-link" href="#">
-                  <span data-feather="file"></span>
+                  <span  data-feather="file" ></span>
                   Menú del día
                 </a> 
               </stencil-route-link>

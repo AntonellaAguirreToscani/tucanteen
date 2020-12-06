@@ -17,6 +17,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@types/jest": "^26.0.15",
     "rxjs": "^6.6.3"
   }
 }
