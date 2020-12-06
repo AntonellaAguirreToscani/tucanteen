@@ -1,0 +1,12 @@
+{
+    "type": "mysql",
+    "host": "localhost",
+    "port": 3306,
+    "username": "admin",
+    "password": "Aat05042019",
+    "database": "tucanteen",
+    "entities": [
+    "dist/**/**.entity{.ts,.js}"
+    ],
+    "synchronize": false
+    }

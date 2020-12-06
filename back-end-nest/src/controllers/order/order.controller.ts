@@ -1,5 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
-import { Order } from 'src/models/orderDto';
+import { Order } from 'src/entities/order.entity';
+import { OrderDTO } from 'src/models/orderDtos';
+
 import { OrderService } from 'src/services/order/order.service';
 
 @Controller('orders')
@@ -7,17 +9,17 @@ export class OrderController {
 
     constructor(private OrderService : OrderService){}
 
-    @Get()
-    getOrders(): Order[]{
-        return this.OrderService.getOrders();
+    @Get('pending-orders')
+    public getPendingOrders(): Promise<Order[]>{
+        return this.OrderService.getPendingOrders();
     }
-    @Post()
-    addOrder(@Body() order : Order){
-        this.OrderService.addOrder(order);
+    @Get('sales')
+    public getSales(): Promise<Order[]>{
+        return this.OrderService.getSales();
     }
-    @Delete(':id')
-    public deleteOrder(@Param('id') id: number): void{
-        this.OrderService.deleteOrder(id);
+    @Post('add-order')
+    public addOrder(@Body() order: OrderDTO){
+        this.OrderService.CreateOrder(order);
     }
 
 }
