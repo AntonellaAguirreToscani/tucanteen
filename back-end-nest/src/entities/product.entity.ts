@@ -25,7 +25,7 @@ export class Product{
 
     @ManyToMany(type => Order, order => order.products)
      public orders : Order[]; 
-
+    
     public constructor (productId?: number, name?:string, description?:string, price?: number,
                         photo?: string, typeProduct?:number) {
       
