@@ -21,7 +21,7 @@ export class ClientDeserts {
   @Method()
   async getDesserts() {
     try {
-     await this.Desserts.getProducts('/postres')
+     await this.Desserts.getProducts('/5') //tipo de producto 5 en BD
         .then(response => response.json())
         .then(data=>{
           this.desserts = data;
@@ -53,7 +53,7 @@ export class ClientDeserts {
               </div>
               <div class="col-md-6">
                 <div class="card-body">
-                  <h5 class="card-title text-md-6">{DESSERTS.description}</h5>
+                  <p class="card-title text-md-6">{DESSERTS.name} {DESSERTS.description}</p>
                   <p class="card-text">${DESSERTS.price}</p>
                 </div>
               </div>

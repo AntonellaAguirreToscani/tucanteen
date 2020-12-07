@@ -22,7 +22,7 @@ export class OptionsSandwiches {
   getSandwiches() {
     try {
       this.productService //sandwiches
-        .getProducts('/sandwiches') 
+        .getProducts('/4')  // tipo de producto 4 en BD
         .then(response => response.json())
         .then(data=>{
           this.sandwiches = data;
@@ -57,7 +57,7 @@ export class OptionsSandwiches {
                 </div>
                 <div class="col-md-6">
                   <div class="card-body">
-                    <h5 id="text-description" class="card-title text-md-6">{SANDWICHES.description}</h5>
+                    <p id="text-description" class="card-title text-md-6">{SANDWICHES.name} {SANDWICHES.description}</p>
                     <p class="card-text">${SANDWICHES.price}</p>
                   </div>
                 </div>

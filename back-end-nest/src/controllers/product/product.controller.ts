@@ -1,5 +1,6 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { Product } from 'src/models/productDto';
+import { Product } from 'src/entities/product.entity';
+import { ProductDTO } from 'src/models/productDto';
 import { ProductService } from 'src/services/product/product.service';
 
 @Controller('products')
@@ -8,9 +9,10 @@ export class ProductController {
     constructor(private productService : ProductService){}
 
     @Get(':category')
-    getProducts(@Param('category') category): Product[] {
-        let selectedCategory : string = category.toLowerCase();
-        return this.productService.getProductsByCategory(selectedCategory);
+    public getByCategory(@Param('category') category: string):Promise<ProductDTO[]>{
+        let categoryNumber = parseInt(category);
+        return this.productService.getByCategory(categoryNumber);
     }
+   
 
 }
