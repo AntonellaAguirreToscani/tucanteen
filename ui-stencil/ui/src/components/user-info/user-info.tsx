@@ -64,13 +64,13 @@ export class UserInfo {
                 {this.userName}
               </a>
               <div class="dropdown-menu dropdown-menu-right">
-                <a href="#" class="dropdown-item">
-                  Modificar Perfil
-                </a>
+                 <a href="#" class="dropdown-item"> 
+                 Perfil    <i class='fas fa-user-cog'></i> 
+                 </a> 
                 <div class="dropdown-divider"></div>
                 <stencil-route-link url='/'>
                 <a href="#" class="dropdown-item" onClick={() => this.signOff()}>
-                  Logout
+                 Logout  <i class='fas fa-user-alt-slash'></i>
                 </a>
                 </stencil-route-link>
               </div>
