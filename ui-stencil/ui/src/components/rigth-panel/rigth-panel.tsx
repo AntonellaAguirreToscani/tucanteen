@@ -37,6 +37,8 @@ export class RigthPanel {
   @Listen('logOut', { target: 'document' })
   logOut(event: CustomEvent<boolean>) {
     this.isAutenticated= event.detail;
+    this.order = Order.void();
+    this.total = 0;
     console.log(this.isAutenticated); 
   }
   componenteShouldUpdate () {
