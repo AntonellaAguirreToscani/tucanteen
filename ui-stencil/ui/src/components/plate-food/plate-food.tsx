@@ -59,7 +59,7 @@ export class PlateFood {
                   </div>
                 </div>
                 <div class="text-center">
-                <button type="button" class="btn btn-primary" onClick={()=>this.handleSelectedPlateFood(plateFood)}>Agregar</button>
+                <button type="button" class="btn btn-outline-info" onClick={()=>this.handleSelectedPlateFood(plateFood)}>Agregar <i class="fa fa-shopping-cart"></i></button>
                 </div>
               </div>
             </div>

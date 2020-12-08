@@ -37,6 +37,8 @@ export class RigthPanel {
   @Listen('logOut', { target: 'document' })
   logOut(event: CustomEvent<boolean>) {
     this.isAutenticated= event.detail;
+    this.order = Order.void();
+    this.total = 0;
     console.log(this.isAutenticated); 
   }
   componenteShouldUpdate () {
@@ -120,7 +122,7 @@ export class RigthPanel {
             {this.order.products.map(product => (
               <p>
                 {product.name} {product.description} ${product.price}
-                <a href="#link" class="btn btn-outline-info" role="button"onClick={()=>this.deleteProduct(product.id)}>
+                <a href="#link" id="btn-delete"class="btn btn-outline-info" role="button"onClick={()=>this.deleteProduct(product.id)}>
                   <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-archive-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path
                       fill-rule="evenodd"
