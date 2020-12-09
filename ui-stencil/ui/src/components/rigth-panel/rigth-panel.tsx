@@ -59,6 +59,8 @@ export class RigthPanel {
   @Listen('logOut', { target: 'document' })
   logOut(event: CustomEvent<boolean>) {
     this.isAutenticated = event.detail;
+    this.order = Order.void();
+    this.total = 0;
     console.log(this.isAutenticated);
   }
   componenteShouldUpdate() {
@@ -137,13 +139,8 @@ export class RigthPanel {
     this.order = Order.void();
     this.total = 0;
   }
-  deleteProduct(id: number) {
-    this.order.products.forEach((product, index) => {
-      if (product.id == id) {
-        console.log(product.id, index)
-        this.order.products.splice(index, 1);
-      }
-    })
+  deleteProduct(index: number) {
+    this.order.products.splice(index, 1);
     this.updateOrder();
   }
   render() {
@@ -152,10 +149,10 @@ export class RigthPanel {
         <aside class="sidebar">
           <div class="order">
             <h4>Tu orden</h4>
-            {this.order.products.map(product => (
+            {this.order.products.map((product, index) => (
               <p>
                 {product.name} {product.description} ${product.price}
-                <a href="#link" class="btn btn-outline-info" role="button" onClick={() => this.deleteProduct(product.id)}>
+                <a href="#link" id="btn-delete" class="btn btn-outline-info" role="button" onClick={() => this.deleteProduct(index)}>
                   <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-archive-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path
                       fill-rule="evenodd"
