@@ -9,7 +9,7 @@ export class OrderController {
 
     constructor(private OrderService : OrderService){}
 
-    @Get('pending-orders')
+    @Get()
     public getPendingOrders(): Promise<Order[]>{
         return this.OrderService.getPendingOrders();
     }
@@ -21,5 +21,4 @@ export class OrderController {
     public addOrder(@Body() order: OrderDTO){
         this.OrderService.CreateOrder(order);
     }
-
 }

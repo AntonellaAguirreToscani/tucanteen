@@ -1,6 +1,7 @@
 import { Component, EventEmitter, h, Listen, State, Event } from '@stencil/core';
 import { Product } from '../../models.ts/product.model';
 import { Order } from '../../models.ts/order.model';
+// import { OrderService } from '../../services/order.services';
 // import { FinalizePurchase } from '../finalize-purchase/finalize-purchase';
 @Component({
   tag: 'rigth-panel',
@@ -15,10 +16,31 @@ export class RigthPanel {
   @State() order: Order = Order.void();
   @State() total: number = 0;
   @State() typeUser: string;
-  @State() isAutenticated : any;
+  @State() isAutenticated: any;
+  @State() orders: Order[] = [];
+  @State() now: Date = new Date();
 
   //Evento que emite la orden para el componente finalize-purchase
   @Event() selectedSale: EventEmitter<Order>;
+  // private orderService: OrderService;
+
+  // constructor() {
+  //   this.orderService = OrderService.Instance;
+  // }
+
+  // getDrinks() {
+  //   try {
+  //     this.orderService
+  //       .getPendingOrders()
+  //       .then(response => response.json())
+  //       .then(data=>{
+  //         this.orders = data;
+  //       });
+  //       console.log(this.orders);
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // }
 
   componentWillLoad() {
     this.order;
@@ -28,7 +50,7 @@ export class RigthPanel {
   //   this.typeUser = localStorage.getItem('userType');
   //   this.order.products;
   // }
-  componentShouldUpdate(){ 
+  componentShouldUpdate() {
     this.order.products;
   }
   // componentDidUpdate() {
@@ -36,28 +58,42 @@ export class RigthPanel {
   // }
   @Listen('logOut', { target: 'document' })
   logOut(event: CustomEvent<boolean>) {
-    this.isAutenticated= event.detail;
-    console.log(this.isAutenticated); 
+    this.isAutenticated = event.detail;
+    console.log(this.isAutenticated);
   }
-  componenteShouldUpdate () {
-    this.isAutenticated= localStorage.getItem('isAutenticated');
+  componenteShouldUpdate() {
+    this.isAutenticated = localStorage.getItem('isAutenticated');
   }
 
+  FunctionDeliveryTime(timeDelay): Date {
+    let now: Date = new Date()
+    // if (now.getMinutes() + timeDelay >= 60) {
+      now.setMinutes(now.getMinutes() + timeDelay)
+      // return `${now.getHours() + 1}:${ + timeDelay}:${now.getSeconds()}`
+    // }
+    // else {
+    //   return `${now.getHours()}:${now.getMinutes() + timeDelay}:${now.getSeconds()}`;
+    // }
+    return now;
+  }
+
+
+  getDate(): any {
+    let now: Date = new Date()
+    return `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
+  }
 
   updateOrder() {
-    let description = '';
-
-    this.order.products.forEach(product => {
-      description += `${product.description}+`;
-    });
-
     this.total = this.order.products.reduce((total, product) => {
       return (total += product.price);
     }, 0);
 
+    this.order.date = new Date();
+    this.order.orderTime = new Date();
+    this.order.deliveryTime = this.FunctionDeliveryTime(20);
     this.order.total = this.total;
-    this.order.description = description;
-    this.order.hour = '13:30'; //harcodeado!
+    this.order.state = 'pendiente';
+    this.order.userId = parseInt(localStorage.getItem('id'));
     this.order.products;
   }
 
@@ -101,18 +137,17 @@ export class RigthPanel {
     this.order = Order.void();
     this.total = 0;
   }
-  deleteProduct(id:number){
-    this.order.products.forEach((product,index)=>{
-      if(product.id==id){
-        console.log(product.id,index)
-        this.order.products.splice(index,1);
-
-       }
-     })
-     this.updateOrder();
+  deleteProduct(id: number) {
+    this.order.products.forEach((product, index) => {
+      if (product.id == id) {
+        console.log(product.id, index)
+        this.order.products.splice(index, 1);
+      }
+    })
+    this.updateOrder();
   }
   render() {
-    if (this.typeUser != 'admin' || this.isAutenticated== false) {
+    if (this.typeUser != 'admin' || this.isAutenticated == false) {
       return (
         <aside class="sidebar">
           <div class="order">
@@ -120,7 +155,7 @@ export class RigthPanel {
             {this.order.products.map(product => (
               <p>
                 {product.name} {product.description} ${product.price}
-                <a href="#link" class="btn btn-outline-info" role="button"onClick={()=>this.deleteProduct(product.id)}>
+                <a href="#link" class="btn btn-outline-info" role="button" onClick={() => this.deleteProduct(product.id)}>
                   <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-archive-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path
                       fill-rule="evenodd"

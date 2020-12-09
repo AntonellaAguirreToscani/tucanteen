@@ -23,7 +23,7 @@ export class TableOrders {
   @Method()
   async getOrders() {
     try {
-      await this.orderService.getOrders()
+      await this.orderService.getPendingOrders()
         .then(response => response.json())
         .then(data => {
           this.orders = data;
@@ -41,7 +41,7 @@ export class TableOrders {
   async handleOrder(e) {
     e.preventDefault();
     try {
-      if (this.foundOrder = this.orders.find(order => order.orderNumber == this.orderNumber)) {
+      if (this.foundOrder = this.orders.find(order => order.id == this.orderNumber)) {
         this.orders = [this.foundOrder];
       } else {
         this.getOrders();
@@ -64,7 +64,7 @@ export class TableOrders {
   }
   //Borra la orden en el back-end y se vuelve a cargar el listado de ordenes para q se actualicen los cambios.
   removeOrder() {
-    this.orderService.deleteOrder(this.selected.orderNumber);
+    this.orderService.deleteOrder(this.selected.id);
     this.componentWillLoad();
   }
 
@@ -120,12 +120,12 @@ export class TableOrders {
                   <tr>
                     <th scope="row">
                       <div class="form-check form-check-inline">
-                        <label class="form-check-label">{order.orderNumber}</label>
+                        <label class="form-check-label">{order.id}</label>
                       </div>
                     </th>
-                    <td>{order.userName}</td>
-                    <td>{order.description}</td>
-                    <td>{order.hour}</td>
+                    <td>{order.state}</td>
+                    <td>{order.state}</td>
+                    <td>{order.deliveryTime}</td>
                     <td>${order.total} </td>
                     <td><button type="button" class="btn btn-primary btn-sm" onClick={() => this.buttonSelected(order)}>Seleccionar</button></td>
                   </tr>

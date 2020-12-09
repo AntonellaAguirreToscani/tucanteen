@@ -21,6 +21,7 @@ export class LoginService {
         elements[i][1],
         elements[i][2],
         elements[i][3],
+        parseInt(elements[i][4]),
       );
       this.users.push(user);
     }
@@ -42,9 +43,9 @@ export class LoginService {
 
     console.log(userLogOn);
     if (userLogOn && userLogOn._password === user._password) {
-      const { _userName,_typeUser,_photo} = userLogOn;
+      const { _userName,_typeUser,_photo,id} = userLogOn;
         console.log('USUARIO VALIDADO');
-      return { _userName,_typeUser,_photo};
+      return { _userName,_typeUser,_photo,id};
     }
     console.log('USUARIO INEXISTENTE');
     return null;

@@ -6,5 +6,6 @@ export const ENDPOINTS ={
     products : 'products',
     orders : 'orders',
     login : 'login',
-    sales : 'sale'
+    sales : 'sale',
+    addOrder: 'add-order'
 };
