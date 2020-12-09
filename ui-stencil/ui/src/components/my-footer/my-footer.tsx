@@ -31,17 +31,17 @@ export class MyFooter {
         <div class="container-footer-all">
           <div class="container-body">
             <div class="colum1">
-              <h2 class="h2">Podes Encontrarnos...</h2>
+              <h2 class="h2">Podés encontrarnos en...</h2>
             </div>
             <div class="colum2">
               <h2 class="h2">Nuestras redes:</h2>
               <div class="networks">
                 <img src="./assets/icon/facebook.png" />
-                <label>tuCanteen</label>
+                <label>/tuCanteen</label>
               </div>
               <div class="networks">
                 <img src="./assets/icon/insta-logo.png" alt="" />
-                <label>tuCanteenOk</label>
+                <label>@tuCanteenOk</label>
               </div>
             </div>
             <div class="colum3">
@@ -54,7 +54,7 @@ export class MyFooter {
               </div>
               <div class="row3">
                 <img src="./assets/icon/wapp-icono.png" />
-                <label>2494-447363</label>
+                <label>0249-447363</label>
               </div>
               <div class="row3">
                 <img src="../assets/icon/icono-mail.png" />
