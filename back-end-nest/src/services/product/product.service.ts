@@ -1,30 +1,38 @@
-import { Injectable } from '@nestjs/common';
-import { Product } from 'src/models/productDto';
-import * as fs from 'fs';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { AutoMapper, InjectMapper } from 'nestjsx-automapper';
+import { Product } from 'src/entities/product.entity';
+import { ProductProfile } from 'src/mapping/product.profile';
+import { ProductDTO } from 'src/models/productDto';
+import { Equal, Repository } from 'typeorm';
 
 @Injectable()
 export class ProductService {
-    private products : Product[];
-    
-    private loadProducts(): void {
-        let document = fs.readFileSync('../back-end-nest/config/products.csv', 'utf8');
-        const elements: string[][] =
-            document.split('\n').map(item => item.replace('\r', '')).map(item => item.split(','));
-    
-        //Para que se mantenga actualizado el listado de productos, se inicializa acá!!
-        this.products = [];
-        for (let i = 0; i < elements.length; i++) {
-            let product : Product = new Product(elements[i][0],parseInt(elements[i][1]),elements[i][2],elements[i][3],parseInt(elements[i][4]));
-            this.products.push(product);
+
+    public constructor(
+        @InjectRepository(Product)
+        private readonly productRepository: Repository<Product>,
+        @InjectMapper() 
+        private readonly mapper: AutoMapper
+    ){}
+
+    public async getByCategory(category: number): Promise<ProductDTO[]> {
+        try {
+           const products: Product[] = await this.productRepository.find({
+                where: [{ type_product_id: Equal(category)}],
+            });
+            
+            return this.mapper.mapArray(products,ProductDTO);
+        } catch (error) {
+            throw new HttpException(
+                {
+                  status: HttpStatus.NOT_FOUND,
+                  error: 'there is an error in the request, ' + error,
+                },
+                HttpStatus.NOT_FOUND,
+            );
         }
     }
-    public getProducts(): Product[]{
-        this.loadProducts();
-        return this.products;
-    }
 
-    public getProductsByCategory(category: string): Product[]{
-        return this.getProducts().filter(product=> product.category === category);
-    }
 
 }

@@ -32,7 +32,7 @@ export class FinalizePurchase {
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Usted a finalizado su compra</h5>
+              <h5 class="modal-title">Usted ha finalizado su compra <i class='fas fa-check-circle'></i></h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -46,7 +46,7 @@ export class FinalizePurchase {
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal" onClick={()=>this.postOrder()}>Confirmar Pedido</button>
+              <button type="button" class="btn btn-info" data-dismiss="modal" onClick={()=>this.postOrder()}>Confirmar Pedido</button>
             </div>
           </div>
         </div>

@@ -22,7 +22,7 @@ constructor() {
 getMenu() {
   try {
     this.productService
-      .getProducts('/menu') //Hace referencia a la clase MenuServices
+      .getProducts('/3') //tipo de producto 3 = menu en BD! 
       .then(response => response.json())
         .then(data=>{
           this.menus = data;
@@ -51,12 +51,12 @@ render() {
               </div>
               <div class="col-md-6">
                 <div class="card-body">
-                  <h5 class="card-title text-md-6">{menu.description}</h5>
+                  <p class="card-title text-md-6">{menu.name} {menu.description}</p>
                   <p class="card-text">${menu.price}</p>
                 </div>
               </div>
               <div class="text-center">
-              <button type="button" class="btn btn-primary" onClick={()=>this.handleSelectedMenu(menu)}>Agregar</button>
+              <button type="button" class="btn btn-outline-info" onClick={()=>this.handleSelectedMenu(menu)}>Agregar<i class="fa fa-shopping-cart"></i></button>
               </div>
             </div>
           </div>

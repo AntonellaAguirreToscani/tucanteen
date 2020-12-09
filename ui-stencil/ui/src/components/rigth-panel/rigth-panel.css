@@ -38,6 +38,12 @@
     color: #6AB04C;
 }
 
-#pedido {
-    align-items: inherit;
+.totals-foot {
+    align-self: center;
+    margin-top: 100%;
+    margin-bottom: 30px;
+}
+
+#btn-delete {
+    margin-left: 1%;
 }

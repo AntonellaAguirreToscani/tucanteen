@@ -38,7 +38,8 @@ export class ClientPanel {
                   <stencil-route-link url="/pedidos-dia">
                     <a class="nav-link" href="#">
                       <span data-feather="file"></span>
-                      Pedidos del día
+                      <i class='far fa-file-alt'></i>
+                        Pedidos del día
                     </a> 
                   </stencil-route-link>
                 </li>
@@ -47,13 +48,14 @@ export class ClientPanel {
                   <stencil-route-link url="/ventas">
                     <a class="nav-link" href="#">
                       <span data-feather="file"></span>
+                      <i class='fas fa-check-circle'></i>
                     Ventas
                   </a>
                   </stencil-route-link>
                 </li>
               </ul>
             </div>
-          </nav>
+          </nav> 
         );
     }else{
       return(
@@ -64,7 +66,7 @@ export class ClientPanel {
               <stencil-route-link url="/menu-dia">
                 <a class="nav-link" href="#">
                   <span  data-feather="file" ></span>
-                  Menú del día
+                  <i class='fas fa-utensils'></i> Menú del día 
                 </a> 
               </stencil-route-link>
             </li>
@@ -73,7 +75,7 @@ export class ClientPanel {
               <stencil-route-link url="/al-plato">
                 <a class="nav-link" href="#">
                   <span data-feather="file"></span>
-                Al plato
+                  <i class='fas fa-drumstick-bite'></i> Al plato
               </a>
               </stencil-route-link>
             </li>
@@ -81,7 +83,7 @@ export class ClientPanel {
               <stencil-route-link url="/sandwiches">
                 <a class="nav-link" href="#">
                   <span data-feather="file"></span>
-                Sandwiches
+                  <i class='fas fa-hamburger'></i> Sandwiches
               </a>
               </stencil-route-link>
             </li>
@@ -89,7 +91,7 @@ export class ClientPanel {
               <stencil-route-link url="/bebidas">
                 <a class="nav-link" href="#">
                   <span data-feather="file"></span>
-                Bebidas
+                  <i class='fas fa-cocktail'></i> Bebidas
               </a>
               </stencil-route-link>
             </li>
@@ -97,7 +99,7 @@ export class ClientPanel {
               <stencil-route-link url="/postres">
                 <a class="nav-link" href="#">
                   <span data-feather="file"></span>
-                Postres
+                  <i class='fas fa-ice-cream'></i> Postres
               </a>
               </stencil-route-link>
             </li>

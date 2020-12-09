@@ -15,7 +15,7 @@ export class RigthPanel {
   @State() order: Order = Order.void();
   @State() total: number = 0;
   @State() typeUser: string;
-  @State() isAutenticated : any;
+  @State() isAutenticated: any;
 
   //Evento que emite la orden para el componente finalize-purchase
   @Event() selectedSale: EventEmitter<Order>;
@@ -28,7 +28,7 @@ export class RigthPanel {
   //   this.typeUser = localStorage.getItem('userType');
   //   this.order.products;
   // }
-  componentShouldUpdate(){ 
+  componentShouldUpdate() {
     this.order.products;
   }
   // componentDidUpdate() {
@@ -36,11 +36,13 @@ export class RigthPanel {
   // }
   @Listen('logOut', { target: 'document' })
   logOut(event: CustomEvent<boolean>) {
-    this.isAutenticated= event.detail;
-    console.log(this.isAutenticated); 
+    this.isAutenticated = event.detail;
+    this.order = Order.void();
+    this.total = 0;
+    console.log(this.isAutenticated);
   }
-  componenteShouldUpdate () {
-    this.isAutenticated= localStorage.getItem('isAutenticated');
+  componenteShouldUpdate() {
+    this.isAutenticated = localStorage.getItem('isAutenticated');
   }
 
 
@@ -101,18 +103,12 @@ export class RigthPanel {
     this.order = Order.void();
     this.total = 0;
   }
-  deleteProduct(id:number){
-    this.order.products.forEach((product,index)=>{
-      if(product.id==id){
-        console.log(product.id,index)
-        this.order.products.splice(index,1);
-
-       }
-     })
-     this.updateOrder();
+  deleteProduct(index: number) {
+    this.order.products.splice(index, 1);
+    this.updateOrder();
   }
   render() {
-    if (this.typeUser != 'admin' || this.isAutenticated== false) {
+    if (this.typeUser != 'admin' || this.isAutenticated == false) {
       return (
         <aside class="sidebar">
           <div class="order">

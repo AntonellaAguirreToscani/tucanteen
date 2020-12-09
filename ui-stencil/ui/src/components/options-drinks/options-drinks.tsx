@@ -23,11 +23,12 @@ export class OptionsDrinks {
   getDrinks() {
     try {
       this.drinkService
-        .getProducts('/bebidas') //Hace referencia a la clase DrinkServices
+        .getProducts('/1') //tipo de producto 1 = bebidas! 
         .then(response => response.json())
         .then(data=>{
           this.drinks = data;
         });
+        console.log(this.drinks);
     } catch (error) {
       console.log(error.message);
     }
@@ -45,7 +46,7 @@ export class OptionsDrinks {
   render() {
     return (
       <div class="div-drinks">
-        <h1 class="tittle">Carta - Bebidas</h1>
+        <h1 class="tittle">Carta - bebidas</h1>
         <div class="container">
           {this.drinks.map((drink) =>
             <div class="card mb-6 col-sm-5 text-center" id="div-cards">
@@ -55,12 +56,12 @@ export class OptionsDrinks {
                 </div>
                 <div class="col-md-6">
                   <div class="card-body">
-                    <h5 class="card-text text-md-6">{drink.description}</h5>
+          <h5 class="card-text text-md-5">{drink.name},  {drink.description}</h5>
                     <p class="card-text">${drink.price}</p>
                   </div>
                 </div>
                 <div class="text-center">
-                  <button type="button" id="button" class="btn btn-primary" onClick={() => this.handleSelectedDrink(drink)}>Agregar</button>
+                  <button type="button" id="button" class="btn btn-outline-info" onClick={() => this.handleSelectedDrink(drink)}>Agregar <i class="fa fa-shopping-cart"></i></button>
                 </div>
               </div>
             </div>
@@ -68,6 +69,7 @@ export class OptionsDrinks {
         </div>
       </div>
     );
+    
   }
 
 }
