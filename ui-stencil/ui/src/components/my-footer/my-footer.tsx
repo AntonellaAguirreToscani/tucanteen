@@ -37,7 +37,7 @@ export class MyFooter {
               <h2 class="h2">Nuestras redes:</h2>
               <div class="networks">
                 <img src="./assets/icon/facebook.png" />
-                <label>/tuCanteen</label>
+                <label>/tuCanteen </label>
               </div>
               <div class="networks">
                 <img src="./assets/icon/insta-logo.png" alt="" />
