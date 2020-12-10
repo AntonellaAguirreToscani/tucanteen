@@ -15,7 +15,7 @@ export class RigthPanel {
   @State() order: Order = Order.void();
   @State() total: number = 0;
   @State() typeUser: string;
-  @State() isAutenticated : any;
+  @State() isAutenticated: any;
 
   //Evento que emite la orden para el componente finalize-purchase
   @Event() selectedSale: EventEmitter<Order>;
@@ -28,7 +28,7 @@ export class RigthPanel {
   //   this.typeUser = localStorage.getItem('userType');
   //   this.order.products;
   // }
-  componentShouldUpdate(){ 
+  componentShouldUpdate() {
     this.order.products;
   }
   // componentDidUpdate() {
@@ -36,13 +36,13 @@ export class RigthPanel {
   // }
   @Listen('logOut', { target: 'document' })
   logOut(event: CustomEvent<boolean>) {
-    this.isAutenticated= event.detail;
+    this.isAutenticated = event.detail;
     this.order = Order.void();
     this.total = 0;
-    console.log(this.isAutenticated); 
+    console.log(this.isAutenticated);
   }
-  componenteShouldUpdate () {
-    this.isAutenticated= localStorage.getItem('isAutenticated');
+  componenteShouldUpdate() {
+    this.isAutenticated = localStorage.getItem('isAutenticated');
   }
 
 
@@ -103,32 +103,23 @@ export class RigthPanel {
     this.order = Order.void();
     this.total = 0;
   }
-  deleteProduct(id:number){
-    this.order.products.forEach((product,index)=>{
-      if(product.id==id){
-        console.log(product.id,index)
-        this.order.products.splice(index,1);
-
-       }
-     })
-     this.updateOrder();
+  deleteProduct(index: number) {
+    this.order.products.splice(index, 1);
+    this.updateOrder();
   }
   render() {
-    if (this.typeUser != 'admin' || this.isAutenticated== false) {
+    if (this.typeUser != 'admin' || this.isAutenticated == false) {
       return (
         <aside class="sidebar">
           <div class="order">
             <h4>Tu orden</h4>
-            {this.order.products.map(product => (
-              <p>
+            {this.order.products.map((product, index) => (
+              <p id="pedido">
                 {product.name} {product.description} ${product.price}
-                <a href="#link" id="btn-delete"class="btn btn-outline-info" role="button"onClick={()=>this.deleteProduct(product.id)}>
-                  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-archive-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      fill-rule="evenodd"
-                      d="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15h9.286zM5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8H.8z"
-                    />
-                  </svg>
+                <a href="#link" class="btn btn-outline-info" role="button"onClick={()=>this.deleteProduct(index)}>
+                <svg width="0.7em" height="0.7em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+                </svg>
                 </a>
               </p>
             ))}
