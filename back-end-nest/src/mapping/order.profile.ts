@@ -39,9 +39,9 @@ export class OrderProfile extends ProfileBase {
         dest => dest.userId,
         mapFrom(src => src.user_id)
       )
-      .forMember(
-        dest => dest.products,
-        mapFrom(src => src.products)
-      );
+      // .forMember(
+      //   dest => dest.products,
+      //   mapFrom(src => src.products)
+      // );
   }
 }
