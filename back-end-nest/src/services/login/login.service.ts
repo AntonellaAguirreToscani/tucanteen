@@ -1,9 +1,16 @@
 import { Injectable } from '@nestjs/common';
-import { User } from 'src/models/userDto';
+
 import * as fs from 'fs';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Equal, Repository } from 'typeorm';
+import { TypeUser } from 'src/entities/typeUser.entity';
+import { User } from 'src/entities/user.entity';
+import { UserDTO } from 'src/models/userDto';
+import { AutoMapper, InjectMapper } from 'nestjsx-automapper';
 
 @Injectable()
 export class LoginService {
+<<<<<<< HEAD
   private users: User[];
 
   public loadUsers() {
@@ -34,18 +41,44 @@ export class LoginService {
 
   public findOne(username: string): User {
     return this.getUsers().find(user => user._userName == username);
+=======
+  constructor(
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
+    @InjectRepository(TypeUser)
+    private readonly typeUserRepository: Repository<TypeUser>,
+    @InjectMapper() 
+        private readonly mapper: AutoMapper,
+  ) {}
+
+ 
+
+  public async findOne(username: string): Promise<User> {
+    return await this.userRepository.findOne({
+      where: [{ user_name: Equal(username) }],
+    });;
+>>>>>>> cfcfdbf78a05d9292122a7ed8b11291c258309f5
   }
 
-  public validateUser(userInfo: any): any {
-    let user = new User(userInfo.userName, userInfo.password);
+   public async validateUser(userInfo: any): Promise<UserDTO> {
+     let user = new User(userInfo.userName, userInfo.password);
 
-    const userLogOn = this.findOne(user._userName);
+     const userLogOn = await this.findOne(user.user_name);
 
     console.log(userLogOn);
+<<<<<<< HEAD
     if (userLogOn && userLogOn._password === user._password) {
       const { _userName,_typeUser,_photo,id} = userLogOn;
         console.log('USUARIO VALIDADO');
       return { _userName,_typeUser,_photo,id};
+=======
+    if (userLogOn && userLogOn.user_password === user.user_password) {
+      const {user_id,user_name,first_name,last_name,typeUser} = userLogOn;
+        console.log('USUARIO VALIDADO');
+         let a = {user_id,user_name,first_name,last_name,typeUser};
+       return this.mapper.map(a,UserDTO)
+      
+>>>>>>> cfcfdbf78a05d9292122a7ed8b11291c258309f5
     }
     console.log('USUARIO INEXISTENTE');
     return null;

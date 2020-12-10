@@ -44,7 +44,7 @@ export class PlateFood {
   render() {
     return (
       <div class="div-drinks">
-        <h1 class="tittle">Carta - al plato</h1>
+        <h1 class="tittle">Carta - Al plato</h1>
         <div class="container">
           {this.platesFood.map((plateFood) =>
             <div class="card mb-6 col-sm-5 text-center" id="div-cards">
