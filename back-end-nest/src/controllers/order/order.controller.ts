@@ -10,7 +10,7 @@ export class OrderController {
     constructor(private OrderService : OrderService){}
 
     @Get()
-    public getPendingOrders(): Promise<Order[]>{
+    public getPendingOrders(): Promise<OrderDTO[]>{
         return this.OrderService.getPendingOrders();
     }
     @Get('sales')
