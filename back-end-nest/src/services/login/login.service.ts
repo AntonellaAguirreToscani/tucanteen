@@ -1,50 +1,44 @@
 import { Injectable } from '@nestjs/common';
-import { User } from 'src/models/userDto';
+
 import * as fs from 'fs';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Equal, Repository } from 'typeorm';
+import { TypeUser } from 'src/entities/typeUser.entity';
+import { User } from 'src/entities/user.entity';
+import { UserDTO } from 'src/models/userDto';
+import { AutoMapper, InjectMapper } from 'nestjsx-automapper';
 
 @Injectable()
 export class LoginService {
-  private users: User[];
+  constructor(
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
+    @InjectRepository(TypeUser)
+    private readonly typeUserRepository: Repository<TypeUser>,
+    @InjectMapper() 
+        private readonly mapper: AutoMapper,
+  ) {}
 
-  public loadUsers() {
-    let document = fs.readFileSync('../back-end-nest/config/users.csv', 'utf8');
-    const elements: string[][] = document
-      .split('\n')
-      .map(item => item.replace('\r', ''))
-      .map(item => item.split(','));
+ 
 
-    //Para que se mantenga actualizado el listado de usuarios, se inicializa acá!!
-    this.users = [];
-    for (let i = 0; i < elements.length; i++) {
-      let user: User = new User(
-        elements[i][0],
-        elements[i][1],
-        elements[i][2],
-        elements[i][3],
-      );
-      this.users.push(user);
-    }
+  public async findOne(username: string): Promise<User> {
+    return await this.userRepository.findOne({
+      where: [{ user_name: Equal(username) }],
+    });;
   }
 
-  public getUsers(): User[] {
-    this.loadUsers();
-    return this.users;
-  }
+   public async validateUser(userInfo: any): Promise<UserDTO> {
+     let user = new User(userInfo.userName, userInfo.password);
 
-  public findOne(username: string): User {
-    return this.getUsers().find(user => user._userName == username);
-  }
-
-  public validateUser(userInfo: any): any {
-    let user = new User(userInfo.userName, userInfo.password);
-
-    const userLogOn = this.findOne(user._userName);
+     const userLogOn = await this.findOne(user.user_name);
 
     console.log(userLogOn);
-    if (userLogOn && userLogOn._password === user._password) {
-      const { _userName,_typeUser,_photo} = userLogOn;
+    if (userLogOn && userLogOn.user_password === user.user_password) {
+      const {user_id,user_name,first_name,last_name,typeUser} = userLogOn;
         console.log('USUARIO VALIDADO');
-      return { _userName,_typeUser,_photo};
+         let a = {user_id,user_name,first_name,last_name,typeUser};
+       return this.mapper.map(a,UserDTO)
+      
     }
     console.log('USUARIO INEXISTENTE');
     return null;

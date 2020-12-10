@@ -11,6 +11,7 @@ import { ProductController } from './controllers/product/product.controller';
 import { SaleController } from './controllers/sale/sale.controller';
 import { OrderModule } from './modules/order/order.module';
 import { ProductModule } from './modules/product/product.module';
+import { UserModule } from './modules/user/user.module';
 import { LoginService } from './services/login/login.service';
 import { OrderService } from './services/order/order.service';
 import { ProductService } from './services/product/product.service';
@@ -21,6 +22,7 @@ import { SaleService } from './services/sale/sale.service';
     TypeOrmModule.forRoot(),
     OrderModule,
     ProductModule,
+    UserModule,
     AutomapperModule.withMapper()
   
     // ServeStaticModule.forRoot({
@@ -28,7 +30,7 @@ import { SaleService } from './services/sale/sale.service';
       
     // }),
   ],
-  controllers: [AppController,LoginController,SaleController],
-  providers: [AppService,LoginService,SaleService],
+  controllers: [AppController,SaleController],
+  providers: [AppService,SaleService],
 })
 export class AppModule {}
