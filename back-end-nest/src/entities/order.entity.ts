@@ -38,10 +38,10 @@ export class Order{
 
     public products : Product[];
     
-    public constructor(orderDate?:Date, orderTime?:Date ,deliveryTime?:Date,
+    public constructor(orderDate?:Date, orderTime?:any,deliveryTime?:Date,
                     total?:number ,state?:string, userId?:number, products?: Product[]){
         this.order_date = orderDate;
-        this.order_time = orderTime;
+        this.order_time = orderTime //new Date(`${orderTime.getHours()}:${orderTime.getMinutes()}`);
         this.delivery_time = deliveryTime;
         this.total = total;
         this.state = state;

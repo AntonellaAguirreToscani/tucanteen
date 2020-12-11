@@ -94,7 +94,7 @@ export class OrderService {
   }
 
   public mappingOderToOderDTO(orderArray:Order[]):OrderDTO[]{
-    
+    console.log(orderArray);
     return orderArray.map(order=>{
       return new OrderDTO(
         order.order_id,
