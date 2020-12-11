@@ -22,7 +22,7 @@ export class UserInfo {
 
   componentWillLoad() {
     this.isAutenticated = localStorage.getItem('isAutenticated');
-    this.userName = localStorage.getItem('user');
+    this.userName = localStorage.getItem('username');
     this.photo = localStorage.getItem('photo');
   }
 
@@ -58,7 +58,7 @@ export class UserInfo {
         <div class="row">
           <div class="col"></div>
           <div class="col">
-            <img src={this.photo} alt="foto Usuario" class="avatar"></img>
+            <img src="./assets/icon/photo-avatar.png" alt="foto Usuario" class="avatar"></img>
             <li class="nav-item dropdown ml-auto">
               <div></div>
               <a href="#" id="userName" class="nav-link dropdown-toggle" data-toggle="dropdown">

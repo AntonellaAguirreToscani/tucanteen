@@ -27,7 +27,7 @@ export class User{
 
 
     @ManyToOne(type => TypeUser,typeUser =>typeUser.user)
-    @JoinColumn({name: 'user_id'})
+    @JoinColumn({name: 'type_user_id'})
 
     public typeUser: TypeUser;
     
