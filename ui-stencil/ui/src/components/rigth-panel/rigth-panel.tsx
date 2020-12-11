@@ -1,6 +1,7 @@
 import { Component, EventEmitter, h, Listen, State, Event } from '@stencil/core';
 import { Product } from '../../models.ts/product.model';
 import { Order } from '../../models.ts/order.model';
+// import { OrderService } from '../../services/order.services';
 // import { FinalizePurchase } from '../finalize-purchase/finalize-purchase';
 @Component({
   tag: 'rigth-panel',
@@ -16,9 +17,30 @@ export class RigthPanel {
   @State() total: number = 0;
   @State() typeUser: string;
   @State() isAutenticated: any;
+  @State() orders: Order[] = [];
+  @State() now: Date = new Date();
 
   //Evento que emite la orden para el componente finalize-purchase
   @Event() selectedSale: EventEmitter<Order>;
+  // private orderService: OrderService;
+
+  // constructor() {
+  //   this.orderService = OrderService.Instance;
+  // }
+
+  // getDrinks() {
+  //   try {
+  //     this.orderService
+  //       .getPendingOrders()
+  //       .then(response => response.json())
+  //       .then(data=>{
+  //         this.orders = data;
+  //       });
+  //       console.log(this.orders);
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // }
 
   componentWillLoad() {
     this.order;
@@ -45,21 +67,35 @@ export class RigthPanel {
     this.isAutenticated = localStorage.getItem('isAutenticated');
   }
 
+  FunctionDeliveryTime(timeDelay): Date {
+    let now: Date = new Date()
+    // if (now.getMinutes() + timeDelay >= 60) {
+      now.setMinutes(now.getMinutes() + timeDelay)
+      // return `${now.getHours() + 1}:${ + timeDelay}:${now.getSeconds()}`
+    // }
+    // else {
+    //   return `${now.getHours()}:${now.getMinutes() + timeDelay}:${now.getSeconds()}`;
+    // }
+    return now;
+  }
+
+
+  getDate(): any {
+    let now: Date = new Date()
+    return `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
+  }
 
   updateOrder() {
-    let description = '';
-
-    this.order.products.forEach(product => {
-      description += `${product.description}+`;
-    });
-
     this.total = this.order.products.reduce((total, product) => {
       return (total += product.price);
     }, 0);
 
+    this.order.date = new Date();
+    this.order.orderTime = new Date();
+    this.order.deliveryTime = this.FunctionDeliveryTime(20);
     this.order.total = this.total;
-    this.order.description = description;
-    this.order.hour = '13:30'; //harcodeado!
+    this.order.state = 'pendiente';
+    this.order.userId = parseInt(localStorage.getItem('id'));
     this.order.products;
   }
 

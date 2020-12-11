@@ -24,6 +24,7 @@ export class FinalizePurchase {
 
   async postOrder(){
     this.orderService.postOrder(this.order);
+    console.log(this.order);
   }
 
   render() {
@@ -39,10 +40,10 @@ export class FinalizePurchase {
             </div>
             <div class="modal-body">
                {this.order.products.map(product=>
-                <li>{product.description} -  ${product.price}</li>
+                <li>{product.name} - {product.description} : ${product.price}</li>
                 )}
                 <h5>Total a abonar: $ {this.order.total}</h5>
-              <p>Horario de retiro:  {this.order.hour}</p>
+              <p>Horario de retiro:  {this.order.deliveryTime}</p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

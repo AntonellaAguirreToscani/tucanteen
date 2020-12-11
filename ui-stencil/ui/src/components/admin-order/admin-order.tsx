@@ -35,9 +35,9 @@ export class AdminOrder {
     //   this.sale.
     // }
     this.sale.date =new Date();
-    this.sale.id = this.order.orderNumber;
+    this.sale.id = this.order.id;
     this.sale.total = this.order.total;
-    this.sale.descripcion = this.order.description;
+    this.sale.descripcion = this.order.state;
   }
 
   handleCheckoutSale(){
@@ -53,13 +53,13 @@ export class AdminOrder {
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title"> Orden numero: {this.order.orderNumber} </h5>
+              <h5 class="modal-title"> Orden numero: {this.order.id} </h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              <p>{this.order.description}</p>
+              <p>{this.order.state}</p>
               <p>Total:$ {this.order.total}</p>
             </div>
             <div class="modal-footer">
