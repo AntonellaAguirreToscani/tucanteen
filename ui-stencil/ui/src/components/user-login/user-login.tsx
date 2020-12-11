@@ -74,6 +74,7 @@ export class UserLogin {
   }
 
   private userSession() {
+    localStorage.setItem('id',`${this.userLogged.id}` )
     localStorage.setItem('username', `${this.userLogged._userName}`);
     localStorage.setItem('isAutenticated', 'true');
     localStorage.setItem('userType', `${this.userLogged._typeUser}`);

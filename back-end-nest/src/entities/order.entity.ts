@@ -39,13 +39,14 @@ export class Order{
     public products : Product[];
     
     public constructor(orderDate?:Date, orderTime?:Date ,deliveryTime?:Date,
-                    total?:number ,state?:string, userId?:number){
+                    total?:number ,state?:string, userId?:number, products?: Product[]){
         this.order_date = orderDate;
         this.order_time = orderTime;
         this.delivery_time = deliveryTime;
         this.total = total;
         this.state = state;
-        this.user_id = userId;                
+        this.user_id = userId;
+        // this.products = products;                
     }
     
 }
