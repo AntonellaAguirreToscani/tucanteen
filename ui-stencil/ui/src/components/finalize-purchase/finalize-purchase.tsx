@@ -43,7 +43,7 @@ export class FinalizePurchase {
                 <li>{product.name} - {product.description} : ${product.price}</li>
                 )}
                 <h5>Total a abonar: $ {this.order.total}</h5>
-              <p>Horario de retiro:  {this.order.deliveryTime.getHours()}</p>
+              <p>Horario de retiro:  {`${this.order.deliveryTime.getHours()}:${this.order.deliveryTime.getMinutes()} hs`}</p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
