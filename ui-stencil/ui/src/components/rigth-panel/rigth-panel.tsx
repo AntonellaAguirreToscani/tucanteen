@@ -18,29 +18,9 @@ export class RigthPanel {
   @State() typeUser: string;
   @State() isAutenticated: any;
   @State() orders: Order[] = [];
-  @State() now: Date = new Date();
 
   //Evento que emite la orden para el componente finalize-purchase
   @Event() selectedSale: EventEmitter<Order>;
-  // private orderService: OrderService;
-
-  // constructor() {
-  //   this.orderService = OrderService.Instance;
-  // }
-
-  // getDrinks() {
-  //   try {
-  //     this.orderService
-  //       .getPendingOrders()
-  //       .then(response => response.json())
-  //       .then(data=>{
-  //         this.orders = data;
-  //       });
-  //       console.log(this.orders);
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // }
 
   componentWillLoad() {
     this.order;
@@ -80,10 +60,10 @@ export class RigthPanel {
   }
 
 
-  getDate(): any {
-    let now: Date = new Date()
-    return `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
-  }
+  // getDate(): any {
+  //   let now: Date = new Date()
+  //   return `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
+  // }
 
   updateOrder() {
     this.total = this.order.products.reduce((total, product) => {

@@ -32,6 +32,7 @@ export class LoginService {
     const userLogOn: User = await this.findOne(user.user_name);
 
     if (userLogOn && userLogOn.user_password === user.user_password) {
+      console.log(userLogOn);
       console.log('USUARIO VALIDADO');
       return this.mappingUserToUserDTO(userLogOn);
 
