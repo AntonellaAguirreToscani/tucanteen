@@ -14,7 +14,7 @@ export class OrderController {
         return this.OrderService.getPendingOrders();
     }
     @Get('sales')
-    public getSales(): Promise<Order[]>{
+    public getSales(): Promise<OrderDTO[]>{
         return this.OrderService.getSales();
     }
     @Post('add-order')

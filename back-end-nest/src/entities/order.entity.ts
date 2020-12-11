@@ -46,7 +46,7 @@ export class Order{
         this.total = total;
         this.state = state;
         this.user_id = userId;
-        // this.products = products;                
+        this.products = products;                
     }
     
 }
