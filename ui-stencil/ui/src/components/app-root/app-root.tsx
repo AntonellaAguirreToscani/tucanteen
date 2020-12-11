@@ -1,4 +1,4 @@
-import { Component, h, Listen, State } from '@stencil/core';
+import { Component, h} from '@stencil/core';
 
 @Component({
   tag: 'app-root',
@@ -6,18 +6,18 @@ import { Component, h, Listen, State } from '@stencil/core';
   shadow: false,
 })
 export class AppRoot {
-  @State() authenticated: any;
+  // @State() authenticated: any;
 
 
-  @Listen('logOut', { target: 'document' })
-  logOut(event: CustomEvent<boolean>) {
-    this.authenticated = event.detail;
-  }
+  // @Listen('logOut', { target: 'document' })
+  // logOut(event: CustomEvent<boolean>) {
+  //   this.authenticated = event.detail;
+  // }
 
-  componentWillLoad() {
-    this.authenticated;
-    console.log(this.authenticated);
-  }
+  // componentWillLoad() {
+  //   this.authenticated;
+  //   console.log(this.authenticated);
+  // }
 
 
   render() {

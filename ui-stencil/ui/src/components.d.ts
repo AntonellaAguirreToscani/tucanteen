@@ -61,9 +61,7 @@ export namespace Components {
     interface TodaysMenu {
     }
     interface UserInfo {
-        "butonsChoice": string;
         "history": RouterHistory;
-        "profileChoice": string;
     }
     interface UserLogin {
         "handleLogin": (e: any) => Promise<void>;
@@ -311,14 +309,12 @@ declare namespace LocalJSX {
         "onSelectedMenu"?: (event: CustomEvent<Product>) => void;
     }
     interface UserInfo {
-        "butonsChoice"?: string;
         "history"?: RouterHistory;
-        "onLogOut"?: (event: CustomEvent<boolean>) => void;
-        "profileChoice"?: string;
+        "onLogOut"?: (event: CustomEvent<string>) => void;
     }
     interface UserLogin {
         "history"?: RouterHistory;
-        "onAuthenticaUser"?: (event: CustomEvent<boolean>) => void;
+        "onAuthenticaUser"?: (event: CustomEvent<string>) => void;
     }
     interface UserRegister {
         "hidden"?: boolean;
