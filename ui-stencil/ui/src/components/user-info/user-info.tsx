@@ -44,7 +44,8 @@ export class UserInfo {
     localStorage.removeItem('username');
     localStorage.setItem('isAutenticated', 'false');
     localStorage.removeItem('userType');
-    localStorage.removeItem('photo')
+    localStorage.removeItem('photo');
+    localStorage.removeItem('id');
     this.isAutenticated = false;
     this.userName = null;
     this.photo = null;  

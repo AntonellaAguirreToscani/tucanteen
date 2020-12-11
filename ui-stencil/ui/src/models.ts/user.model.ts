@@ -1,31 +1,24 @@
-export class User{
-  private userName: string;
-  private password: string;
-  private typeUser: string;
-  private photo: string;
-  public id : number;
+import { TypeUserDTO } from "./typeUser.model";
 
-  constructor(_userName: string, _password:string, _type?:string,_photo?:string, _id?: number){
-      this.userName = _userName;
-      this.password = _password;
-      this.typeUser = _type;
-      this.photo = (_photo == null ||_photo == undefined)? "./assets/icon/photo-avatar.png" : _photo;
-      this.id = _id;
-  }
+export class User{
+    public id:number;
+    public userName: string;
+    public password: string;
+    public firstName: string;
+    public lastName: string;
+    public typeUser: TypeUserDTO;
+    public photo: string = './assets/icon/photo-avatar.png';
+    
+    public constructor(id?:number, userName?:string,password?:string,firstName?:string,lastName?:string,typeUser?: TypeUserDTO){
+        this.id = id;
+        this.userName = userName;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.typeUser = typeUser;
+    }
   
-  public get _userName():string{
-      return this.userName;
-  }
-  public get _password():string{
-      return this.password;
-  }
-  public get _typeUser():string{
-      return this.typeUser;
-  }
-  public get _photo():string{
-      return this.photo;
-  }
-  static void(): User {
-    return new User('','','','');
-}
+    static void(): User {
+        return new User(0,'','','','',new TypeUserDTO(0,''));
+    }
 }

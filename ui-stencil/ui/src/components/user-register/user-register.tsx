@@ -40,7 +40,7 @@ export class UserRegister {
     }
   }
   userNameValidator(): boolean{
-    if (this.users.find(user => user._userName == this.user)) {
+    if (this.users.find(user => user.userName == this.user)) {
       return true;
     }else{
       return false;

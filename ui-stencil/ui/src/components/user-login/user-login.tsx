@@ -48,7 +48,7 @@ export class UserLogin {
   }
 
   private redirectByUserType() {
-    switch (this.userLogged._typeUser) {
+    switch (this.userLogged.typeUser.description) {
       case 'client':
         this.history.push('/menu-dia', {});
         break;
@@ -75,10 +75,10 @@ export class UserLogin {
 
   private userSession() {
     localStorage.setItem('id',`${this.userLogged.id}` )
-    localStorage.setItem('username', `${this.userLogged._userName}`);
+    localStorage.setItem('username', `${this.userLogged.userName}`);
     localStorage.setItem('isAutenticated', 'true');
-    localStorage.setItem('userType', `${this.userLogged._typeUser}`);
-    localStorage.setItem('photo', `${this.userLogged._photo}`);
+    localStorage.setItem('userType', `${this.userLogged.typeUser.description}`);
+    localStorage.setItem('photo', `${this.userLogged.photo}`);
   }
 
   closeLogin() {
