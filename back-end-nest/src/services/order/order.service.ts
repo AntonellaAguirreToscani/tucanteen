@@ -5,6 +5,7 @@ import { Order } from 'src/entities/order.entity';
 import { OrderDTO } from 'src/models/orderDtos';
 import { InjectRepository } from '@nestjs/typeorm/dist/common/typeorm.decorators';
 import { AutoMapper, InjectMapper } from 'nestjsx-automapper';
+import { ProductDTO } from 'src/models/productDto';
 
 @Injectable()
 export class OrderService {
@@ -14,8 +15,8 @@ export class OrderService {
     private readonly productRepository: Repository<Product[]>,
     @InjectRepository(Order)
     private readonly orderRepository: Repository<Order>,
-    @InjectMapper() 
-    private readonly mapper: AutoMapper
+    // @InjectMapper() 
+    // private readonly mapper: AutoMapper
   ) {}
 
   public async CreateOrder(orderDto: OrderDTO) {
@@ -57,8 +58,10 @@ export class OrderService {
     try {
       const result: Order[] = await this.orderRepository.find({
         where: [{ state: Equal('pendiente') }],
+        relations: ['products']
       });
-      return this.mapper.mapArray(result,OrderDTO);;
+      console.log(result);
+      return this.mappingOderToOderDTO(result);
       
     } catch (error) {
       throw new HttpException(
@@ -70,12 +73,14 @@ export class OrderService {
       );
     }
   }
-  public async getSales(): Promise<Order[]> {
+  public async getSales(): Promise<OrderDTO[]> {
     try {
       const result: Order[] = await this.orderRepository.find({
         where: [{ state: Equal('cobrada') }],
+        relations: ['products']
       });
-      return result;
+  
+      return this.mappingOderToOderDTO(result);
 
     } catch (error) {
       throw new HttpException(
@@ -87,4 +92,28 @@ export class OrderService {
       );
     }
   }
+
+  public mappingOderToOderDTO(orderArray:Order[]):OrderDTO[]{
+    console.log(orderArray);
+    return orderArray.map(order=>{
+      return new OrderDTO(
+        order.order_id,
+        order.order_date,
+        order.order_time,
+        order.delivery_time,
+        order.total,
+        order.state,
+        order.user_id,
+        order.products.map(product=>{
+          return new ProductDTO(
+          product.product_id,
+          product.product_name,
+          product.product_description,
+          product.photo,
+          product.price,
+        )})
+      )
+    });
+  }
+ 
 }

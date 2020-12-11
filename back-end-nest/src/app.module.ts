@@ -16,15 +16,14 @@ import { LoginService } from './services/login/login.service';
 import { OrderService } from './services/order/order.service';
 import { ProductService } from './services/product/product.service';
 import { SaleService } from './services/sale/sale.service';
-
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
     OrderModule,
     ProductModule,
     UserModule,
-    AutomapperModule.withMapper()
-  
+    AutomapperModule.withMapper(),
+    
     // ServeStaticModule.forRoot({
     //   rootPath: join(__dirname, '..'),
       
