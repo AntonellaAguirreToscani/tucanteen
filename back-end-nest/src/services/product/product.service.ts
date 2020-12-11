@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AutoMapper, InjectMapper } from 'nestjsx-automapper';
 import { Product } from 'src/entities/product.entity';
-import { ProductProfile } from 'src/mapping/product.profile';
+
 import { ProductDTO } from 'src/models/productDto';
 import { Equal, Repository } from 'typeorm';
 
