@@ -4,6 +4,7 @@ import { OrderController } from 'src/controllers/order/order.controller';
 import { ProductController } from 'src/controllers/product/product.controller';
 import { Order } from 'src/entities/order.entity';
 import { Product } from 'src/entities/product.entity';
+import { SourceProfile } from 'src/mapping/source.profile';
 
 import { OrderService } from 'src/services/order/order.service';
 import { ProductService } from 'src/services/product/product.service';
@@ -13,7 +14,7 @@ import { ProductService } from 'src/services/product/product.service';
         TypeOrmModule.forFeature([
         Order,
         Product
-        ])
+        ]),
         ],
     controllers: [OrderController,ProductController],
     providers: [OrderService,ProductService]
