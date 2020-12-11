@@ -124,7 +124,7 @@ export class RigthPanel {
     this.updateOrder();
   }
   render() {
-    if (this.typeUser != 'admin' || this.isAutenticated == false) {
+    if (this.typeUser != 'admin' || this.isAutenticated == 'false') {
       return (
         <aside class="sidebar">
           <div class="order">
