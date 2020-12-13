@@ -34,9 +34,11 @@ export namespace Components {
     interface ClientView {
     }
     interface FinalizePurchase {
-        "id": string;
+        "history": RouterHistory;
+        "order": Order;
     }
     interface MyBody {
+        "order": Order;
     }
     interface MyFooter {
     }
@@ -49,6 +51,7 @@ export namespace Components {
     interface PlateFood {
     }
     interface RigthPanel {
+        "history": RouterHistory;
     }
     interface SalesTable {
     }
@@ -278,9 +281,11 @@ declare namespace LocalJSX {
     interface ClientView {
     }
     interface FinalizePurchase {
-        "id"?: string;
+        "history"?: RouterHistory;
+        "order"?: Order;
     }
     interface MyBody {
+        "order"?: Order;
     }
     interface MyFooter {
     }
@@ -295,6 +300,7 @@ declare namespace LocalJSX {
         "onSelectedPlateFood"?: (event: CustomEvent<Product>) => void;
     }
     interface RigthPanel {
+        "history"?: RouterHistory;
         "onSelectedSale"?: (event: CustomEvent<Order>) => void;
     }
     interface SalesTable {

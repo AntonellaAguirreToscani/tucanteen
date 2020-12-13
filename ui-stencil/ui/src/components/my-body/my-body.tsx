@@ -1,4 +1,7 @@
-import { Component, h } from '@stencil/core';
+import { Component, h, Listen, Prop, State } from '@stencil/core';
+import { Order } from '../../models.ts/order.model';
+import { PrivateRoutes } from '../private-routes/private-routes';
+
 
 @Component({
   tag: 'my-body',
@@ -6,6 +9,28 @@ import { Component, h } from '@stencil/core';
   shadow: false,
 })
 export class MyBody {
+  @State() isAuthenticated :string;
+  @Prop() order:Order;
+
+
+  @Listen('selectedSale', { target: 'document' })
+  selectedSale(event: CustomEvent<Order>) {
+   this.order=event.detail;
+  }
+
+  @Listen('authenticaUser', { target: 'document' })
+  authenticaUser(event: CustomEvent<string>) {
+    this.isAuthenticated= event.detail;
+  }
+
+  componentWillLoad(){
+    this.isAuthenticated = localStorage.getItem('isAutenticated');
+  }
+
+  componentDidUpdate(){
+    this.isAuthenticated = localStorage.getItem('isAutenticated');
+  }
+
   render() {
     return (
       <main>
@@ -19,10 +44,12 @@ export class MyBody {
               <stencil-route url="/menu-dia" component="todays-menu"></stencil-route>
               <stencil-route url="/login" component="user-login"></stencil-route>
               {/* <stencil-route url="/register" component="user-register"></stencil-route> */}
-              <stencil-route url="/ventas" component="sales-table"></stencil-route>
-              <stencil-route url="/pedidos-dia" component="table-orders"></stencil-route>
-              {/* <privateRoute url="/loginClient" component="check-out" />
-            <privateRoute url="/loginAdmin" component="admin-panel" /> */}
+              {/* <stencil-route url="/ventas" component="sales-table"></stencil-route>
+              <stencil-route url="/pedidos-dia" component="table-orders"></stencil-route> */}
+              {/* RUTAS PRIVADAS */}
+              <PrivateRoutes url="/compraFinalizada" order={this.order}  isAutenticated = {this.isAuthenticated} component="finalize-purchase"/>
+              <PrivateRoutes url="/pedidos-dia" isAutenticated = {this.isAuthenticated} component="table-orders" />
+              <PrivateRoutes url="/ventas" isAutenticated = {this.isAuthenticated} component="sales-table"/>
             </stencil-route-switch>
           </stencil-router>
       </main>
