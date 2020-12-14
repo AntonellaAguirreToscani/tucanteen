@@ -7,6 +7,7 @@ import { User } from 'src/entities/user.entity';
 import { UserDTO } from 'src/models/userDto';
 import { AutoMapper, InjectMapper } from 'nestjsx-automapper';
 import { TypeUserDTO } from 'src/models/typeUserDto';
+import { constants } from 'buffer';
 
 @Injectable()
 export class LoginService {
@@ -40,6 +41,26 @@ export class LoginService {
       console.log('USUARIO INEXISTENTE');
       return null;
     }
+  }
+  public async addNewUser(newUser:UserDTO):Promise<string>{
+    const userNew = this.mappingUserDTOtoUser(newUser)
+    try {
+       await this.userRepository.save(userNew)
+      return "Bienvenido a tucanteen!!"
+    } catch (error) {
+      return "UUpps! volve a intentar!"
+    }
+  
+    }
+  public mappingUserDTOtoUser(userDTO:UserDTO):User{
+    return new User(
+     0,
+     userDTO .userName, 
+     userDTO .password,
+     userDTO.firstName, 
+     userDTO .lastName,
+    1,
+  );
   }
 
   public mappingUserToUserDTO(user:User): UserDTO {
