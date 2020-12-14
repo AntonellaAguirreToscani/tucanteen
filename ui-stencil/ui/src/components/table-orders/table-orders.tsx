@@ -38,6 +38,10 @@ export class TableOrders {
     this.getOrders();
   }
 
+  componentShouldUpdate(){
+    this.getOrders();
+  }
+
   @Method()
   async handleOrder(e) {
     e.preventDefault();
@@ -57,16 +61,11 @@ export class TableOrders {
   }
   handleCheckout() {
     this.selectedPurchase.emit(this.selected);
-    this.removeOrder();
+    this.getOrders();
   }
   buttonSelected(order: Order) {
     this.selected = order;
     console.log(this.selected);
-  }
-  //Borra la orden en el back-end y se vuelve a cargar el listado de ordenes para q se actualicen los cambios.
-  removeOrder() {
-    this.orderService.deleteOrder(this.selected.id);
-    this.componentWillLoad();
   }
 
   render() {
@@ -94,7 +93,7 @@ export class TableOrders {
               <admin-order id="my-modal"></admin-order>
             </div>
             <div class="col-sm-2">
-              <button type="button" class="btn btn-warning" onClick={() => this.removeOrder()}>
+              <button type="button" class="btn btn-warning" > 
                 Quitar
               </button>
             </div>
@@ -144,3 +143,4 @@ export class TableOrders {
     );
   }
 }
+//onClick={() => this.removeOrder()}

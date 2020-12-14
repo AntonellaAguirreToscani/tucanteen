@@ -49,4 +49,8 @@ export class Order{
         this.products = products;                
     }
     
+    public setState(newState: string): void {
+        this.state = newState;
+    }
+    
 }
