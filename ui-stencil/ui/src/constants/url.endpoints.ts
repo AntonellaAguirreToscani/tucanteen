@@ -7,5 +7,6 @@ export const ENDPOINTS ={
     orders : 'orders',
     login : 'login',
     sales : 'sales',
-    addOrder: 'add-order'
+    addOrder: 'add-order',
+     addNewUser:'new-user'
 };
