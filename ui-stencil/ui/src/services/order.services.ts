@@ -28,8 +28,8 @@ export class OrderService{
       this.fetch.httpRequest(`${ENDPOINTS.orders}/${ENDPOINTS.addOrder}`,'POST',order);
     }
     
-    async deleteOrder(id:number){
-      this.fetch.httpRequest(`${ENDPOINTS.orders}/${id}`,'DELETE');
+    async updateOrderState(id:number){
+      this.fetch.httpRequest(`${ENDPOINTS.orders}/${id}`,'PUT');
     }
 
     //Utiliza el patron Singleton. Se intancia una única vez!

@@ -31,19 +31,22 @@ export class AdminOrder {
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title"> Orden numero: {this.order.id} </h5>
+              <h5 id="my-title" class="modal-title"><i class='fas fa-cart-arrow-down'></i> Número de Orden:  {this.order.id} </h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              <p>{this.order.state}</p>
-              <p>Total:$ {this.order.total}</p>
+              <p>Detalle: {this.order.products.map(product=>{
+                return `- ${product.name} 
+                ${product.description} `
+              })}</p>
+              <p>   Total a cobrar : $       {this.order.total}</p>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar <i class='fas fa-times'></i></button>
 
-              <button type="button" class="btn btn-primary" onClick={()=> this.handleCheckoutSale()} data-dismiss="modal">Confirmar Compra</button>
+              <button type="button" class="btn btn-info" onClick={()=> this.handleCheckoutSale()} data-dismiss="modal">Cobrar <i class='fas fa-check'></i></button>
             </div>
           </div>
         </div>
