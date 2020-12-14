@@ -4,11 +4,6 @@ import { CONSTANTS, ENDPOINTS } from "../constants/url.endpoints";
 import { Order } from "../models.ts/order.model";
 
 export class OrderService{
-    changeOrderStatus(id: number) {
-      id;
-      throw new Error('Method not implemented.');
-    }
-
     private static _instance: OrderService;
     private baseUrl: string;
     private fetch: FetchAdapter;
@@ -30,6 +25,9 @@ export class OrderService{
     
     async updateOrderState(id:number){
       this.fetch.httpRequest(`${ENDPOINTS.orders}/${id}`,'PUT');
+    }
+    async getByDates(date1:Date,date2:Date){
+      return await this.fetch.httpRequest(`${ENDPOINTS.orders}/${date1}/${date2}`,'GET')
     }
 
     //Utiliza el patron Singleton. Se intancia una única vez!

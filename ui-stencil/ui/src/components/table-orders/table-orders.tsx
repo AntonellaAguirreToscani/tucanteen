@@ -60,6 +60,7 @@ export class TableOrders {
     this.orderNumber = event.target.value;
   }
   handleCheckout() {
+    this.orderService.updateOrderState(this.selected.id);
     this.selectedPurchase.emit(this.selected);
     this.getOrders();
   }

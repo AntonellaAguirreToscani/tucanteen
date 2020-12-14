@@ -2,8 +2,8 @@
     "type": "mysql",
     "host": "localhost",
     "port": 3306,
-    "username": "admin",
-    "password": "Aat05042019",
+    "username": "root",
+    "password": "espialidoso99",
     "database": "tucanteen",
     "entities": [
     "dist/**/**.entity{.ts,.js}"

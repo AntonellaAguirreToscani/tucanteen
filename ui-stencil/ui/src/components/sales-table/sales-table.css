@@ -4,3 +4,22 @@
 .datePicker{
   margin-right: 3%;
 }
+#table{
+  text-align: center;
+  /* justify-content: space-between; */
+}
+.container{
+  display: flex;
+  justify-content: center;
+}
+.div-inputs{
+  text-align: center;
+   justify-content: center;
+}
+#button{
+  margin-left: 2%;
+}
+.form{
+  display: flex;
+  justify-content: space-between;
+}

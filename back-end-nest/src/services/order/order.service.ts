@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { Equal, Repository } from 'typeorm';
+import { Between, Equal, LessThanOrEqual, MoreThan, MoreThanOrEqual, Repository } from 'typeorm';
 import { Product } from 'src/entities/product.entity';
 import { Order } from 'src/entities/order.entity';
 import { OrderDTO } from 'src/models/orderDtos';
@@ -17,7 +17,7 @@ export class OrderService {
     private readonly orderRepository: Repository<Order>,
     // @InjectMapper() 
     // private readonly mapper: AutoMapper
-  ) {}
+  ) { }
 
   public async CreateOrder(orderDto: OrderDTO) {
     try {
@@ -32,14 +32,14 @@ export class OrderService {
       order.products = [];
 
       // Mapping de ProductDTO[] a Product[]
-       orderDto.products.map(product=>{
-          order.products.push(new Product(
-                product.id,
-                product.name,
-                product.description,
-                product.price,
-              ));
-        });
+      orderDto.products.map(product => {
+        order.products.push(new Product(
+          product.id,
+          product.name,
+          product.description,
+          product.price,
+        ));
+      });
 
       //Guarda en la Base de Datos
       await this.orderRepository.save(order);
@@ -62,7 +62,7 @@ export class OrderService {
       });
       console.log(result);
       return this.mappingOderToOderDTO(result);
-      
+
     } catch (error) {
       throw new HttpException(
         {
@@ -79,7 +79,7 @@ export class OrderService {
         where: [{ state: Equal('cobrada') }],
         relations: ['products']
       });
-  
+
       return this.mappingOderToOderDTO(result);
 
     } catch (error) {
@@ -93,9 +93,9 @@ export class OrderService {
     }
   }
 
-  public mappingOderToOderDTO(orderArray:Order[]):OrderDTO[]{
+  public mappingOderToOderDTO(orderArray: Order[]): OrderDTO[] {
     console.log(orderArray);
-    return orderArray.map(order=>{
+    return orderArray.map(order => {
       return new OrderDTO(
         order.order_id,
         order.order_date,
@@ -104,16 +104,36 @@ export class OrderService {
         order.total,
         order.state,
         order.user_id,
-        order.products.map(product=>{
+        order.products.map(product => {
           return new ProductDTO(
-          product.product_id,
-          product.product_name,
-          product.product_description,
-          product.photo,
-          product.price,
-        )})
+            product.product_id,
+            product.product_name,
+            product.product_description,
+            product.photo,
+            product.price,
+          )
+        })
       )
     });
+  }
+  public async getByDates(date1: Date, date2: Date): Promise<OrderDTO[]> {
+    try {
+      const result: Order[] = await this.orderRepository.find({
+        where: [{order_date: Between(date1,date2), state:'cobrada'}],
+        relations: ['products']
+      });
+
+      return this.mappingOderToOderDTO(result);
+
+    } catch (error) {
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_FOUND,
+          error: 'there is an error in the request, ' + error,
+        },
+        HttpStatus.NOT_FOUND,
+      );
+    };
   }
   public async getById(id:number): Promise<Order>{
      let result: Order = await this.orderRepository.findOne({

@@ -19,7 +19,7 @@ insert into e01_product values(7,'Pastel de Papas','Casero',150,'./assets/icon/p
 insert into e01_product values(8,'Ñoquis','c/salsa Mixta',100,'./assets/icon/ñoquis.jpg',3);
 insert into e01_product values(9,'Sandwich','Completo',360,'./assets/icon/completo.png',4);
 insert into e01_product values(10,'Sandwich','Ligth',290,'./assets/icon/sandwich-light.jpg',4);
-insert into e01_product values(11,'Sandich Miga','x 4',150,'./assets/icon/sandwich-miga.jpg',4);
+insert into e01_product values(11,'Sandwich Miga','x 4',150,'./assets/icon/sandwich-miga.jpg',4);
 insert into e01_product values(12,'Sandwich','Pollo',200,'./assets/icon/sandwich-pollo.jpg',4);
 insert into e01_product values(13,'Bocha Helado','Frutilla',90,'./assets/icon/bochahelado.png',5);
 insert into e01_product values(14,'Tarta','Frutos rojos',170,'./assets/icon/food/tartafrutos.jpg',5);
@@ -27,4 +27,6 @@ insert into e01_product values(15,'Torta','Chocolate',190,'./assets/icon/food/ta
 insert into e01_product values(16,'Muffin','Vainilla',100,'./assets/icon/muffin.jpg',5);
 
 insert into e01_type_user values(1,"client");
+insert into e01_type_user values(2,"admin");
 insert e01_user values (1,"antoAT","anto123","Antonella","aguirre",1);
+insert e01_user values(2,"bernardo","bernardo123","Bernardo","Larsen",2);
