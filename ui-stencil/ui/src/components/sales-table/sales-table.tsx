@@ -8,6 +8,7 @@ import { OrderService } from '../../services/order.services';
 })
 export class SalesTable {
   @State() sales: Order[] = [];
+  @State() date1 : Date;
 
   private orderService: OrderService;
   constructor() {
@@ -45,14 +46,19 @@ export class SalesTable {
    
     }
 
-}  
+  }  
+
+  handleChangePass(event) {
+    this.date1 = event.target.value;
+    console.log(this.date1);
+  }
   
 
   render() {
     return (
       <div>
         <h1 id="title">Ventas</h1>
-        <input type="date" class="datePicker" />
+        <input type="date" class="datePicker" onInput={event => this.handleChangePass(event)} />
         <input type="date" />
 
         <div class="container">

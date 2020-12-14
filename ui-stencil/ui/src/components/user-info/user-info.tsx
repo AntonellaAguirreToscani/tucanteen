@@ -8,7 +8,7 @@ import { RouterHistory } from '@stencil/router';
   shadow: false,
 })
 export class UserInfo {
-  @State() isAutenticated: string= 'false'; // true-false
+  @State() isAutenticated: string = 'false'; // true-false
   @State() userName: string;
   @State() photo: string;
   
@@ -31,7 +31,7 @@ export class UserInfo {
     this.photo = localStorage.getItem('photo');
   }
 
-  componentDidUpdate() {
+  componentShouldUpdate() {
     this.isAutenticated;
     this.userName;
     this.photo;

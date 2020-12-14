@@ -1,6 +1,7 @@
-import { Component, EventEmitter, h, Listen, State, Event } from '@stencil/core';
+import { Component, EventEmitter, h, Listen, State, Event, Prop } from '@stencil/core';
 import { Product } from '../../models.ts/product.model';
 import { Order } from '../../models.ts/order.model';
+import { RouterHistory, injectHistory } from '@stencil/router';
 // import { OrderService } from '../../services/order.services';
 // import { FinalizePurchase } from '../finalize-purchase/finalize-purchase';
 @Component({
@@ -18,6 +19,8 @@ export class RigthPanel {
   @State() typeUser: string;
   @State() isAutenticated: any;
   @State() orders: Order[] = [];
+  //Navigation
+  @Prop() history: RouterHistory;
 
   //Evento que emite la orden para el componente finalize-purchase
   @Event() selectedSale: EventEmitter<Order>;
@@ -108,7 +111,7 @@ export class RigthPanel {
   }
   // Listen que escucha al evento que emite el componete USER-LOGIN
   @Listen('authenticaUser', { target: 'document' })
-  authenticaUser(event: CustomEvent<boolean>) {
+  authenticaUser(event: CustomEvent<string>) {
     this.isAutenticated = event.detail;
     this.typeUser = localStorage.getItem('userType');
   }
@@ -116,6 +119,7 @@ export class RigthPanel {
   //FUNCION QUE EMITE EL EVENTO ORDEN una vez clickeado el boton finalizar compra y la reinicia!
   handleNewSale() {
     this.selectedSale.emit(this.order);
+    this.history.push('/compraFinalizada', {});
     this.order = Order.void();
     this.total = 0;
   }
@@ -124,7 +128,7 @@ export class RigthPanel {
     this.updateOrder();
   }
   render() {
-    if (this.typeUser != 'admin' || this.isAutenticated == false) {
+    if (this.typeUser != 'admin' || this.isAutenticated == 'false') {
       return (
         <aside class="sidebar">
           <div class="order">
@@ -143,15 +147,17 @@ export class RigthPanel {
           <div class="totals-foot">
             <h4 id="total">Total: ${this.total}</h4>
 
-            <stencil-route-link url="/compraFinalizada">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="button" data-toggle="modal" data-target="#my-modal" id="btn-finish" onClick={() => this.handleNewSale()}>
+            {/* <stencil-route-link url="/compraFinalizada"> */}
+              <button class="btn btn-outline-success my-2 my-sm-0" type="button" onClick={() => this.handleNewSale()}>
                 Finalizar Compra
               </button>
-            </stencil-route-link>
-            <finalize-purchase id="my-modal"></finalize-purchase>
+            {/* </stencil-route-link> */}
+            {/* <finalize-purchase id="my-modal"></finalize-purchase> */}
           </div>
         </aside>
       );
     }
   }
 }
+
+injectHistory(RigthPanel);
