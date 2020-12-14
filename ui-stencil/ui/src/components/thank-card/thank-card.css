@@ -1,3 +1,11 @@
 :host {
   display: block;
 }
+#message{
+  text-align: center;
+  height: 50%;
+  width: 100%;
+}
+#icon{
+  font-size: 70px;
+}

@@ -28,6 +28,7 @@ export class RigthPanel {
   componentWillLoad() {
     this.order;
     this.typeUser = localStorage.getItem('userType');
+    this.isAutenticated = localStorage.getItem('isAutenticated');
   }
   // componentDidUpdate() {
   //   this.typeUser = localStorage.getItem('userType');

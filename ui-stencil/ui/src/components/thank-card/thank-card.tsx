@@ -1,4 +1,5 @@
-import { Component, h, State } from '@stencil/core';
+import { Component, h, Prop, State } from '@stencil/core';
+import { RouterHistory } from '@stencil/router';
 
 @Component({
   tag: 'thank-card',
@@ -7,17 +8,28 @@ import { Component, h, State } from '@stencil/core';
 })
 export class ThankCard {
   @State() userName: string;
+  
+  @Prop() history: RouterHistory;
 
   componentWillLoad() {
-   this.userName = localStorage.getItem('username');
+    this.userName = localStorage.getItem('username');
+  }
+  close() {
+    this.history.push("/menu-dia", {});
   }
   render() {
     return (
-      <div class="alert alert-success" role="alert">
-  <h4 class="alert-heading">Well done!</h4>
-  <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
-  <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
-</div>
+      <div class="alert alert-success alert-dismissible" id="message">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close" onClick={()=>this.close()}>
+          &times;
+        </a>
+        <h1>{this.userName} !!!</h1>
+        <h1>
+          {' '}
+          Hemos tomado tu Pedido <i class="fas fa-check-circle" id="icon"></i>
+        </h1>
+      </div>
     );
   }
+  
 }
