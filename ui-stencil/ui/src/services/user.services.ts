@@ -27,8 +27,9 @@ export class UserService{
   async loginValidate(body:object){
    return await this.fetch.httpRequest('/validate','POST',body);
   }
-  async addNewUser(path: string, body: object){
-    await this.fetch.httpRequest(path,'POST',body);
+  async addNewUser( body: object){
+   return await this.fetch.httpRequest(`/${ENDPOINTS.addNewUser}`,'POST',body);
+
   }
   //Utiliza el patron Singleton. Se intancia una única vez!
   public static get Instance(): UserService {
