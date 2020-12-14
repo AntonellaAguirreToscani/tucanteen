@@ -11,10 +11,10 @@ import { OrderService } from '../../services/order.services';
 export class TableOrders {
   @State() orders: Order[] = [];
   @State() orderNumber: number; //valor input search.
-  @State() foundOrder: Order;  //Se guarda la orden seleccionada por el input, para poder filtrar!
+  @State() foundOrder: Order; //Se guarda la orden seleccionada por el input, para poder filtrar!
   @State() selected: Order;
 
-  @Event() selectedPurchase: EventEmitter<Order>
+  @Event() selectedPurchase: EventEmitter<Order>;
 
   private orderService: OrderService;
   constructor() {
@@ -23,7 +23,8 @@ export class TableOrders {
   @Method()
   async getOrders() {
     try {
-      await this.orderService.getOrders()
+      await this.orderService
+        .getPendingOrders()
         .then(response => response.json())
         .then(data => {
           this.orders = data;
@@ -41,7 +42,7 @@ export class TableOrders {
   async handleOrder(e) {
     e.preventDefault();
     try {
-      if (this.foundOrder = this.orders.find(order => order.orderNumber == this.orderNumber)) {
+      if ((this.foundOrder = this.orders.find(order => order.id == this.orderNumber))) {
         this.orders = [this.foundOrder];
       } else {
         this.getOrders();
@@ -64,7 +65,7 @@ export class TableOrders {
   }
   //Borra la orden en el back-end y se vuelve a cargar el listado de ordenes para q se actualicen los cambios.
   removeOrder() {
-    this.orderService.deleteOrder(this.selected.orderNumber);
+    this.orderService.deleteOrder(this.selected.id);
     this.componentWillLoad();
   }
 
@@ -72,36 +73,31 @@ export class TableOrders {
     return (
       <div>
         <h1 id="title">Pedidos del día</h1>
-        <div class="container" >
-
+        <div class="container">
           <form class="form-inline d-flex justify-content-center md-form form-sm mt-0" onSubmit={e => this.handleOrder(e)}>
-            <i class="fas fa-search" aria-hidden="true"></i>
+            
+            <div class="container">
             <div class="col-sm-6">
-              <input
-                class="form-control form-control-sm ml-3 w-75"
-                type="number"
-                onInput={event => this.handleChange(event)}
-                placeholder="Search"
-                aria-label="Search"
-              ></input>
+              <input class="form-control form-control-sm ml-3 w-75" type="number" onInput={event => this.handleChange(event)} placeholder="Search" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></input>
             </div>
             <div class="col-sm-2">
               <button type="submit" class="btn btn-light">
                 Buscar
-            </button>
+              </button>
             </div>
             <div class="col-sm-2">
               <stencil-route-link url="/ordenACobrar">
                 <button type="button" class="btn btn-light" onClick={() => this.handleCheckout()} data-toggle="modal" data-target="#my-modal">
                   Cobrar
-            </button>
+                </button>
               </stencil-route-link>
               <admin-order id="my-modal"></admin-order>
             </div>
             <div class="col-sm-2">
               <button type="button" class="btn btn-warning" onClick={() => this.removeOrder()}>
                 Quitar
-            </button>
+              </button>
+            </div>
             </div>
 
             <table id="table" class="table table-hover">
@@ -116,18 +112,28 @@ export class TableOrders {
                 </tr>
               </thead>
               <tbody>
-                {this.orders.map((order) => (
+                {this.orders.map(order => (
                   <tr>
                     <th scope="row">
                       <div class="form-check form-check-inline">
-                        <label class="form-check-label">{order.orderNumber}</label>
+                        <label class="form-check-label">{order.id}</label>
                       </div>
                     </th>
-                    <td>{order.userName}</td>
-                    <td>{order.description}</td>
-                    <td>{order.hour}</td>
+                    <td>{order.userId}</td>
+                    {/* Description */}
+                    <td>
+                      {order.products.map(product => {
+                        return `${product.name} ${product.description} `;
+                      })}
+                    </td>
+
+                    <td>{order.deliveryTime}</td>
                     <td>${order.total} </td>
-                    <td><button type="button" class="btn btn-primary btn-sm" onClick={() => this.buttonSelected(order)}>Seleccionar</button></td>
+                    <td>
+                      <button type="button" class="btn btn-primary btn-sm" onClick={() => this.buttonSelected(order)}>
+                        Seleccionar
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>

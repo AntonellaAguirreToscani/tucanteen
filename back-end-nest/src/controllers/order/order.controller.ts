@@ -9,17 +9,16 @@ export class OrderController {
 
     constructor(private OrderService : OrderService){}
 
-    @Get('pending-orders')
-    public getPendingOrders(): Promise<Order[]>{
+    @Get()
+    public getPendingOrders(): Promise<OrderDTO[]>{
         return this.OrderService.getPendingOrders();
     }
     @Get('sales')
-    public getSales(): Promise<Order[]>{
+    public getSales(): Promise<OrderDTO[]>{
         return this.OrderService.getSales();
     }
     @Post('add-order')
     public addOrder(@Body() order: OrderDTO){
         this.OrderService.CreateOrder(order);
     }
-
 }

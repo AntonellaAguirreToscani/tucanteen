@@ -1,6 +1,6 @@
 use tucanteen;
 -- Inserts TIPO-PRODUCTO
-
+select * from e01_type_product;
 insert into e01_type_product values(1,'bebidas');
 insert into e01_type_product values(2,'plato');
 insert into e01_type_product values(3,'menu');
@@ -25,3 +25,6 @@ insert into e01_product values(13,'Bocha Helado','Frutilla',90,'./assets/icon/bo
 insert into e01_product values(14,'Tarta','Frutos rojos',170,'./assets/icon/food/tartafrutos.jpg',5);
 insert into e01_product values(15,'Torta','Chocolate',190,'./assets/icon/food/tartachoco.jpg',5);
 insert into e01_product values(16,'Muffin','Vainilla',100,'./assets/icon/muffin.jpg',5);
+
+insert into e01_type_user values(1,"client");
+insert e01_user values (1,"antoAT","anto123","Antonella","aguirre",1);

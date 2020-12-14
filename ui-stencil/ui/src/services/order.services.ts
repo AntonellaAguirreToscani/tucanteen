@@ -4,6 +4,10 @@ import { CONSTANTS, ENDPOINTS } from "../constants/url.endpoints";
 import { Order } from "../models.ts/order.model";
 
 export class OrderService{
+    changeOrderStatus(id: number) {
+      id;
+      throw new Error('Method not implemented.');
+    }
 
     private static _instance: OrderService;
     private baseUrl: string;
@@ -14,11 +18,14 @@ export class OrderService{
       this.fetch = new FetchAdapter(`${this.baseUrl}`);
     }
   
-    async getOrders() {
+    async getPendingOrders() {
       return await this.fetch.httpRequest(ENDPOINTS.orders,'GET');
     }
+    async getSales() {
+      return await this.fetch.httpRequest(`${ENDPOINTS.orders}/${ENDPOINTS.sales}`,'GET');
+    }
     async postOrder(order: Order){
-      this.fetch.httpRequest(ENDPOINTS.orders,'POST',order);
+      this.fetch.httpRequest(`${ENDPOINTS.orders}/${ENDPOINTS.addOrder}`,'POST',order);
     }
     
     async deleteOrder(id:number){

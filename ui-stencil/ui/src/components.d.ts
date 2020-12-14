@@ -34,9 +34,11 @@ export namespace Components {
     interface ClientView {
     }
     interface FinalizePurchase {
-        "id": string;
+        "history": RouterHistory;
+        "order": Order;
     }
     interface MyBody {
+        "order": Order;
     }
     interface MyFooter {
     }
@@ -49,6 +51,7 @@ export namespace Components {
     interface PlateFood {
     }
     interface RigthPanel {
+        "history": RouterHistory;
     }
     interface SalesTable {
     }
@@ -58,12 +61,12 @@ export namespace Components {
         "getOrders": () => Promise<void>;
         "handleOrder": (e: any) => Promise<void>;
     }
+    interface ThankCard {
+    }
     interface TodaysMenu {
     }
     interface UserInfo {
-        "butonsChoice": string;
         "history": RouterHistory;
-        "profileChoice": string;
     }
     interface UserLogin {
         "handleLogin": (e: any) => Promise<void>;
@@ -202,6 +205,12 @@ declare global {
         prototype: HTMLTableOrdersElement;
         new (): HTMLTableOrdersElement;
     };
+    interface HTMLThankCardElement extends Components.ThankCard, HTMLStencilElement {
+    }
+    var HTMLThankCardElement: {
+        prototype: HTMLThankCardElement;
+        new (): HTMLThankCardElement;
+    };
     interface HTMLTodaysMenuElement extends Components.TodaysMenu, HTMLStencilElement {
     }
     var HTMLTodaysMenuElement: {
@@ -248,6 +257,7 @@ declare global {
         "sales-table": HTMLSalesTableElement;
         "sandwiches-food": HTMLSandwichesFoodElement;
         "table-orders": HTMLTableOrdersElement;
+        "thank-card": HTMLThankCardElement;
         "todays-menu": HTMLTodaysMenuElement;
         "user-info": HTMLUserInfoElement;
         "user-login": HTMLUserLoginElement;
@@ -280,9 +290,11 @@ declare namespace LocalJSX {
     interface ClientView {
     }
     interface FinalizePurchase {
-        "id"?: string;
+        "history"?: RouterHistory;
+        "order"?: Order;
     }
     interface MyBody {
+        "order"?: Order;
     }
     interface MyFooter {
     }
@@ -297,6 +309,7 @@ declare namespace LocalJSX {
         "onSelectedPlateFood"?: (event: CustomEvent<Product>) => void;
     }
     interface RigthPanel {
+        "history"?: RouterHistory;
         "onSelectedSale"?: (event: CustomEvent<Order>) => void;
     }
     interface SalesTable {
@@ -307,18 +320,18 @@ declare namespace LocalJSX {
     interface TableOrders {
         "onSelectedPurchase"?: (event: CustomEvent<Order>) => void;
     }
+    interface ThankCard {
+    }
     interface TodaysMenu {
         "onSelectedMenu"?: (event: CustomEvent<Product>) => void;
     }
     interface UserInfo {
-        "butonsChoice"?: string;
         "history"?: RouterHistory;
-        "onLogOut"?: (event: CustomEvent<boolean>) => void;
-        "profileChoice"?: string;
+        "onLogOut"?: (event: CustomEvent<string>) => void;
     }
     interface UserLogin {
         "history"?: RouterHistory;
-        "onAuthenticaUser"?: (event: CustomEvent<boolean>) => void;
+        "onAuthenticaUser"?: (event: CustomEvent<string>) => void;
     }
     interface UserRegister {
         "hidden"?: boolean;
@@ -346,6 +359,7 @@ declare namespace LocalJSX {
         "sales-table": SalesTable;
         "sandwiches-food": SandwichesFood;
         "table-orders": TableOrders;
+        "thank-card": ThankCard;
         "todays-menu": TodaysMenu;
         "user-info": UserInfo;
         "user-login": UserLogin;
@@ -377,6 +391,7 @@ declare module "@stencil/core" {
             "sales-table": LocalJSX.SalesTable & JSXBase.HTMLAttributes<HTMLSalesTableElement>;
             "sandwiches-food": LocalJSX.SandwichesFood & JSXBase.HTMLAttributes<HTMLSandwichesFoodElement>;
             "table-orders": LocalJSX.TableOrders & JSXBase.HTMLAttributes<HTMLTableOrdersElement>;
+            "thank-card": LocalJSX.ThankCard & JSXBase.HTMLAttributes<HTMLThankCardElement>;
             "todays-menu": LocalJSX.TodaysMenu & JSXBase.HTMLAttributes<HTMLTodaysMenuElement>;
             "user-info": LocalJSX.UserInfo & JSXBase.HTMLAttributes<HTMLUserInfoElement>;
             "user-login": LocalJSX.UserLogin & JSXBase.HTMLAttributes<HTMLUserLoginElement>;

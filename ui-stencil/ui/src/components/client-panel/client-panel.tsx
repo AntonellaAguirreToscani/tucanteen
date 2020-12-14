@@ -29,7 +29,7 @@ export class ClientPanel {
 
   render() {
    
-      if(this.isAuthenticated && this.typeUser == 'admin'){
+      if(this.isAuthenticated == 'true' && this.typeUser == 'admin'){
         return(
           <nav id="sidebarMenu" class="navbar">
             <div class="sidebar-stickypt-3">
