@@ -115,5 +115,35 @@ export class OrderService {
       )
     });
   }
- 
+  public async getById(id:number): Promise<Order>{
+     let result: Order = await this.orderRepository.findOne({
+      where: [{order_id: Equal(id)}]
+    });
+    return result;
+  }
+  public async updateOrderState(id: number) : Promise<void> {
+    try {
+      let order = await this.getById(id);
+
+      if(order){
+        order.setState('cobrada');
+        const orderUpdate: Order = await this.orderRepository.save(order);
+
+        if(orderUpdate){
+          console.log('orden modificada correctamente!');
+        }else{
+          throw new HttpException('No se pudo crear el producto', HttpStatus.NOT_MODIFIED);
+        }
+      }
+
+    } catch (error) {
+      throw new HttpException({
+        status: HttpStatus.NOT_FOUND,
+        error: "there is an error in the request, " + error,
+      }, HttpStatus.NOT_FOUND);
+    }
+    
+    
+  
+  }
 }
