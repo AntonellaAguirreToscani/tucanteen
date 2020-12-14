@@ -84,10 +84,10 @@ export class UserRegister {
     e.preventDefault();
     try {
      await this.postUser();
-      alert("Bienvenido a tucanteen!")
+      alert("Usuario Creado Exitosamente!!");
     } catch (error) {
       console.log(error.message,'error');
-      alert('Usuario o contraseña Invalida. Intenta nuevamente!');
+      alert('UPS! Algo salií mal, vulve a intentarlo.');
     }
   }
   render() {
@@ -115,7 +115,7 @@ export class UserRegister {
               onInput={event => this.handleChangePass(event)}
               required
             />
-            <input type="submit" class="fadeIn fourth" value="Registrarse" />
+            <input type="submit" class="fadeIn fourth" value="Registrarse" onClick={()=>this.closeRegister()}/>
           </form>
           
         </div>
