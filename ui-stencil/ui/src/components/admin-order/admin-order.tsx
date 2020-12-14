@@ -1,6 +1,6 @@
 import { Component, h, Listen, Prop, State} from '@stencil/core';
 import { Order } from '../../models.ts/order.model';
-import { OrderService } from '../../services/order.services';
+// import { OrderService } from '../../services/order.services';
 
 @Component({
   tag: 'admin-order',
@@ -11,10 +11,10 @@ export class AdminOrder {
   @Prop() id: string;
   @State() order: Order = Order.void();
 
-  private orderService: OrderService;
-  constructor(){
-    this.orderService = OrderService.Instance;
-  }
+  // private orderService: OrderService;
+  // constructor(){
+  //   this.orderService = OrderService.Instance;
+  // }
   
   @Listen('selectedPurchase', { target: 'document' })
   selectedSale(event: CustomEvent<Order>) {
@@ -22,7 +22,7 @@ export class AdminOrder {
   }
 
   handleCheckoutSale(){
-    this.orderService.changeOrderStatus(this.order.id);
+    // this.orderService.changeOrderStatus(this.order.id);
   }
 
   render() {

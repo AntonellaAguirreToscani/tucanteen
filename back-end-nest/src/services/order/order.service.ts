@@ -119,7 +119,7 @@ export class OrderService {
   public async getByDates(date1: Date, date2: Date): Promise<OrderDTO[]> {
     try {
       const result: Order[] = await this.orderRepository.find({
-        where: [{order_date: Between(date1,date2)}],
+        where: [{order_date: Between(date1,date2), state:'cobrada'}],
         relations: ['products']
       });
 

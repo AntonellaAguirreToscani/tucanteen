@@ -44,9 +44,7 @@ export class SalesTable {
         let dateString = date.toLocaleString().split("-");
         let day = dateString[2].toString().split("");
         return `${day.slice(0, 1)}/${dateString[1]}/${dateString[0]}`;
-
     }
-
   }
 
   handleDateOne(event) {
@@ -55,11 +53,22 @@ export class SalesTable {
   }
   handleDateTwo(event) {
     this.date2 = event.target.value;
-    console.log(this.date2);
+  }
+
+  searchByDates(){
+    try {
+      this.orderService
+        .getByDates(this.date1,this.date2)
+        .then(response => response.json())
+        .then(data => {
+          this.sales = data;
+          console.log(this.sales);
+        });
+    } catch (error) {
+      console.log(error.message);
+    }
   }
   
-
-
   render() {
     return (
       <div>
@@ -67,6 +76,7 @@ export class SalesTable {
         <div class="div-inputs">
           <input type="date" class="datePicker" onInput={event => this.handleDateOne(event)} />
           <input type="date" onInput={event => this.handleDateTwo(event)} />
+          <button type="button" id="button" class="btn btn-light" onClick={()=> this.searchByDates()}>Aplicar</button>
         </div>
         <div class="container">
           <form class="form-inline d-flex justify-content-center md-form form-sm mt-0">
@@ -80,7 +90,6 @@ export class SalesTable {
                   <th scope="col">Total</th>
                 </tr>
               </thead>
-
               <tbody>
                 {this.sales.map(sale => (
                   <tr>
