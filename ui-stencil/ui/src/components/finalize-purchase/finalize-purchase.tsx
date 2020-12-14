@@ -22,12 +22,15 @@ export class FinalizePurchase {
 
   async postOrder(){
     this.orderService.postOrder(this.order);
-    this.close();
+    this.thankYou();
     console.log(this.order);
   }
 
   close() {
     this.history.push("/menu-dia", {});
+  }
+  thankYou() {
+    this.history.push("/thank-you", {});
   }
 
   render() {

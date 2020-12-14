@@ -61,6 +61,8 @@ export namespace Components {
         "getOrders": () => Promise<void>;
         "handleOrder": (e: any) => Promise<void>;
     }
+    interface ThankCard {
+    }
     interface TodaysMenu {
     }
     interface UserInfo {
@@ -203,6 +205,12 @@ declare global {
         prototype: HTMLTableOrdersElement;
         new (): HTMLTableOrdersElement;
     };
+    interface HTMLThankCardElement extends Components.ThankCard, HTMLStencilElement {
+    }
+    var HTMLThankCardElement: {
+        prototype: HTMLThankCardElement;
+        new (): HTMLThankCardElement;
+    };
     interface HTMLTodaysMenuElement extends Components.TodaysMenu, HTMLStencilElement {
     }
     var HTMLTodaysMenuElement: {
@@ -249,6 +257,7 @@ declare global {
         "sales-table": HTMLSalesTableElement;
         "sandwiches-food": HTMLSandwichesFoodElement;
         "table-orders": HTMLTableOrdersElement;
+        "thank-card": HTMLThankCardElement;
         "todays-menu": HTMLTodaysMenuElement;
         "user-info": HTMLUserInfoElement;
         "user-login": HTMLUserLoginElement;
@@ -311,6 +320,8 @@ declare namespace LocalJSX {
     interface TableOrders {
         "onSelectedPurchase"?: (event: CustomEvent<Order>) => void;
     }
+    interface ThankCard {
+    }
     interface TodaysMenu {
         "onSelectedMenu"?: (event: CustomEvent<Product>) => void;
     }
@@ -348,6 +359,7 @@ declare namespace LocalJSX {
         "sales-table": SalesTable;
         "sandwiches-food": SandwichesFood;
         "table-orders": TableOrders;
+        "thank-card": ThankCard;
         "todays-menu": TodaysMenu;
         "user-info": UserInfo;
         "user-login": UserLogin;
@@ -379,6 +391,7 @@ declare module "@stencil/core" {
             "sales-table": LocalJSX.SalesTable & JSXBase.HTMLAttributes<HTMLSalesTableElement>;
             "sandwiches-food": LocalJSX.SandwichesFood & JSXBase.HTMLAttributes<HTMLSandwichesFoodElement>;
             "table-orders": LocalJSX.TableOrders & JSXBase.HTMLAttributes<HTMLTableOrdersElement>;
+            "thank-card": LocalJSX.ThankCard & JSXBase.HTMLAttributes<HTMLThankCardElement>;
             "todays-menu": LocalJSX.TodaysMenu & JSXBase.HTMLAttributes<HTMLTodaysMenuElement>;
             "user-info": LocalJSX.UserInfo & JSXBase.HTMLAttributes<HTMLUserInfoElement>;
             "user-login": LocalJSX.UserLogin & JSXBase.HTMLAttributes<HTMLUserLoginElement>;
