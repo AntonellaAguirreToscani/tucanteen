@@ -44,7 +44,7 @@ export class MyBody {
               <stencil-route url="/menu-dia" component="todays-menu"></stencil-route>
               <stencil-route url="/login" component="user-login"></stencil-route>
               <stencil-route url="/thank-you" component="thank-card"></stencil-route>
-              {/* <stencil-route url="/register" component="user-register"></stencil-route> */}
+              <stencil-route url="/register" component="user-register"></stencil-route>
               {/* <stencil-route url="/ventas" component="sales-table"></stencil-route>
               <stencil-route url="/pedidos-dia" component="table-orders"></stencil-route> */}
               {/* RUTAS PRIVADAS */}

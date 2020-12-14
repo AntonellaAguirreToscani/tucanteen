@@ -13,4 +13,8 @@ export class LoginController {
     public login(@Body() user: any):Promise< UserDTO>{
         return this.loginService.validateUser(user);
     }
+    @Post('new-user')
+    public addNewUser(@Body() newUser:UserDTO):Promise<string>{
+        return this.loginService.addNewUser(newUser);
+    }
 }

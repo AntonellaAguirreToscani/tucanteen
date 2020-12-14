@@ -74,8 +74,11 @@ export namespace Components {
         "validateUser": () => Promise<void>;
     }
     interface UserRegister {
+        "handleLogin": (e: any) => Promise<void>;
         "hidden": boolean;
+        "history": RouterHistory;
         "id": string;
+        "postUser": () => Promise<void>;
     }
 }
 declare global {
@@ -335,6 +338,7 @@ declare namespace LocalJSX {
     }
     interface UserRegister {
         "hidden"?: boolean;
+        "history"?: RouterHistory;
         "id"?: string;
     }
     interface IntrinsicElements {
