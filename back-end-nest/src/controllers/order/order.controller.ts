@@ -21,4 +21,8 @@ export class OrderController {
     public addOrder(@Body() order: OrderDTO){
         this.OrderService.CreateOrder(order);
     }
+    @Get('/:date1/:date2')
+    public getByDates(@Param('date1') date1: Date, @Param('date2') date2: Date): Promise<OrderDTO[]>{
+       return this.OrderService.getByDates(date1,date2);
+    }
 }

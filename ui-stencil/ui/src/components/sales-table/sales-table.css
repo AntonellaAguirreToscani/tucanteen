@@ -4,3 +4,13 @@
 .datePicker{
   margin-right: 3%;
 }
+#table{
+  text-align: center;
+}
+.container{
+justify-content: center;
+}
+.div-inputs{
+  text-align: center;
+   justify-content: center;
+}

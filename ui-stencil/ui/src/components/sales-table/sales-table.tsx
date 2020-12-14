@@ -8,7 +8,8 @@ import { OrderService } from '../../services/order.services';
 })
 export class SalesTable {
   @State() sales: Order[] = [];
-  @State() date1 : Date;
+  @State() date1: Date;
+  @State() date2: Date;
 
   private orderService: OrderService;
   constructor() {
@@ -33,37 +34,43 @@ export class SalesTable {
     console.log(this.sales[0].date);
   }
 
-  mapDate(date:Date):any{
+  mapDate(date: Date): any {
     return `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`;
   }
 
-  public datePipe(date:Date, format:string):string{
-    switch(format){
+  public datePipe(date: Date, format: string): string {
+    switch (format) {
       case 'short':
-      let dateString = date.toLocaleString().split("-");
-      let day = dateString[2].toString().split("");
-      return `${day.slice(0,1)}/${dateString[1]}/${dateString[0]}`;
-   
+        let dateString = date.toLocaleString().split("-");
+        let day = dateString[2].toString().split("");
+        return `${day.slice(0, 1)}/${dateString[1]}/${dateString[0]}`;
+
     }
 
-  }  
+  }
 
-  handleChangePass(event) {
+  handleDateOne(event) {
     this.date1 = event.target.value;
     console.log(this.date1);
   }
+  handleDateTwo(event) {
+    this.date2 = event.target.value;
+    console.log(this.date2);
+  }
   
+
 
   render() {
     return (
       <div>
         <h1 id="title">Ventas</h1>
-        <input type="date" class="datePicker" onInput={event => this.handleChangePass(event)} />
-        <input type="date" />
-
+        <div class="div-inputs">
+          <input type="date" class="datePicker" onInput={event => this.handleDateOne(event)} />
+          <input type="date" onInput={event => this.handleDateTwo(event)} />
+        </div>
         <div class="container">
           <form class="form-inline d-flex justify-content-center md-form form-sm mt-0">
-            <div class="col-sm-6"></div>
+            <div class="col-sm-6" id="div"></div>
             <table id="table" class="table table-hover">
               <thead>
                 <tr>
@@ -82,7 +89,7 @@ export class SalesTable {
                         <label class="form-check-label">{sale.id}</label>
                       </div>
                     </th>
-                    <td>{this.datePipe( sale.date,'short')}</td>
+                    <td>{this.datePipe(sale.date, 'short')}</td>
                     <td>
                       {sale.products.map(product => {
                         return `${product.name} `;
