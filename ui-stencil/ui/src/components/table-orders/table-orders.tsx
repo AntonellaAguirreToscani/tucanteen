@@ -38,7 +38,7 @@ export class TableOrders {
     this.getOrders();
   }
 
-  componentShouldUpdate(){
+  componentShouldUpdate() {
     this.getOrders();
   }
 
@@ -60,7 +60,7 @@ export class TableOrders {
     this.orderNumber = event.target.value;
   }
   handleCheckout() {
-    this.orderService.updateOrderState(this.selected.id);
+    this.orderService.updateOrderState(this.selected.id, 'cobrada');
     this.selectedPurchase.emit(this.selected);
     this.getOrders();
   }
@@ -68,36 +68,45 @@ export class TableOrders {
     this.selected = order;
     console.log(this.selected);
   }
-
+  cancelOrder() {
+    this.orderService.updateOrderState(this.selected.id, 'cancelada');
+    this.getOrders();
+  }
+  public datePipe(date: Date): string {
+    let dateString = date.toLocaleString().split('-');
+    let day = dateString[2].toString().split('');
+    return ` ${day[3]}${day[4]}${day[5]}${day[6]}${day[7]} hs`;
+  }
   render() {
     return (
       <div>
         <h1 id="title">Pedidos del día</h1>
         <div class="container">
           <form class="form-inline d-flex justify-content-center md-form form-sm mt-0" onSubmit={e => this.handleOrder(e)}>
-            
             <div class="container">
-            <div class="col-sm-6">
-              <input class="form-control form-control-sm ml-3 w-75" type="number" onInput={event => this.handleChange(event)} placeholder="Search" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></input>
-            </div>
-            <div class="col-sm-2">
-              <button type="submit" class="btn btn-light">
-                Buscar
-              </button>
-            </div>
-            <div class="col-sm-2">
-              <stencil-route-link url="/ordenACobrar">
-                <button type="button" class="btn btn-light" onClick={() => this.handleCheckout()} data-toggle="modal" data-target="#my-modal">
-                  Cobrar
+              <div class="col-sm-6">
+                <input class="form-control form-control-sm ml-3 w-75" type="number" onInput={event => this.handleChange(event)} placeholder="Search" aria-label="Search">
+                  <i class="fas fa-search" aria-hidden="true"></i>
+                </input>
+              </div>
+              <div class="col-sm-2">
+                <button type="submit" class="btn btn-light">
+                  Buscar
                 </button>
-              </stencil-route-link>
-              <admin-order id="my-modal"></admin-order>
-            </div>
-            <div class="col-sm-2">
-              <button type="button" class="btn btn-warning" > 
-                Quitar
-              </button>
-            </div>
+              </div>
+              <div class="col-sm-2">
+                <stencil-route-link url="/ordenACobrar">
+                  <button type="button" class="btn btn-light" onClick={() => this.handleCheckout()} data-toggle="modal" data-target="#my-modal">
+                    Cobrar
+                  </button>
+                </stencil-route-link>
+                <admin-order id="my-modal"></admin-order>
+              </div>
+              <div class="col-sm-2">
+                <button type="button" class="btn btn-warning" onClick={() => this.cancelOrder()}>
+                  Quitar
+                </button>
+              </div>
             </div>
 
             <table id="table" class="table table-hover">
@@ -126,12 +135,11 @@ export class TableOrders {
                         return `${product.name} ${product.description} `;
                       })}
                     </td>
-
-                    <td>{order.deliveryTime}</td>
-                    <td>${order.total} </td>
+                    <td>{this.datePipe(order.deliveryTime)}</td>
+                    <td>${order.total}</td>
                     <td>
-                      <button type="button" class="btn btn-primary btn-sm" onClick={() => this.buttonSelected(order)}>
-                        Seleccionar
+                      <button type="button" class="btn btn-outline-info" onClick={() => this.buttonSelected(order)}>
+                        <i class="fas fa-check"></i>
                       </button>
                     </td>
                   </tr>

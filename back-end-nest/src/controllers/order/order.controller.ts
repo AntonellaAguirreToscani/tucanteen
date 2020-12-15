@@ -9,9 +9,10 @@ import { UpdateDateColumn } from 'typeorm';
 export class OrderController {
 
     constructor(private OrderService : OrderService){}
-    @Put(":id")
-    public updateState(@Param('id') id: number){
-        this.OrderService.updateOrderState(id);
+
+    @Put(":id/:newState")
+    public updateState(@Param('id') id: number,@Param('newState') newState: string){
+        this.OrderService.updateOrderState(id, newState);
     }
     @Get()
     public getPendingOrders(): Promise<OrderDTO[]>{

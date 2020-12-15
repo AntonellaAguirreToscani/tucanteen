@@ -10,6 +10,7 @@ export class SalesTable {
   @State() sales: Order[] = [];
   @State() date1: Date;
   @State() date2: Date;
+  @State() total : number;
 
   private orderService: OrderService;
   constructor() {
@@ -23,6 +24,7 @@ export class SalesTable {
         .then(response => response.json())
         .then(data => {
           this.sales = data;
+          this.total = this.getTotal(this.sales);
         });
     } catch (error) {
       console.log(error.message);
@@ -31,6 +33,7 @@ export class SalesTable {
 
   componentWillLoad() {
     this.getSales();
+    this.total;
     console.log(this.sales[0].date);
   }
 
@@ -43,7 +46,7 @@ export class SalesTable {
       case 'short':
         let dateString = date.toLocaleString().split("-");
         let day = dateString[2].toString().split("");
-        return `${day.slice(0, 1)}/${dateString[1]}/${dateString[0]}`;
+        return ` ${day[0]}${day[1]}/${dateString[1]}/${dateString[0]}`;
     }
   }
 
@@ -62,13 +65,18 @@ export class SalesTable {
         .then(response => response.json())
         .then(data => {
           this.sales = data;
-          console.log(this.sales);
+          this.total = this.getTotal(this.sales);
         });
     } catch (error) {
       console.log(error.message);
     }
   }
   
+  getTotal(arrayOrders: Order[]): number{
+    return arrayOrders.reduce((total, order) => {
+      return (total += order.total);
+    }, 0);
+  }
   render() {
     return (
       <div>
@@ -77,6 +85,7 @@ export class SalesTable {
           <input type="date" class="datePicker" onInput={event => this.handleDateOne(event)} />
           <input type="date" onInput={event => this.handleDateTwo(event)} />
           <button type="button" id="button" class="btn btn-light" onClick={()=> this.searchByDates()}>Aplicar</button>
+          <h4 id="total-sales">Total Ventas: $ {this.total} </h4>
         </div>
         <div class="container">
           <form class="form-inline d-flex justify-content-center md-form form-sm mt-0">
@@ -98,7 +107,7 @@ export class SalesTable {
                         <label class="form-check-label">{sale.id}</label>
                       </div>
                     </th>
-                    <td>{this.datePipe(sale.date, 'short')}</td>
+                    <td>{this.datePipe(sale.date,'short')}</td>
                     <td>
                       {sale.products.map(product => {
                         return `${product.name} `;

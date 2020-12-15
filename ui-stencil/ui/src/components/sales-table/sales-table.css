@@ -23,3 +23,6 @@
   display: flex;
   justify-content: space-between;
 }
+#total-sales{
+  color : #6AB04C !important; 
+}

@@ -141,12 +141,12 @@ export class OrderService {
     });
     return result;
   }
-  public async updateOrderState(id: number) : Promise<void> {
+  public async updateOrderState(id: number, newState: string) : Promise<void> {
     try {
       let order = await this.getById(id);
 
       if(order){
-        order.setState('cobrada');
+        order.setState(newState);
         const orderUpdate: Order = await this.orderRepository.save(order);
 
         if(orderUpdate){
@@ -162,8 +162,6 @@ export class OrderService {
         error: "there is an error in the request, " + error,
       }, HttpStatus.NOT_FOUND);
     }
-    
-    
-  
   }
+
 }
