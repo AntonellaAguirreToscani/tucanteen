@@ -11,15 +11,14 @@ export class UserInfo {
   @State() isAutenticated: string = 'false'; // true-false
   @State() userName: string;
   @State() photo: string;
-  
+  @State() typeUser: string;
   //Navigation
   @Prop() history: RouterHistory;
 
   @Event() logOut :  EventEmitter<string>
 
   componentWillLoad() {
-    localStorage.setItem('isAutenticated','false');
-    console.log(this.isAutenticated);
+    this.isAutenticated = localStorage.getItem('isAutenticated');
     this.userName = localStorage.getItem('username');
     this.photo = localStorage.getItem('photo');
   }
