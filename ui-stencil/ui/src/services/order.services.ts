@@ -23,8 +23,8 @@ export class OrderService{
       this.fetch.httpRequest(`${ENDPOINTS.orders}/${ENDPOINTS.addOrder}`,'POST',order);
     }
     
-    async updateOrderState(id:number){
-      this.fetch.httpRequest(`${ENDPOINTS.orders}/${id}`,'PUT');
+    async updateOrderState(id:number,newState:string){
+      this.fetch.httpRequest(`${ENDPOINTS.orders}/${id}/${newState}`,'PUT');
     }
     async getByDates(date1:Date,date2:Date){
       return await this.fetch.httpRequest(`${ENDPOINTS.orders}/${date1}/${date2}`,'GET')

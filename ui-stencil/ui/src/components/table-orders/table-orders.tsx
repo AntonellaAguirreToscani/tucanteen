@@ -60,7 +60,7 @@ export class TableOrders {
     this.orderNumber = event.target.value;
   }
   handleCheckout() {
-    this.orderService.updateOrderState(this.selected.id);
+    this.orderService.updateOrderState(this.selected.id,'cobrada');
     this.selectedPurchase.emit(this.selected);
     this.getOrders();
   }
@@ -68,7 +68,10 @@ export class TableOrders {
     this.selected = order;
     console.log(this.selected);
   }
-
+  cancelOrder(){
+    this.orderService.updateOrderState(this.selected.id,'cancelada');
+    this.getOrders();
+  }
   render() {
     return (
       <div>
@@ -94,7 +97,7 @@ export class TableOrders {
               <admin-order id="my-modal"></admin-order>
             </div>
             <div class="col-sm-2">
-              <button type="button" class="btn btn-warning" > 
+              <button type="button" class="btn btn-warning" onClick={()=> this.cancelOrder()} > 
                 Quitar
               </button>
             </div>
