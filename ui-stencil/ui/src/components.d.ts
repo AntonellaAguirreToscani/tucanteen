@@ -62,6 +62,7 @@ export namespace Components {
         "handleOrder": (e: any) => Promise<void>;
     }
     interface ThankCard {
+        "history": RouterHistory;
     }
     interface TodaysMenu {
     }
@@ -324,6 +325,7 @@ declare namespace LocalJSX {
         "onSelectedPurchase"?: (event: CustomEvent<Order>) => void;
     }
     interface ThankCard {
+        "history"?: RouterHistory;
     }
     interface TodaysMenu {
         "onSelectedMenu"?: (event: CustomEvent<Product>) => void;
