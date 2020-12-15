@@ -136,7 +136,6 @@ export class TableOrders {
                       })}
                     </td>
                     <td>{this.datePipe(order.deliveryTime)}</td>
-                    <td></td>
                     <td>${order.total}</td>
                     <td>
                       <button type="button" class="btn btn-outline-info" onClick={() => this.buttonSelected(order)}>
