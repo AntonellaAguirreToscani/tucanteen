@@ -10,7 +10,8 @@
 }
 .container{
   display: flex;
-  flex-flow:row wrap ;
+  flex-flow:row wrap;
+  justify-content: center;
 }
 .card-img{
   margin-top: 30%;

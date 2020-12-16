@@ -1,11 +1,17 @@
 .sidebar {
     grid-area: sidebar;
-    background-color: whitesmoke;
+    /* background-color: whitesmoke; */
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: space-between;
 }
+.hydrate{
+    height: 100%;
+    visibility: inherit;
+    box-sizing: border-box;
+}
+
 
 #total {
     background-color: #6AB04C;

@@ -1,15 +1,17 @@
 .navbar {
-  grid-area: navbar;
-  background-color: whitesmoke;
+  /* grid-area: navbar; */
+  background-color:#ffffff;
   display: flex;
   flex-direction: column;
-  justify-content: inherit;
+  height: 100%;
+  padding: 1.5rem 3rem !important;
+  justify-content: space-between;
 }
 
 #carta-label{
   margin-top: 20px;
   color:black;
-} 
+}
 
 .sidebar-stickypt-3{
   margin-top: 15px;

@@ -38,9 +38,9 @@ create table e01_order(
     
     order_date date not null,
     
-    order_time time not null,
+    order_time datetime not null,
     
-    delivery_time time not null,
+    delivery_time datetime not null,
     
     total int not null,
     
@@ -52,13 +52,13 @@ create table e01_order(
     constraint fk_e01_order foreign key(user_id) references e01_user(user_id)
 );
 
-create table e01_detail_order(
-	order_id int not null,
+
+create table e01_type_product(
+	type_product_id int not null auto_increment,
     
-    product_id int not null,
+    category varchar(45) not null,
     
-    constraint fk_order_id foreign key(order_id) references e01_order(order_id),
-    constraint fk_product_id foreign key(product_id) references e01_product(product_id)
+    constraint pk_type_product primary key(type_product_id)
 );
 
 create table e01_product(
@@ -70,7 +70,7 @@ create table e01_product(
     
     price float not null,
     
-    photo blob not null,
+    photo varchar(100) not null,
     
     type_product_id int not null,
     
@@ -78,10 +78,11 @@ create table e01_product(
     constraint fk_e01_type_product foreign key(type_product_id) references e01_type_product(type_product_id)
 );
 
-create table e01_type_product(
-	type_product_id int not null auto_increment,
+create table e01_detail_order(
+	order_id int not null,
     
-    category varchar(45) not null,
+    product_id int not null,
     
-    constraint pk_type_product primary key(type_product_id)
+    constraint fk_order_id foreign key(order_id) references e01_order(order_id),
+    constraint fk_product_id foreign key(product_id) references e01_product(product_id)
 );

@@ -1,10 +1,10 @@
-.navbar {
+/* .navbar {
   grid-area: navbar;
   background-color: whitesmoke;
   display: flex;
   flex-direction: column;
   justify-content: inherit;
-}
+} */
 
 #carta-label{
   margin-top: 20px;
