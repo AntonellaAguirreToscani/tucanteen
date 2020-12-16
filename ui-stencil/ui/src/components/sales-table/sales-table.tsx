@@ -35,18 +35,18 @@ export class SalesTable {
     this.getSales();
   }
 
-  @Listen('pageChanged')
-  handleSelectedByDates(event: CustomEvent) {
-    this.page = event.detail;
-    this.searchByDates();
-  }
+  // @Listen('pageChanged')
+  // handleSelectedByDates(event: CustomEvent) {
+  //   this.page = event.detail;
+  //   this.searchByDates();
+  // }
 
-  @Listen('sizeChanged')
-  handleSizeChangedByDates(event: CustomEvent) {
-    this.page = 0;
-    this.pageSize = event.detail;
-    this.searchByDates();
-  }
+  // @Listen('sizeChanged')
+  // handleSizeChangedByDates(event: CustomEvent) {
+  //   this.page = 0;
+  //   this.pageSize = event.detail;
+  //   this.searchByDates();
+  // }
 
   getSales() {
     const start = this.page * this.pageSize;
@@ -94,8 +94,8 @@ export class SalesTable {
   }
 
   searchByDates(){
-    const start = this.page * this.pageSize;
-     const end = this.page * this.pageSize + this.pageSize;
+    // const start = this.page * this.pageSize;
+    //  const end = this.page * this.pageSize + this.pageSize;
     try {
       this.orderService
         .getByDates(this.date1,this.date2)
@@ -103,8 +103,8 @@ export class SalesTable {
         .then(data => {
           this.sales = data;
           this.total = this.getTotal(this.sales);
-          this.itemCount = this.sales.length;
-          this.sales = data.slice(start, end);
+          // this.itemCount = this.sales.length;
+          // this.sales = data.slice(start, end);
         });
     } catch (error) {
       console.log(error.message);
