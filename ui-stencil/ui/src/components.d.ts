@@ -26,6 +26,12 @@ export namespace Components {
     }
     interface AppRoot {
     }
+    interface CdnPaginator {
+        "itemCount": number;
+        "page": number;
+        "pageSize": number;
+        "pageSizeOptions": number[];
+    }
     interface ClientDeserts {
         "getDesserts": () => Promise<void>;
     }
@@ -124,6 +130,12 @@ declare global {
     var HTMLAppRootElement: {
         prototype: HTMLAppRootElement;
         new (): HTMLAppRootElement;
+    };
+    interface HTMLCdnPaginatorElement extends Components.CdnPaginator, HTMLStencilElement {
+    }
+    var HTMLCdnPaginatorElement: {
+        prototype: HTMLCdnPaginatorElement;
+        new (): HTMLCdnPaginatorElement;
     };
     interface HTMLClientDesertsElement extends Components.ClientDeserts, HTMLStencilElement {
     }
@@ -247,6 +259,7 @@ declare global {
         "app-home": HTMLAppHomeElement;
         "app-profile": HTMLAppProfileElement;
         "app-root": HTMLAppRootElement;
+        "cdn-paginator": HTMLCdnPaginatorElement;
         "client-deserts": HTMLClientDesertsElement;
         "client-panel": HTMLClientPanelElement;
         "client-view": HTMLClientViewElement;
@@ -285,6 +298,14 @@ declare namespace LocalJSX {
         "match"?: MatchResults;
     }
     interface AppRoot {
+    }
+    interface CdnPaginator {
+        "itemCount"?: number;
+        "onPageChanged"?: (event: CustomEvent<any>) => void;
+        "onSizeChanged"?: (event: CustomEvent<any>) => void;
+        "page"?: number;
+        "pageSize"?: number;
+        "pageSizeOptions"?: number[];
     }
     interface ClientDeserts {
         "onSelectedDessert"?: (event: CustomEvent<Product>) => void;
@@ -351,6 +372,7 @@ declare namespace LocalJSX {
         "app-home": AppHome;
         "app-profile": AppProfile;
         "app-root": AppRoot;
+        "cdn-paginator": CdnPaginator;
         "client-deserts": ClientDeserts;
         "client-panel": ClientPanel;
         "client-view": ClientView;
@@ -383,6 +405,7 @@ declare module "@stencil/core" {
             "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
             "app-profile": LocalJSX.AppProfile & JSXBase.HTMLAttributes<HTMLAppProfileElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
+            "cdn-paginator": LocalJSX.CdnPaginator & JSXBase.HTMLAttributes<HTMLCdnPaginatorElement>;
             "client-deserts": LocalJSX.ClientDeserts & JSXBase.HTMLAttributes<HTMLClientDesertsElement>;
             "client-panel": LocalJSX.ClientPanel & JSXBase.HTMLAttributes<HTMLClientPanelElement>;
             "client-view": LocalJSX.ClientView & JSXBase.HTMLAttributes<HTMLClientViewElement>;

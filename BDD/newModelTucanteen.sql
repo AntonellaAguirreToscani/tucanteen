@@ -38,9 +38,9 @@ create table e01_order(
     
     order_date date not null,
     
-    order_time time not null,
+    order_time datetime not null,
     
-    delivery_time time not null,
+    delivery_time datetime not null,
     
     total int not null,
     
@@ -70,7 +70,7 @@ create table e01_product(
     
     price float not null,
     
-    photo blob not null,
+    photo varchar(100) not null,
     
     type_product_id int not null,
     
