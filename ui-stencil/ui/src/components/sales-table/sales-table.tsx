@@ -1,4 +1,4 @@
-import { Component, h, State } from '@stencil/core';
+import { Component, h, Listen, State } from '@stencil/core';
 import { Order } from '../../models.ts/order.model';
 import { OrderService } from '../../services/order.services';
 @Component({
@@ -12,12 +12,45 @@ export class SalesTable {
   @State() date2: Date;
   @State() total : number;
 
+ // PARA EL PAGINATOR
+  page: number = 0;
+  @State() itemCount = 0;
+  @State() pageSize: number = 5;
+
   private orderService: OrderService;
   constructor() {
     this.orderService = OrderService.Instance;
   }
 
+  @Listen('pageChanged')
+  handleSelected(event: CustomEvent) {
+    this.page = event.detail;
+    this.getSales();
+  }
+
+  @Listen('sizeChanged')
+  handleSizeChanged(event: CustomEvent) {
+    this.page = 0;
+    this.pageSize = event.detail;
+    this.getSales();
+  }
+
+  @Listen('pageChanged')
+  handleSelectedByDates(event: CustomEvent) {
+    this.page = event.detail;
+    this.searchByDates();
+  }
+
+  @Listen('sizeChanged')
+  handleSizeChangedByDates(event: CustomEvent) {
+    this.page = 0;
+    this.pageSize = event.detail;
+    this.searchByDates();
+  }
+
   getSales() {
+    const start = this.page * this.pageSize;
+     const end = this.page * this.pageSize + this.pageSize;
     try {
       this.orderService
         .getSales() //Hace referencia a la clase DrinkServices
@@ -25,6 +58,8 @@ export class SalesTable {
         .then(data => {
           this.sales = data;
           this.total = this.getTotal(this.sales);
+          this.itemCount = this.sales.length;
+          this.sales = data.slice(start, end);
         });
     } catch (error) {
       console.log(error.message);
@@ -59,6 +94,8 @@ export class SalesTable {
   }
 
   searchByDates(){
+    const start = this.page * this.pageSize;
+     const end = this.page * this.pageSize + this.pageSize;
     try {
       this.orderService
         .getByDates(this.date1,this.date2)
@@ -66,6 +103,8 @@ export class SalesTable {
         .then(data => {
           this.sales = data;
           this.total = this.getTotal(this.sales);
+          this.itemCount = this.sales.length;
+          this.sales = data.slice(start, end);
         });
     } catch (error) {
       console.log(error.message);
@@ -78,6 +117,7 @@ export class SalesTable {
     }, 0);
   }
   render() {
+    if(this.sales){
     return (
       <div>
         <h1 id="title">Ventas</h1>
@@ -120,7 +160,13 @@ export class SalesTable {
             </table>
           </form>
         </div>
+        <div id="paginator" class="container">
+            <div class="col-md-9">
+              <cdn-paginator page={this.page} pageSize={this.pageSize} itemCount={this.itemCount}></cdn-paginator>
+            </div>
+          </div>
       </div>
     );
   }
+}
 }

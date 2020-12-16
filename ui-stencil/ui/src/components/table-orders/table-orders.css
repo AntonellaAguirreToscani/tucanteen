@@ -9,3 +9,27 @@
   margin-top: 2%;
   margin-left: 5%;
 }
+:host {
+  display: block;
+  line-height: 18px;
+}
+:host .container {
+  height: 348px;
+  border: 1px solid #eee;
+  border-radius: 2px;
+  overflow-y: scroll;
+}
+:host cdn-paginator {
+  margin-top: 8px;
+}
+:host table {
+  width: 100%;
+}
+:host table th, :host table td {
+  text-align: left;
+  border: 1px solid #fafafa;
+  padding: 4px;
+}
+#paginator{
+  align-items: flex-end;
+}

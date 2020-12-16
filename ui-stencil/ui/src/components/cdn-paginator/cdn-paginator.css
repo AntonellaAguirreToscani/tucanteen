@@ -1,0 +1,46 @@
+:host {
+  display: block;
+  border: 1px solid #eee;
+  padding: 4px;
+}
+:host > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+:host .pages {
+  margin-right: auto;
+}
+:host .pages, :host .pages a {
+  border-radius: 2px;
+}
+:host .counts {
+  margin-right: 18px;
+}
+:host .size {
+  margin-right: 4px;
+}
+:host a {
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  padding: 2px 8px;
+  border: 1px solid #fafafa;
+  margin-right: 4px;
+  transition: all 0.1s linear;
+  user-select: none;
+}
+:host a:hover {
+  border-color: #aaa;
+}
+:host a.active {
+  color: #00f;
+  border-color: #00f;
+}
+:host a.disabled {
+  cursor: default;
+  color: #bbb;
+}
+:host a.disabled:hover {
+  border-color: #fafafa;
+}
