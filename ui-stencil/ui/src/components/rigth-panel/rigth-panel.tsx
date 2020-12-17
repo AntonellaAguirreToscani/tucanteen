@@ -131,7 +131,7 @@ export class RigthPanel {
   render() {
     if (this.typeUser != 'admin' || this.isAutenticated == 'false') {
       return (
-        <aside class="sidebar">
+        <aside class="navbar">
           <div class="order">
             <h4>Tu orden</h4>
             {this.order.products.map((product, index) => (

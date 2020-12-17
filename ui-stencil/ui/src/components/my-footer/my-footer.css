@@ -32,7 +32,6 @@ footer{
 .container-body{
   display: flex;
   justify-content: space-between;
-  
 }
 .colum1{
    max-width: 360px; 

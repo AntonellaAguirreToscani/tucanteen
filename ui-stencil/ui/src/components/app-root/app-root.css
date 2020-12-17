@@ -30,26 +30,26 @@ body {
       "navbar navbar"  25%
       "mainbody mainbody"  auto
       "sidebar sidebar"  25%
-      "footer footer"    5% / 
-      25%     auto ;              /* ancho */  
+      "footer footer"    5% 
+      / 25%     auto ;              /* ancho */  
 }
 
-@media (min-width: 900px) {          /*MEDIA QUERY NAVEGADOR GRANDE*/
+@media (min-width: 900px) {          /*MEDIA QUERY NAVEGADOR GRANDE  */
   .grid-container {
       grid-template: 
-          "header header header"    20%
-          "navbar mainbody sidebar" auto
-          "footer footer footer"    10% / 
-          25%     auto     25%;
+          "client-panel mainbody right-panel" auto
+          "client-panel mainbody right-panel" auto
+          "client-panel mainbody right-panel" auto
+          / 20% 57% 23%  
   }
-} 
+}
 
-@media (min-width: 1200px) {          /*MEDIA QUERY NAVEGADOR A FULL*/
+@media (min-width: 1200px) {          /*MEDIA QUERY NAVEGADOR A FULL */
   .grid-container {
       grid-template: 
-          "header header header"    20%
-          "navbar mainbody sidebar" auto
-          "footer footer footer"    10% / 
-          20%     auto     20%;
+          "client-panel mainbody right-panel" auto
+          "client-panel mainbody right-panel" auto
+          "client-panel mainbody right-panel" auto
+          / 20% 57% 23%            
   }
 }

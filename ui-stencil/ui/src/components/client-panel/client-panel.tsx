@@ -1,4 +1,4 @@
-import { Component, h, Listen, State} from '@stencil/core';
+import { Component, h, Listen, State } from '@stencil/core';
 
 @Component({
   tag: 'client-panel',
@@ -6,8 +6,8 @@ import { Component, h, Listen, State} from '@stencil/core';
   shadow: false,
 })
 export class ClientPanel {
-  @State() isAuthenticated : any;
-  @State() typeUser : string;
+  @State() isAuthenticated: any;
+  @State() typeUser: string;
 
   componentWillLoad() {
     this.isAuthenticated = localStorage.getItem('isAutenticated');
@@ -15,99 +15,98 @@ export class ClientPanel {
   }
   @Listen('authenticaUser', { target: 'document' })
   authenticaUser(event: CustomEvent<boolean>) {
-    this.isAuthenticated= event.detail; 
+    this.isAuthenticated = event.detail;
     this.typeUser = localStorage.getItem('userType');
   }
-  
+
   @Listen('logOut', { target: 'document' })
   logOut(event: CustomEvent<boolean>) {
-    this.isAuthenticated= event.detail; 
+    this.isAuthenticated = event.detail;
   }
-  componenteShouldUpdate () {
-    this.isAuthenticated= localStorage.getItem('isAutenticated');
+  componenteShouldUpdate() {
+    this.isAuthenticated = localStorage.getItem('isAutenticated');
   }
 
   render() {
-   
-      if(this.isAuthenticated == 'true' && this.typeUser == 'admin'){
-        return(
-          <nav id="sidebarMenu" class="navbar">
+
+    if (this.isAuthenticated == 'true' && this.typeUser == 'admin') {
+      return (
+        <aside class="navbar">
+          <div class="sidebar-stickypt-3">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <stencil-route-link url="/pedidos-dia">
+                  <a class="nav-link" href="#">
+                    <span data-feather="file"></span>
+                    <i class='far fa-file-alt'></i>
+                        Pedidos del día
+                    </a>
+                </stencil-route-link>
+              </li>
+              <h3 id="carta-label">Reportes</h3>
+              <li class="nav-item">
+                <stencil-route-link url="/ventas">
+                  <a class="nav-link" href="#">
+                    <span data-feather="file"></span>
+                    <i class='fas fa-check-circle'></i>
+                    Ventas
+                  </a>
+                </stencil-route-link>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      );
+    } else {
+      return (
+          <aside class="navbar">
             <div class="sidebar-stickypt-3">
               <ul class="nav flex-column">
                 <li class="nav-item">
-                  <stencil-route-link url="/pedidos-dia">
+                  <stencil-route-link url="/menu-dia">
                     <a class="nav-link" href="#">
-                      <span data-feather="file"></span>
-                      <i class='far fa-file-alt'></i>
-                        Pedidos del día
-                    </a> 
+                      <span data-feather="file" ></span>
+                      <i class='fas fa-utensils'></i> Menú del día
+                </a>
                   </stencil-route-link>
                 </li>
-                <h3 id="carta-label">Reportes</h3>
+                <h3 id="carta-label">Carta</h3>
                 <li class="nav-item">
-                  <stencil-route-link url="/ventas">
+                  <stencil-route-link url="/al-plato">
                     <a class="nav-link" href="#">
                       <span data-feather="file"></span>
-                      <i class='fas fa-check-circle'></i>
-                    Ventas
-                  </a>
+                      <i class='fas fa-drumstick-bite'></i> Al plato
+              </a>
+                  </stencil-route-link>
+                </li>
+                <li class="nav-item">
+                  <stencil-route-link url="/sandwiches">
+                    <a class="nav-link" href="#">
+                      <span data-feather="file"></span>
+                      <i class='fas fa-hamburger'></i> Sandwiches
+              </a>
+                  </stencil-route-link>
+                </li>
+                <li class="nav-item">
+                  <stencil-route-link url="/bebidas">
+                    <a class="nav-link" href="#">
+                      <span data-feather="file"></span>
+                      <i class='fas fa-cocktail'></i> Bebidas
+              </a>
+                  </stencil-route-link>
+                </li>
+                <li class="nav-item">
+                  <stencil-route-link url="/postres">
+                    <a class="nav-link" href="#">
+                      <span data-feather="file"></span>
+                      <i class='fas fa-ice-cream'></i> Postres
+              </a>
                   </stencil-route-link>
                 </li>
               </ul>
             </div>
-          </nav> 
-        );
-    }else{
-      return(
-        <nav id="sidebarMenu" class="navbar">
-        <div class="sidebar-stickypt-3">
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <stencil-route-link url="/menu-dia">
-                <a class="nav-link" href="#">
-                  <span  data-feather="file" ></span>
-                  <i class='fas fa-utensils'></i> Menú del día 
-                </a> 
-              </stencil-route-link>
-            </li>
-            <h3 id="carta-label">Carta</h3>
-            <li class="nav-item">
-              <stencil-route-link url="/al-plato">
-                <a class="nav-link" href="#">
-                  <span data-feather="file"></span>
-                  <i class='fas fa-drumstick-bite'></i> Al plato
-              </a>
-              </stencil-route-link>
-            </li>
-            <li class="nav-item">
-              <stencil-route-link url="/sandwiches">
-                <a class="nav-link" href="#">
-                  <span data-feather="file"></span>
-                  <i class='fas fa-hamburger'></i> Sandwiches
-              </a>
-              </stencil-route-link>
-            </li>
-            <li class="nav-item">
-              <stencil-route-link url="/bebidas">
-                <a class="nav-link" href="#">
-                  <span data-feather="file"></span>
-                  <i class='fas fa-cocktail'></i> Bebidas
-              </a>
-              </stencil-route-link>
-            </li>
-            <li class="nav-item">
-              <stencil-route-link url="/postres">
-                <a class="nav-link" href="#">
-                  <span data-feather="file"></span>
-                  <i class='fas fa-ice-cream'></i> Postres
-              </a>
-              </stencil-route-link>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    );
+          </aside>
+      );
     }
   }
-
 }
