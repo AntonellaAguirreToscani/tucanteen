@@ -30,8 +30,8 @@ body {
       "navbar navbar"  25%
       "mainbody mainbody"  auto
       "sidebar sidebar"  25%
-      "footer footer"    5% / 
-      25%     auto ;              /* ancho */  
+      "footer footer"    5% 
+      / 25%     auto ;              /* ancho */  
 }
 
 @media (min-width: 900px) {          /*MEDIA QUERY NAVEGADOR GRANDE  */
@@ -40,6 +40,7 @@ body {
           "client-panel mainbody right-panel" auto
           "client-panel mainbody right-panel" auto
           "client-panel mainbody right-panel" auto
+          / 20% 57% 23%  
   }
 }
 
@@ -48,6 +49,7 @@ body {
       grid-template: 
           "client-panel mainbody right-panel" auto
           "client-panel mainbody right-panel" auto
-          "client-panel mainbody right-panel" auto            
+          "client-panel mainbody right-panel" auto
+          / 20% 57% 23%            
   }
 }
