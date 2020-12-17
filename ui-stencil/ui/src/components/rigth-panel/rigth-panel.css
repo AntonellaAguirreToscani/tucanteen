@@ -11,6 +11,9 @@
     visibility: inherit;
     box-sizing: border-box;
 }
+.navbar{
+    max-width: 244px;
+}
 
 
 #total {

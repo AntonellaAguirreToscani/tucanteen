@@ -6,6 +6,7 @@
   height: 100%;
   padding: 1.5rem 3rem !important;
   justify-content: space-between;
+  max-width: 250px;
 }
 
 #carta-label{
