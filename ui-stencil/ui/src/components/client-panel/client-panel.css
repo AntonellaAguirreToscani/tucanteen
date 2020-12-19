@@ -1,6 +1,6 @@
 .navbar {
   grid-area: navbar;
-  background-color: whitesmoke;
+  background-color:#FFFCFF;
   display: flex;
   flex-direction: column;
   justify-content: inherit;
